@@ -6,4 +6,6 @@ A marketplace for buying goods made by people.
 
 This Project is developed with:
 - Java 21
-- Spring 4.0.3 with Spring Web
+- Spring 4.0.3
+  - Spring Web
+  - Spring Data JPA
