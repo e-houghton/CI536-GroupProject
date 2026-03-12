@@ -1,13 +1,20 @@
+
+# Spring Help
+
+Usefully References
+
+* **For serving web content** [[https://spring.io/guides/gs/serving-web-content]]
+
 # GENERATED FILE DURING INITILIZATION OF THE PROJECT
 
-# Read Me First
+## Read Me First
 The following was discovered as part of building this project:
 
 * The original package name 'com.group-project.craft' is invalid and this project uses 'com.group_project.craft' instead.
 
-# Getting Started
+## Getting Started
 
-### Reference Documentation
+#### Reference Documentation
 For further reference, please consider the following sections:
 
 * [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
@@ -15,14 +22,14 @@ For further reference, please consider the following sections:
 * [Create an OCI image](https://docs.spring.io/spring-boot/4.0.3/maven-plugin/build-image.html)
 * [Spring Web](https://docs.spring.io/spring-boot/4.0.3/reference/web/servlet.html)
 
-### Guides
+#### Guides
 The following guides illustrate how to use some features concretely:
 
 * [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
 * [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
 * [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
 
-### Maven Parent overrides
+#### Maven Parent overrides
 
 Due to Maven's design, elements are inherited from the parent POM to the project POM.
 While most of the inheritance is fine, it also inherits unwanted elements like `<license>` and `<developers>` from the parent.
