@@ -1,4 +1,7 @@
 {
+  # TODO: Test if this even works.
+  # TODO: Swap this out for simpler nix shell?
+  
   description = "Java Spring dev flake for CI536";
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
