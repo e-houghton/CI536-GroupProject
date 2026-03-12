@@ -12,7 +12,7 @@ public class CraftApplication {
 	SpringApplication.run(CraftApplication.class, args);
     }
     
-    @GetMapping("/")
+    @GetMapping("/test")
     public String test() {
 	return String.format("ITS ALIVE");
     }
