@@ -21,7 +21,8 @@ public class User {
     @Column(nullable = false, length=50)
     private String password;
     // this is how relationships work. allows to do user.getCustomer().getName();
-    @ManyToOne
+    @OneToOne
+    @PrimaryKeyJoinColumn
     private Customer customer;
 
     public Customer getCustomer() {
