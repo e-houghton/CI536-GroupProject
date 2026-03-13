@@ -1,8 +1,7 @@
-package com.group_project.craft.DatabaseClasses;
+package com.group_project.craft.DatabaseClasses.Tables;
 
 import jakarta.persistence.*;
 
-@NamedQuery(name="getAllFields", query=" select c from Customer c")
 @Entity
 @Table(name="tCust")
 public class Customer {
@@ -13,7 +12,7 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long custID;
     @Column(nullable = false, length = 50)
     private String fname;
     @Column(nullable = false, length = 50)
@@ -23,15 +22,16 @@ public class Customer {
     @Column(nullable = false,length=50)
     private String phone;
     @Column(nullable = false,length=50)
-    private String addrln1;
+    private String addrLine1;
     @Column(length=50)
-    private String addrln2;
+    private String addrLine2;
     @Column(nullable = false,length=50)
-    private String city;
+    private String addrCity;
     @Column(nullable = false,length=50)
-    private String county;
+    private String addrCounty;
     @Column(nullable = false,length=10)
-    private String postcode;
+    private String addrPostCode;
+    @Column(nullable = false)
     private boolean isGuest;
 
 
@@ -49,11 +49,11 @@ public class Customer {
         this.lname = lname;
         this.email = email;
         this.phone = phone;
-        this.addrln1 = addrln1;
-        this.addrln2 = addrln2;
-        this.city = city;
-        this.county = county;
-        this.postcode = postcode;
+        this.addrLine1 = addrln1;
+        this.addrLine2 = addrln2;
+        this.addrCity = city;
+        this.addrCounty = county;
+        this.addrPostCode = postcode;
         this.isGuest = isGuest;
     }
 
@@ -61,12 +61,12 @@ public class Customer {
     // ======================================
     // =           Getters+Setters          =
     // ======================================
-    public Long getId() {
-        return id;
+    public Long getCustID() {
+        return custID;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCustID(Long custID) {
+        this.custID = custID;
     }
 
     public String getFname() {
@@ -101,44 +101,44 @@ public class Customer {
         this.phone = phone;
     }
 
-    public String getAddrln1() {
-        return addrln1;
+    public String getAddrLine1() {
+        return addrLine1;
     }
 
-    public void setAddrln1(String addrln1) {
-        this.addrln1 = addrln1;
+    public void setAddrLine1(String addrLine1) {
+        this.addrLine1 = addrLine1;
     }
 
-    public String getAddrln2() {
-        return addrln2;
+    public String getAddrLine2() {
+        return addrLine2;
     }
 
-    public void setAddrln2(String addrln2) {
-        this.addrln2 = addrln2;
+    public void setAddrLine2(String addrLine2) {
+        this.addrLine2 = addrLine2;
     }
 
-    public String getCity() {
-        return city;
+    public String getAddrCity() {
+        return addrCity;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setAddrCity(String addrCity) {
+        this.addrCity = addrCity;
     }
 
-    public String getCounty() {
-        return county;
+    public String getAddrCounty() {
+        return addrCounty;
     }
 
-    public void setCounty(String county) {
-        this.county = county;
+    public void setAddrCounty(String addrCounty) {
+        this.addrCounty = addrCounty;
     }
 
-    public String getPostcode() {
-        return postcode;
+    public String getAddrPostCode() {
+        return addrPostCode;
     }
 
-    public void setPostcode(String postcode) {
-        this.postcode = postcode;
+    public void setAddrPostCode(String addrPostCode) {
+        this.addrPostCode = addrPostCode;
     }
 
     public boolean isGuest() {

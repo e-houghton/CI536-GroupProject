@@ -3,8 +3,8 @@ package com.group_project.craft.DatabaseClasses.Service;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import com.group_project.craft.DatabaseClasses.*;
 import com.group_project.craft.DatabaseClasses.Repository.*;
+import com.group_project.craft.DatabaseClasses.Tables.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 //  such as executing business logic, performing
 //  calculations, and calling external APIs.
 @Service
-public class CustomerServiceImp implements CustomerService {
+public class CustService implements InterfaceCustService {
     @Autowired
     CustomerRepo customerRepo;
 
@@ -23,7 +23,7 @@ public class CustomerServiceImp implements CustomerService {
     }
 
     @Override
-    public Customer findAllEmployeeByID(long id) {
+    public Customer findAllCustByID(long id) {
         Optional<Customer> opt = customerRepo.findById(id);
         if (opt.isPresent())
             return opt.get();
@@ -33,6 +33,7 @@ public class CustomerServiceImp implements CustomerService {
 
     @Override
     public void addCustomer() {
+        //todo: remove hardccoded values and allow dynamic user adding.
         ArrayList<Customer> emp = new ArrayList<>();
         emp.add(new Customer("ez",
                 "houghton",
@@ -44,8 +45,10 @@ public class CustomerServiceImp implements CustomerService {
                 "testcounty",
                 "TE57 9AA",
                 false));
-        for (Customer employee : emp) {
-            customerRepo.save(employee);
+
+        for (Customer cust : emp) {
+
+            customerRepo.save(cust);
         }
     }
 
