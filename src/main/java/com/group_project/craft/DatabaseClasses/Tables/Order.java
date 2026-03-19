@@ -2,7 +2,9 @@ package com.group_project.craft.DatabaseClasses.Tables;
 
 import jakarta.persistence.*;
 
-import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="tOrder")
@@ -12,13 +14,27 @@ public class Order {
     private int orderID;
 
     @ManyToOne
-    @PrimaryKeyJoinColumn
+    @JoinColumn(name="buyer")
     private Customer buyer;
+
     @Column(nullable = false)
     private Date purchaseDate;
+    @OneToMany(mappedBy="order",
+            targetEntity= OrderLine.class,
+            fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<OrderLine> items = new ArrayList<>();
 
-    public Order(int orderID, Customer buyer, Date purchaseDate) {
-        this.orderID = orderID;
+    public List<OrderLine> getItems() {
+        return items;
+    }
+
+    public void setItems(List<OrderLine> items) {
+        this.items = items;
+    }
+    public void addItem(OrderLine item){
+        this.items.add(item);
+    }
+    public Order(Customer buyer, Date purchaseDate) {
         this.buyer = buyer;
         this.purchaseDate = purchaseDate;
     }

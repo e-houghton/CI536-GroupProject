@@ -10,21 +10,20 @@ public class ReviewSeller {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int reviewID;
     @ManyToOne
-    @PrimaryKeyJoinColumn
+    @JoinColumn(name="reviewer")
     private User reviewer;
     @ManyToOne
-    @PrimaryKeyJoinColumn
-    private User reviewedSeller;
+    @JoinColumn(name="seller")
+    private User seller;
     @Column(nullable = false)
     private double rating;
     @Column(length = 200)
     private String reviewText;
 
     protected ReviewSeller(){}
-    public ReviewSeller(int reviewID, User reviewer, User reviewedSeller, double rating, String reviewText) {
-        this.reviewID = reviewID;
+    public ReviewSeller(User reviewer, User seller, double rating, String reviewText) {
         this.reviewer = reviewer;
-        this.reviewedSeller = reviewedSeller;
+        this.seller = seller;
         this.rating = rating;
         this.reviewText = reviewText;
     }
@@ -45,12 +44,12 @@ public class ReviewSeller {
         this.rating = rating;
     }
 
-    public User getReviewedSeller() {
-        return reviewedSeller;
+    public User getSeller() {
+        return seller;
     }
 
-    public void setReviewedSeller(User reviewedSeller) {
-        this.reviewedSeller = reviewedSeller;
+    public void setSeller(User seller) {
+        this.seller = seller;
     }
 
     public User getReviewer() {

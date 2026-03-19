@@ -2,7 +2,7 @@ package com.group_project.craft.DatabaseClasses.Tables;
 
 import jakarta.persistence.*;
 
-import java.sql.Date;
+import java.util.Date;
 
 @Entity
 @Table(name="tProduct")
@@ -10,8 +10,7 @@ public class Product {
     protected Product() {
     }
 
-    public Product(int prodID, String name, String description, Date uploadDate, User seller, String imageLocation, double price, Subcategory subcategory, boolean sold) {
-        this.prodID = prodID;
+    public Product(String name, String description, Date uploadDate, User seller, String imageLocation, double price, Subcategory subcategory, boolean sold) {
         this.name = name;
         this.description = description;
         this.uploadDate = uploadDate;
@@ -36,7 +35,7 @@ public class Product {
     private Date uploadDate;
 
     @ManyToOne
-    @PrimaryKeyJoinColumn
+    @JoinColumn(name="seller")
     private User seller;
 
     @Column(nullable = false,length=100)
@@ -46,7 +45,7 @@ public class Product {
     private double price;
 
     @ManyToOne
-    @PrimaryKeyJoinColumn
+    @JoinColumn(name="subcategory")
     private Subcategory subcategory;
 
     @Column(nullable = false)

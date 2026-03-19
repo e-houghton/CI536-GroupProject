@@ -16,17 +16,16 @@ public class Subcategory {
     private String description;
 
     @ManyToOne
-    @PrimaryKeyJoinColumn
-    private Category catID;
+    @JoinColumn(name="category")
+    private Category category;
 
     protected Subcategory() {
     }
 
-    public Subcategory(int subcatID, String name, String description, Category catID) {
-        this.subcatID = subcatID;
+    public Subcategory(String name, String description, Category category) {
         this.name = name;
         this.description = description;
-        this.catID = catID;
+        this.category = category;
     }
 
     public int getSubcatID() {
@@ -53,11 +52,11 @@ public class Subcategory {
         this.description = description;
     }
 
-    public Category getCatID() {
-        return catID;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCatID(Category catID) {
-        this.catID = catID;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

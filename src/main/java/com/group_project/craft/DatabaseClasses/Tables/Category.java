@@ -8,10 +8,9 @@ public class Category {
     protected Category() {
     }
 
-    public Category(String description, String name, int catID) {
+    public Category(String description, String name) {
         this.description = description;
         this.name = name;
-        this.catID = catID;
     }
 
 

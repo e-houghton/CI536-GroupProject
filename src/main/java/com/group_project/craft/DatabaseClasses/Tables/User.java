@@ -6,8 +6,7 @@ import jakarta.persistence.*;
 @Table(name="tUser")
 public class User {
     protected User(){}
-    public User(Long userID, String username, String password, Customer customer) {
-        this.userID = userID;
+    public User(String username, String password, Customer customer) {
         this.username = username;
         this.password = password;
         this.customer = customer;
@@ -15,14 +14,14 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long userID;
+    private int userID;
     @Column(nullable = false,length=50)
     private String username;
     @Column(nullable = false, length=50)
     private String password;
     // this is how relationships work. allows to do user.getCustomer().getName();
     @OneToOne
-    @PrimaryKeyJoinColumn
+    @JoinColumn(name="customer")
     private Customer customer;
 
     public Customer getCustomer() {
@@ -49,11 +48,11 @@ public class User {
         this.username = username;
     }
 
-    public Long getUserID() {
+    public int getUserID() {
         return userID;
     }
 
-    public void setUserID(Long userID) {
+    public void setUserID(int userID) {
         this.userID = userID;
     }
 }

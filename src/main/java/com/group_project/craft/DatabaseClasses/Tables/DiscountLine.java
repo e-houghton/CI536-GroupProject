@@ -8,9 +8,7 @@ public class DiscountLine {
     protected DiscountLine() {
     }
 
-    public DiscountLine(int discountLineID, Discount discount, Product product) {
-        this.discountLineID = discountLineID;
-        this.discount = discount;
+    public DiscountLine(Product product) {
         this.product = product;
     }
 
@@ -19,11 +17,11 @@ public class DiscountLine {
     private int discountLineID;
 
     @ManyToOne
-    @PrimaryKeyJoinColumn
+    @JoinColumn(name="discount")
     private Discount discount;
 
     @ManyToOne
-    @PrimaryKeyJoinColumn
+    @JoinColumn(name="product")
     private Product product;
 
     public int getDiscountLineID() {

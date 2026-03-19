@@ -12,7 +12,7 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long custID;
+    private int custID;
     @Column(nullable = false, length = 50)
     private String fname;
     @Column(nullable = false, length = 50)
@@ -61,11 +61,11 @@ public class Customer {
     // ======================================
     // =           Getters+Setters          =
     // ======================================
-    public Long getCustID() {
+    public int getCustID() {
         return custID;
     }
 
-    public void setCustID(Long custID) {
+    public void setCustID(int custID) {
         this.custID = custID;
     }
 

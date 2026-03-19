@@ -8,10 +8,9 @@ public class ReviewProduct {
     protected ReviewProduct() {
     }
 
-    public ReviewProduct(int reviewID, User reviewer, Product reviewedProduct, double rating, String reviewText) {
-        this.reviewID = reviewID;
+    public ReviewProduct(User reviewer, Product product, double rating, String reviewText) {
         this.reviewer = reviewer;
-        this.reviewedProduct = reviewedProduct;
+        this.product = product;
         this.rating = rating;
         this.reviewText = reviewText;
     }
@@ -21,12 +20,12 @@ public class ReviewProduct {
     private int reviewID;
 
     @ManyToOne
-    @PrimaryKeyJoinColumn
+    @JoinColumn(name="reviewer")
     private User reviewer;
 
     @ManyToOne
-    @PrimaryKeyJoinColumn
-    private Product reviewedProduct;
+    @JoinColumn(name="product")
+    private Product product;
 
     @Column(nullable = false)
     private double rating;
@@ -49,12 +48,12 @@ public class ReviewProduct {
         this.reviewer = reviewer;
     }
 
-    public Product getReviewedProduct() {
-        return reviewedProduct;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setReviewedProduct(Product reviewedProduct) {
-        this.reviewedProduct = reviewedProduct;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public double getRating() {

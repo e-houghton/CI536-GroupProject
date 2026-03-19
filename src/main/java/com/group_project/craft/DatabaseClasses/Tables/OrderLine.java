@@ -3,14 +3,13 @@ package com.group_project.craft.DatabaseClasses.Tables;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="tOrderLine")
+@Table(name = "tOrderLine")
 public class OrderLine {
     protected OrderLine() {
     }
 
-    public OrderLine(int orderLineID, Order orderID, Product product) {
-        this.orderLineID = orderLineID;
-        this.orderID = orderID;
+    public OrderLine(Order orderID, Product product) {
+        this.order = orderID;
         this.product = product;
     }
 
@@ -19,11 +18,11 @@ public class OrderLine {
     private int orderLineID;
 
     @ManyToOne
-    @PrimaryKeyJoinColumn
-    private Order orderID;
+    @JoinColumn(name = "order")
+    private Order order;
 
     @ManyToOne
-    @PrimaryKeyJoinColumn
+    @JoinColumn(name = "product")
     private Product product;
 
     public int getOrderLineID() {
@@ -35,11 +34,11 @@ public class OrderLine {
     }
 
     public Order getOrderID() {
-        return orderID;
+        return order;
     }
 
     public void setOrderID(Order orderID) {
-        this.orderID = orderID;
+        this.order = orderID;
     }
 
     public Product getProduct() {

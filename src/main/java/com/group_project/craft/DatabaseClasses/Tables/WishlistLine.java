@@ -8,10 +8,9 @@ import java.sql.Date;
 @Table(name="tWishlistLine")
 public class WishlistLine {
     protected WishlistLine(){}
-    public WishlistLine(int wishlistLineID, Wishlist wishlist, Product productID, Date addedOn) {
-        this.wishlistLineID = wishlistLineID;
+    public WishlistLine(Wishlist wishlist, Product productID, Date addedOn) {
         this.wishlist = wishlist;
-        this.productID = productID;
+        this.product = productID;
         this.addedOn = addedOn;
     }
 
@@ -20,12 +19,12 @@ public class WishlistLine {
     private int wishlistLineID;
 
     @ManyToOne
-    @PrimaryKeyJoinColumn
+    @JoinColumn(name="wishlist")
     private Wishlist wishlist;
 
     @ManyToOne
-    @PrimaryKeyJoinColumn
-    private Product productID;
+    @JoinColumn(name="product")
+    private Product product;
 
     @Column(nullable = false)
     private Date addedOn;
@@ -46,12 +45,12 @@ public class WishlistLine {
         this.wishlist = wishlist;
     }
 
-    public Product getProductID() {
-        return productID;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProductID(Product productID) {
-        this.productID = productID;
+    public void setProduct(Product productID) {
+        this.product = productID;
     }
 
     public Date getAddedOn() {
