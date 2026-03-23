@@ -4,6 +4,9 @@ body {
     padding: 0;
 }
 
+.hidden {
+    display: none;
+}
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -31,6 +34,7 @@ body {
 
 .nav-right {
     display:flex;
+    flex-shrink: 0;
     align-items: center;
     gap: 16px;
     padding-right: 10px;
@@ -74,8 +78,9 @@ body {
 
 .nav-search {
     display: flex;
-    flex: 2;
+    flex: 1;
     max-width: 600px;
+    min-width: 0;
     margin: 0 20px;
     align-items: center;
     border-radius: 8px;
@@ -94,8 +99,12 @@ body {
 }
 
 .nav-search select {
+    max-width: 140px;
+    min-width: 0;
     background: #f2f2f2;
     padding: 0 10px;
+    min-width: 170px;
+    flex-shrink: 0;
 }
 
 .nav-search input {
@@ -115,6 +124,7 @@ body {
     align-items: center;
     justify-content: center;
     border-radius: 0;
+    min-width: 80px;
 }
 
 .search-btn i {
