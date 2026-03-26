@@ -16,5 +16,4 @@ import java.util.ArrayList;
 @Repository
 public interface RepoCategory extends JpaRepository<Category, Integer> {
     ArrayList<Category> findAllByName(String name);
-
 }

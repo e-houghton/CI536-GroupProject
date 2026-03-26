@@ -1,5 +1,6 @@
 package com.group_project.craft.DatabaseClasses.Tables;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -15,6 +16,7 @@ public class Subcategory {
     @Column(nullable = false,length=100)
     private String description;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="category")
     private Category category;

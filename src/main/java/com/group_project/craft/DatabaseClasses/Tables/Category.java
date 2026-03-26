@@ -2,6 +2,9 @@ package com.group_project.craft.DatabaseClasses.Tables;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "tCategory")
 public class Category {
@@ -24,6 +27,21 @@ public class Category {
     @Column(length = 100)
     private String description;
 
+    @OneToMany(mappedBy="category",
+            targetEntity= Subcategory.class,
+            fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Subcategory> subcategories = new ArrayList<>();
+
+    public List<Subcategory> getSubcategories() {
+        return subcategories;
+    }
+    public void addSubcategory(Subcategory cat){
+        this.subcategories.add(cat);
+    }
+
+    public void setSubcategories(List<Subcategory> subcategories) {
+        this.subcategories = subcategories;
+    }
 
     public int getCatID() {
         return catID;

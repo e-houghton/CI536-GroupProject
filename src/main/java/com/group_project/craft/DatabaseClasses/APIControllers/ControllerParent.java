@@ -13,23 +13,24 @@ public abstract class ControllerParent<Service extends InterfaceParent<T>,T> {
         return table;
     }
     @GetMapping("/find/{id}")
-    public T getCustomer(@PathVariable int id){
+    public T read(@PathVariable int id){
         return getTable().findByID(id);
     }
     @GetMapping("/findAll")
     public List<T> getAll(){
         return getTable().findAll();
     }
+
     @PostMapping("/add")
-    public void addCustomer(@RequestBody T customer){
+    public void create(@RequestBody T customer){
         getTable().addByObj(customer);
     }
     @DeleteMapping("/delete/{id}")
-    public void removeCustomer(@PathVariable int id){
+    public void delete(@PathVariable int id){
         getTable().deleteByID(id);
     }
     @PutMapping("/update")
-    public void updateCustomer(@RequestBody T cust){
+    public void update(@RequestBody T cust){
         getTable().save(cust);
     }
 }

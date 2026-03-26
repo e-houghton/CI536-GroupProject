@@ -3,10 +3,10 @@ package com.group_project.craft.DatabaseClasses.Service;
 import com.group_project.craft.DatabaseClasses.Interface.InterfaceCategory;
 import com.group_project.craft.DatabaseClasses.Repository.RepoCategory;
 import com.group_project.craft.DatabaseClasses.Tables.Category;
-import com.group_project.craft.DatabaseClasses.Tables.ReviewProduct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -63,6 +63,8 @@ public class ServiceCategory implements InterfaceCategory {
         Optional<Category> opt = repo.findById(id);
         return opt.orElse(null);
     }
+
+
 
 
 }
