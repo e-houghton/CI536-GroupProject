@@ -3,6 +3,7 @@ package com.group_project.craft.DatabaseClasses.Service;
 import com.group_project.craft.DatabaseClasses.Interface.InterfaceUser;
 import com.group_project.craft.DatabaseClasses.Repository.RepoUser;
 import com.group_project.craft.DatabaseClasses.Tables.Customer;
+import com.group_project.craft.DatabaseClasses.Tables.Order;
 import com.group_project.craft.DatabaseClasses.Tables.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,12 +27,12 @@ public class ServiceUser implements InterfaceUser {
 
 
     @Override
-    public void update(User c) {
+    public void save(User c) {
         repo.save(c);
     }
 
     @Override
-    public void updateByID(int id) {
+    public void saveByID(int id) {
         Optional<User> opt = repo.findById(id);
         opt.ifPresent(user -> repo.save(user));
     }
@@ -58,6 +59,10 @@ public class ServiceUser implements InterfaceUser {
     @Override
     public void addUser(String username, String password, Customer customer) {
         repo.save(new User(username,password,customer));
+    }
+    @Override
+    public void addByObj(User obj){
+        repo.save(obj);
     }
 
     @Override

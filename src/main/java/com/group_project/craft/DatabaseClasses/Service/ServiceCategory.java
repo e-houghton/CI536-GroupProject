@@ -3,6 +3,7 @@ package com.group_project.craft.DatabaseClasses.Service;
 import com.group_project.craft.DatabaseClasses.Interface.InterfaceCategory;
 import com.group_project.craft.DatabaseClasses.Repository.RepoCategory;
 import com.group_project.craft.DatabaseClasses.Tables.Category;
+import com.group_project.craft.DatabaseClasses.Tables.ReviewProduct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,22 +19,29 @@ public class ServiceCategory implements InterfaceCategory {
     public List<Category> findAll() {
         return repo.findAll();
     }
+
     @Override
     public void addCategory(String description, String name) {
-        repo.save(new Category(description,name));
+        repo.save(new Category(description, name));
+    }
+
+    @Override
+    public void addByObj(Category obj) {
+        repo.save(obj);
     }
 
     @Override
     public List<Category> getAllByName(String name) {
         return repo.findAllByName(name);
     }
+
     @Override
-    public void update(Category c) {
+    public void save(Category c) {
         repo.save(c);
     }
 
     @Override
-    public void updateByID(int id) {
+    public void saveByID(int id) {
         Optional<Category> opt = repo.findById(id);
         opt.ifPresent(category -> repo.save(category));
     }
@@ -48,7 +56,6 @@ public class ServiceCategory implements InterfaceCategory {
         Optional<Category> opt = repo.findById(id);
         opt.ifPresent(category -> repo.delete(category));
     }
-
 
 
     @Override

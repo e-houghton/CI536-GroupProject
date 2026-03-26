@@ -27,14 +27,19 @@ public class ServiceCust implements InterfaceCust {
     public void addCustomer(String fname, String lname, String email, String phone, String addrln1, String addrln2, String city, String county, String postcode) {
         repoCustomer.save(new Customer(fname, lname, email, phone, addrln1, addrln2, city, county, postcode, true));
     }
-
     @Override
-    public void update(Customer c) {
-        repoCustomer.save(c);
+    public void addByObj(Customer cust){
+        repoCustomer.save(cust);
     }
 
     @Override
-    public void updateByID(int id) {
+    public void save(Customer c) {
+        repoCustomer.save(c);
+    }
+
+
+    @Override
+    public void saveByID(int id) {
         Optional<Customer> opt = repoCustomer.findById(id);
         opt.ifPresent(customer -> repoCustomer.save(customer));
     }

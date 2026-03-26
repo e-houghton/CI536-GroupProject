@@ -2,6 +2,7 @@ package com.group_project.craft.DatabaseClasses.Service;
 
 import com.group_project.craft.DatabaseClasses.Interface.InterfaceProduct;
 import com.group_project.craft.DatabaseClasses.Repository.RepoProduct;
+import com.group_project.craft.DatabaseClasses.Tables.Order;
 import com.group_project.craft.DatabaseClasses.Tables.Product;
 import com.group_project.craft.DatabaseClasses.Tables.Subcategory;
 import com.group_project.craft.DatabaseClasses.Tables.User;
@@ -30,7 +31,10 @@ public class ServiceProduct implements InterfaceProduct {
     public void addProduct(String name, String description, Date uploadDate, User seller, String imageLocation, double price, Subcategory subcategory, boolean sold) {
         repo.save(new Product(name,description,uploadDate,seller,imageLocation,price,subcategory,sold));
     }
-
+    @Override
+    public void addByObj(Product obj){
+        repo.save(obj);
+    }
     @Override
     public List<Product> getAllBySeller(User seller) {
         return repo.findAllBySeller(seller);
@@ -43,12 +47,12 @@ public class ServiceProduct implements InterfaceProduct {
 
 
     @Override
-    public void update(Product c) {
+    public void save(Product c) {
         repo.save(c);
     }
 
     @Override
-    public void updateByID(int id) {
+    public void saveByID(int id) {
         Optional<Product> opt = repo.findById(id);
         opt.ifPresent(product -> repo.save(product));
     }

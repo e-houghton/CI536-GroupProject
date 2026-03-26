@@ -4,6 +4,7 @@ import com.group_project.craft.DatabaseClasses.Interface.InterfaceOrder;
 import com.group_project.craft.DatabaseClasses.Repository.RepoOrder;
 import com.group_project.craft.DatabaseClasses.Tables.Customer;
 import com.group_project.craft.DatabaseClasses.Tables.Order;
+import com.group_project.craft.DatabaseClasses.Tables.ReviewProduct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +30,10 @@ public class ServiceOrder implements InterfaceOrder {
     public void addOrder(Customer buyer, Date date) {
         repo.save(new Order(buyer, date));
     }
-
+    @Override
+    public void addByObj(Order obj){
+        repo.save(obj);
+    }
     @Override
     public List<Order> getAllByBuyer(Customer buyer) {
         return repo.findAllByBuyer(buyer);
@@ -37,12 +41,12 @@ public class ServiceOrder implements InterfaceOrder {
 
 
     @Override
-    public void update(Order c) {
+    public void save(Order c) {
         repo.save(c);
     }
 
     @Override
-    public void updateByID(int id) {
+    public void saveByID(int id) {
         Optional<Order> opt = repo.findById(id);
         opt.ifPresent(order -> repo.save(order));
     }

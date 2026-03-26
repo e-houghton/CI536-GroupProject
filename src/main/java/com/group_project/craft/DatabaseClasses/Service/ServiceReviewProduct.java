@@ -31,12 +31,12 @@ public class ServiceReviewProduct implements InterfaceReviews<ReviewProduct,Prod
 
 
     @Override
-    public void update(ReviewProduct c) {
+    public void save(ReviewProduct c) {
         repo.save(c);
     }
 
     @Override
-    public void updateByID(int id) {
+    public void saveByID(int id) {
         Optional<ReviewProduct> opt = repo.findById(id);
         opt.ifPresent(reviewProduct -> repo.save(reviewProduct));
     }
@@ -62,6 +62,10 @@ public class ServiceReviewProduct implements InterfaceReviews<ReviewProduct,Prod
     @Override
     public void addReview(User reviewer, Product reviewed, double rating, String reviewText) {
         repo.save(new ReviewProduct(reviewer,reviewed,rating,reviewText));
+    }
+    @Override
+    public void addByObj(ReviewProduct obj){
+        repo.save(obj);
     }
 
     @Override

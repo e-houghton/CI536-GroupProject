@@ -2,6 +2,7 @@ package com.group_project.craft.DatabaseClasses.Service;
 
 import com.group_project.craft.DatabaseClasses.Interface.InterfaceReviews;
 import com.group_project.craft.DatabaseClasses.Repository.RepoSellerReview;
+import com.group_project.craft.DatabaseClasses.Tables.Order;
 import com.group_project.craft.DatabaseClasses.Tables.ReviewSeller;
 import com.group_project.craft.DatabaseClasses.Tables.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,12 +31,12 @@ public class ServiceReviewSeller implements InterfaceReviews<ReviewSeller,User> 
 
 
     @Override
-    public void update(ReviewSeller c) {
+    public void save(ReviewSeller c) {
         repo.save(c);
     }
 
     @Override
-    public void updateByID(int id) {
+    public void saveByID(int id) {
         Optional<ReviewSeller> opt = repo.findById(id);
         opt.ifPresent(reviewSeller -> repo.save(reviewSeller));
     }
@@ -61,6 +62,10 @@ public class ServiceReviewSeller implements InterfaceReviews<ReviewSeller,User> 
     @Override
     public void addReview(User reviewer, User reviewed, double rating, String reviewText) {
         repo.save(new ReviewSeller(reviewer,reviewed,rating,reviewText));
+    }
+    @Override
+    public void addByObj(ReviewSeller obj){
+        repo.save(obj);
     }
 
     @Override

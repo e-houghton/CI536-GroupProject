@@ -2,6 +2,7 @@ package com.group_project.craft.DatabaseClasses.Service;
 
 import com.group_project.craft.DatabaseClasses.Interface.InterfaceWishlist;
 import com.group_project.craft.DatabaseClasses.Repository.RepoWishlist;
+import com.group_project.craft.DatabaseClasses.Tables.Order;
 import com.group_project.craft.DatabaseClasses.Tables.User;
 import com.group_project.craft.DatabaseClasses.Tables.Wishlist;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +27,12 @@ public class ServiceWishlist implements InterfaceWishlist {
 
 
     @Override
-    public void update(Wishlist c) {
+    public void save(Wishlist c) {
         repo.save(c);
     }
 
     @Override
-    public void updateByID(int id) {
+    public void saveByID(int id) {
         Optional<Wishlist> opt = repo.findById(id);
         opt.ifPresent(wishlist -> repo.save(wishlist));
     }
@@ -60,6 +61,10 @@ public class ServiceWishlist implements InterfaceWishlist {
         repo.save(new Wishlist(owner,name));
     }
 
+    @Override
+    public void addByObj(Wishlist obj){
+        repo.save(obj);
+    }
     @Override
     public List<Wishlist> getAllByOwner(User owner) {
         return repo.findAllByOwner(owner);
