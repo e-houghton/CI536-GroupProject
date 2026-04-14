@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link href="css/login.css" rel="stylesheet" type="text/css">
+    <script src="js/login.js"></script>
+    <script src="https://kit.fontawesome.com/2585ebd72e.js" crossorigin="anonymous"></script>
+    <title>Log in</title>
+</head>
+
+<body>
+    <div class="login-page">
+        <div class="container">
+            <h1>HandyCraftz login</h1>
+            <p>Log into your account so you can continue selling and buying!</p>
+            <hr>
+            <form>
+                <div>
+                    <div class="input-field">
+                        <label for="email">Email address</label>
+                        <input type="email" id="email" type="text" placeholder="Email address" required>
+                        <span id="email-hint" class="hint">Please enter a valid email address</span>
+                    </div>
+                    <div class="input-field">
+                        <label for="password">Password</label>
+                        <div class="password-field">
+                            <input id="password" type="password" placeholder="Password" required>
+                            <span onclick="showPassword('password', this)"><i id="toggler1"
+                                    class="fa-solid fa-eye"></i></span>
+                        </div>
+                        <span id="password-hint" class="hint">Please enter a password</span>
+                    </div>
+
+                    <div class="buttons">
+                        <button type="button" class="login-btn">Sign in</button>
+                        <button type="button" class="signup-btn">Create an account</button>
+                    </div>
+                </div>
+        </div>
+        </form>
+    </div>
+    <footer>
+        <p><a href="#top">Go to top</a></p>
+        <small>&copy; 2026, Kelly for HandyCraftz group project</small>
+    </footer>
+</body>
+</html>
