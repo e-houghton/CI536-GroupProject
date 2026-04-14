@@ -4,11 +4,10 @@ body {
     padding: 0;
 }
 
-
-
 .hidden {
     display: none;
 }
+
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -18,7 +17,7 @@ body {
     width: 100%;
     padding: 0 20px;
     min-height: 70px;
-
+    flex-wrap: wrap;
 }
 .navbar {
     width: 100%;
