@@ -103,7 +103,7 @@ window.addEventListener('load', function (e) {
         const upper = /[A-Z]/.test(password);
         const lower = /[a-z]/.test(password);
         const number = /[0-9]/.test(password);
-        const special = /[!@#$%^&*]/.test(password);
+        const special = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
         const passed = [length, upper, lower, number, special].filter(Boolean).length;
         let strength = '';
         if (passed === 5) {
@@ -404,23 +404,30 @@ window.addEventListener('load', function (e) {
                     });
 
                     if (!customerResponse.ok) throw new Error('Failed to create a new customer');
-                    const customer = await customerResponse.json();
+
+                    const allCusts = await fetch('/api/customer/findAll');
+                    const custs = await allCusts.json();
+                    const savedCustomer = custs.find(c => c.email === inputEmail.value.trim());
+
+                    if (!savedCust) throw new Error('couldnt find saved customer');
+
+                    //const customer = await customerResponse.json();
 
                     // Create the user tied to the customer 
                     const userResponse = await fetch('/api/user/add', {
                         method: 'POST',
-                        headers: {'Content-Type': 'application/json'},
+                        headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
                             username: inputUsername.value.trim(),
                             password: inputPassword.value.trim(),
-                            customer: customer
+                            customer: savedCustomer
                         })
                     });
                     if (!userResponse.ok) throw new Error('Failed to create user');
 
                     divLoading.style.display = 'none';
                     divSuccess.style.display = 'block';
-                } catch(err) {
+                } catch (err) {
                     console.error(err);
                     divLoading.style.display = 'none';
                     divError.style.display = 'block';
