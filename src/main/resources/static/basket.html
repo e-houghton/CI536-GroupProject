@@ -1,0 +1,57 @@
+<!doctype html><!--HTML5 doctype declaration -->
+<html lang="en"><!--default language of the document content -->
+
+<head>
+    <meta charset="utf-8"><!--character encoding for the document (Unicode) -->
+    <title>HandyCraftz</title><!--web page title -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link
+            href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet">
+    <script src="https://kit.fontawesome.com/2585ebd72e.js" crossorigin="anonymous"></script>
+    <link href="css/index.css" rel="stylesheet">
+</head>
+
+<body>
+<a id="top"></a>
+<!--Markup all web page content inside the 'body' tags -->
+<div id="wrapper">
+    <!--The 'wrapper' contains all the page content-->
+
+    <header><!--The main heading for the page -->
+        <h1 class="hidden">HandyCraftz</h1>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-left">
+                    <a href="index.html" class="logo-img-link">
+                        <img src="media/logo.png" alt="HandyCraftz logo" class="logo-img">
+                    </a>
+                </div>
+
+                <div class="nav-search">
+                    <select name="category" id="category" aria-label="Shop by category">
+                        <option value="chooseCategory">Shop by category</option>
+                        <option value="home">Home</option>
+                        <option value="accessories">Accessories</option>
+                    </select>
+                    <input type="text" placeholder="Search.." aria-label="Search products">
+                    <button class="search-btn" aria-label="search">
+                        <i class="fa-solid fa-search"></i>
+                    </button>
+                </div>
+
+                <div class="nav-right">
+                    <a href="basket.html" aria-label="Shopping cart"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="wishlist.html" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></a>
+                    <a href="signin.html">Sign in</a>
+                    <a href="settings.html" aria-label="Settings"><i class="fa-solid fa-gear"></i></a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <h2 class="b-basket">Basket:</h2>
+</div>
+<script src="js/basket.js"></script>
+</body>
+</html>
