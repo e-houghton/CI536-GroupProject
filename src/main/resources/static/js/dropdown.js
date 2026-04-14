@@ -10,13 +10,17 @@ window.addEventListener('load', async function (evt) {
             console.log(element);
             optgroup = document.createElement("optgroup");
             optgroup.setAttribute("title", element.description);
-            optgroup.textContent = element.name
+            optgroup.setAttribute("label", element.name);
             element.subcategories.forEach(sub => {
-                subcat = this.document.createElement("option");
+                console.log(sub)
+                subcat = document.createElement("option");
                 subcat.textContent = sub.name;
                 subcat.setAttribute("title", element.description);
+                optgroup.appendChild(subcat);
             })
+            dropdown.appendChild(optgroup)
         });
+        
     } catch (error) {
         console.log(error);
     }
