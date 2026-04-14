@@ -133,10 +133,11 @@ body {
 
 .sell-btn .plus {
     font-size: 40px;
+}
 .logo-img {
     width: 100%;
     max-width: 180px;
-    height: auto;
+    height: 80px;
     object-fit: contain;
     display:block;
 }
@@ -199,5 +200,4 @@ body {
   .logo-img-link {
     max-width: 100px;
     }
-}
 }
