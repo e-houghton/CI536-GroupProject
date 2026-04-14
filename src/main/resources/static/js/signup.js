@@ -103,7 +103,7 @@ window.addEventListener('load', function (e) {
         const upper = /[A-Z]/.test(password);
         const lower = /[a-z]/.test(password);
         const number = /[0-9]/.test(password);
-        const special = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
+        const special = /[£¬`~!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
         const passed = [length, upper, lower, number, special].filter(Boolean).length;
         let strength = '';
         if (passed === 5) {
