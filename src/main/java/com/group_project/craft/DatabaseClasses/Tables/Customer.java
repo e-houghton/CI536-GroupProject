@@ -1,6 +1,7 @@
 package com.group_project.craft.DatabaseClasses.Tables;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Table(name="tCust")
@@ -31,8 +32,8 @@ public class Customer {
     private String addrCounty;
     @Column(nullable = false,length=10)
     private String addrPostCode;
-    @Column(nullable = false)
-    private String addrCountry;
+    @Column(columnDefinition = "varchar(100) default 'England'")
+    private String addrCountry="England";
 
     public String getAddrCountry() {
         return addrCountry;
