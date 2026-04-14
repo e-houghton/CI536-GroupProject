@@ -5,6 +5,7 @@ import com.group_project.craft.DatabaseClasses.Tables.Subcategory;
 import com.group_project.craft.DatabaseClasses.Tables.User;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 public interface InterfaceProduct extends InterfaceParent<Product> {
@@ -15,6 +16,5 @@ public interface InterfaceProduct extends InterfaceParent<Product> {
     List<Product> getAllBySubcat(Subcategory subcat);
 
 
-
-
+    ArrayList<Product> fuzzySearch(String searchTerm);
 }

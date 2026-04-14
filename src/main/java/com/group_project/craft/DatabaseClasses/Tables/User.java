@@ -19,6 +19,17 @@ public class User {
     private String username;
     @Column(nullable = false, length=50)
     private String password;
+    @Column()
+    private String pfpLocation;
+
+    public String getPfpLocation() {
+        return pfpLocation;
+    }
+
+    public void setPfpLocation(String pfpLocation) {
+        this.pfpLocation = pfpLocation;
+    }
+
     // this is how relationships work. allows to do user.getCustomer().getName();
     @OneToOne
     @JoinColumn(name="customer")

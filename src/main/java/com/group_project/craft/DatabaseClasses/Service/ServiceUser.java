@@ -3,11 +3,11 @@ package com.group_project.craft.DatabaseClasses.Service;
 import com.group_project.craft.DatabaseClasses.Interface.InterfaceUser;
 import com.group_project.craft.DatabaseClasses.Repository.RepoUser;
 import com.group_project.craft.DatabaseClasses.Tables.Customer;
-import com.group_project.craft.DatabaseClasses.Tables.Order;
 import com.group_project.craft.DatabaseClasses.Tables.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -68,5 +68,10 @@ public class ServiceUser implements InterfaceUser {
     @Override
     public User findByUsername(String username) {
         return repo.findByUsername(username);
+    }
+
+    @Override
+    public ArrayList<User> fuzzySearch(String searchTerm){
+        return repo.findAllByUsernameContaining(searchTerm);
     }
 }

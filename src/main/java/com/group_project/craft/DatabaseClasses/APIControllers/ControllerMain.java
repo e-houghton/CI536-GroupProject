@@ -45,9 +45,9 @@ public class ControllerMain {
     }
 
     @GetMapping("/addCategory")
-    public List<Category> addCat() {
-        tCategory.addCategory("this is a testCategory", "Test!");
-        return tCategory.findAll();
+    public List<Subcategory> addCat() {
+        tSubcat.addSubcat("this is a test Subcat !", "TestSub",tCategory.findByID(1));
+        return tSubcat.findAll();
     }
 
     @GetMapping("/dropCategory/{id}")

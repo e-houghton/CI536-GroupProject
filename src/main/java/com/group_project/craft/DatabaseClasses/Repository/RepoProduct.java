@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Exists as a "list of queries" of sorts. findAll overrides a default select * from.
@@ -16,4 +17,6 @@ import java.util.ArrayList;
 public interface RepoProduct extends JpaRepository<Product, Integer> {
     ArrayList<Product> findAllBySeller(User seller);
     ArrayList<Product> findAllBySubcategory(Subcategory subcategory);
+    ArrayList<Product> findAllByNameContaining(String searchTerm);
+    ArrayList<Product> findAllByDescriptionContaining(String searchTerm);
 }

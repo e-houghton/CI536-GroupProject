@@ -2,7 +2,6 @@ package com.group_project.craft.DatabaseClasses.Service;
 
 import com.group_project.craft.DatabaseClasses.Interface.InterfaceProduct;
 import com.group_project.craft.DatabaseClasses.Repository.RepoProduct;
-import com.group_project.craft.DatabaseClasses.Tables.Order;
 import com.group_project.craft.DatabaseClasses.Tables.Product;
 import com.group_project.craft.DatabaseClasses.Tables.Subcategory;
 import com.group_project.craft.DatabaseClasses.Tables.User;
@@ -10,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -73,5 +73,12 @@ public class ServiceProduct implements InterfaceProduct {
     @Override
     public void delete(Product object) {
         repo.delete(object);
+    }
+
+    @Override
+    public ArrayList<Product> fuzzySearch(String searchTerm){
+        ArrayList<Product> output = repo.findAllByNameContaining(searchTerm);
+        output.addAll(repo.findAllByDescriptionContaining(searchTerm));
+        return output;
     }
 }

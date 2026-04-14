@@ -1,6 +1,7 @@
 package com.group_project.craft.DatabaseClasses.Tables;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Table(name="tCust")
@@ -31,8 +32,19 @@ public class Customer {
     private String addrCounty;
     @Column(nullable = false,length=10)
     private String addrPostCode;
+    @Column(columnDefinition = "varchar(100) default 'England'")
+    private String addrCountry="England";
+
+    public String getAddrCountry() {
+        return addrCountry;
+    }
+
+    public void setAddrCountry(String addrCountry) {
+        this.addrCountry = addrCountry;
+    }
+
     @Column(nullable = false)
-    private boolean isGuest;
+    private boolean guest;
 
 
 
@@ -44,7 +56,7 @@ public class Customer {
     // =            Constructors            =
     // ======================================
     protected Customer(){}
-    public Customer(String fname, String lname, String email, String phone, String addrln1, String addrln2, String city, String county, String postcode, boolean isGuest) {
+    public Customer(String fname, String lname, String email, String phone, String addrln1, String addrln2, String city, String county, String postcode,String country, boolean guest) {
         this.fname = fname;
         this.lname = lname;
         this.email = email;
@@ -54,7 +66,8 @@ public class Customer {
         this.addrCity = city;
         this.addrCounty = county;
         this.addrPostCode = postcode;
-        this.isGuest = isGuest;
+        this.addrCountry = country;
+        this.guest = guest;
     }
 
 
@@ -142,10 +155,10 @@ public class Customer {
     }
 
     public boolean isGuest() {
-        return isGuest;
+        return guest;
     }
 
     public void setGuest(boolean guest) {
-        isGuest = guest;
+        this.guest = guest;
     }
 }
