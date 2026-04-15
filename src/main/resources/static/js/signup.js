@@ -476,8 +476,15 @@ window.addEventListener('load', function (e) {
                     })
                 });
                 if (!userResponse.ok) throw new Error('Failed to create user');
-                divLoading.style.display = 'none';
-                divSuccess.style.display = 'block';
+
+                const savedUser = await userResponse.json();
+
+                // allows the user object to be stored and accessed during the browser session
+                sessionStorage.setItem('user', JSON.stringify(savedUser));
+
+                // after the user successfully logs in the index should say hi <user's first name> 
+                window.location.href = 'index.html';
+                
             } catch (err) {
                 console.error(err);
                 divLoading.style.display = 'none';
