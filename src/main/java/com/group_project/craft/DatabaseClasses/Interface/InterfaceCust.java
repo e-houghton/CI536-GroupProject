@@ -6,6 +6,8 @@ import com.group_project.craft.DatabaseClasses.Tables.Customer;
  */
 public interface InterfaceCust extends InterfaceParent<Customer>{
     void addCustomer(String fname, String lname, String email, String phone, String addrln1, String addrln2, String city, String county,String country, String postcode);
+    boolean existsByEmail(String email);
+    boolean existsByPhone(String phone);
 
 
 }

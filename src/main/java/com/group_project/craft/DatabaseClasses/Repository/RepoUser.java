@@ -14,5 +14,10 @@ import java.util.ArrayList;
 @Repository
 public interface RepoUser extends JpaRepository<User, Integer> {
     User findByUsername(String username);
+    /*To check if a username is already being used when a user is creating an account */
+    boolean existsByUsername(String username);
     ArrayList<User> findAllByUsernameContaining(String searchTerm);
+    /* Finds a user's password and email for the login validation */
+    User findByUsernameAndPassword(String username, String password);
+    User findByCustomerEmail(String email);
 }

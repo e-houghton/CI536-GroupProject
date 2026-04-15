@@ -14,10 +14,34 @@ window.addEventListener('load', function (e) {
         window.location.href = 'signup.html';
     });
 
-    btnLogin.addEventListener('click', function () {
-        //LOGIN FUNCTIONALITY WHERE THEY ARE SIGNED INTO THE SYSTEM BY:
-        //CHECKING IF EMAIL AND PASSWORD MATCH THE ONE ON DB
-        // IF THAT THRU THEN DISPLAY, YOU HAVE BEEN SUCCESSFULLY LOGGED IN ON PAGE AND SAY HI <FIRSTNAME> IN HOME NAVBAR
+    // Allows users to log in by validating the email + password in the db
+    btnLogin.addEventListener('click', async function () {
+        
+         // Check the login email and password input against users in the database 
+                const loginResponse = await fetch('http://localhost:8080/api/user/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: inputEmail.value.trim(),
+                        password: inputPassword.value.trim(),
+                    })
+                });
+                // Error code 401 indicates that the login input details are invalid 
+                if (loginResponse.status === 401) {
+                    hintEmail.textContent = 'Password or email is incorrect';
+                    hintEmail.style.display = '';
+                    return;
+                } 
+
+                if (!loginResponse.ok) throw new Error('Failed to authenticate user');
+
+                const user = await loginResponse.json();
+
+                // allows the user object to be stored and accessed during the browser session
+                sessionStorage.setItem('user', JSON.stringify(user));
+
+                // after the user successfully logs in the index should say hi <user's first name> 
+                window.location.href = 'index.html';
     });
 });
 

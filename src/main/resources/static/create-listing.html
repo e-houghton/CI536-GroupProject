@@ -1,0 +1,187 @@
+<!doctype html><!--HTML5 doctype declaration -->
+<html lang="en"><!--default language of the document content -->
+
+<head>
+    <meta charset="utf-8"><!--character encoding for the document (Unicode) -->
+    <title>HandyCraftz</title><!--web page title -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <script src="https://kit.fontawesome.com/2585ebd72e.js" crossorigin="anonymous"></script>
+    <link href="css/create-listing.css" rel="stylesheet">
+</head>
+
+<body>
+    <a id="top"></a>
+    <!--Markup all web page content inside the 'body' tags -->
+    <div id="wrapper">
+        <!--The 'wrapper' contains all the page content-->
+
+        <header><!--The main heading for the page -->
+            <h1 class="hidden">HandyCraftz</h1>
+            <nav class="navbar">
+                <div class="nav-container">
+                    <div class="nav-left">
+                        <a href="index.html" class="logo-img-link">
+                            <img src="media/logo.png" alt="HandyCraftz logo" class="logo-img">
+                        </a>
+                    </div>
+
+                    <div class="nav-search">
+                        <select name="category" id="category" aria-label="Shop by category">
+                            <option value="chooseCategory" title="test" selected disabled hidden>Shop by category
+                            </option>
+                        </select>
+                        <input type="text" placeholder="Search.." aria-label="Search products">
+                        <button class="search-btn" aria-label="search">
+                            <i class="fa-solid fa-search"></i>
+                        </button>
+                    </div>
+
+                    <div class="nav-right">
+                        <a href="basket.html" aria-label="Shopping cart"><i class="fa-solid fa-cart-shopping"></i></a>
+                        <a href="wishlist.html" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></a>
+                        <a href="create-listing.html" class="sell-btn"><span class="plus">+</span>Sell</a>
+                        <a href="login.html">Sign in</a>
+                        <a href="settings.html" aria-label="Settings"><i class="fa-solid fa-gear"></i></a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <h2>ITEM CREATION PAGE</h2>
+    </div>
+    <div class="create-listing-page">
+        <div class="container">
+            <h1>Sell on HandyCraftz</h1>
+            <p id="introduction">Create an account so you can start selling and buying!</p>
+            <hr>
+            <form>
+                <div id="first-input-area">
+                    <label>Name</label>
+
+                    <div class="name-row">
+                        <div class="input-field">
+                            <input id="first-name" type="text" placeholder="First name" required>
+                            <span id="first-name-hint" class="hint">Please enter your first name</span>
+                        </div>
+
+                        <div class="input-field">
+                            <input id="surname" type="text" placeholder="Surname" required>
+                            <span id="surname-hint" class="hint">Please enter your surname</span>
+                        </div>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="email">Email address</label>
+                        <input id="email" type="text" placeholder="Email address" required>
+                        <span id="email-hint" class="hint">Please enter a valid email address</span>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="username">Username</label>
+                        <input id="username" type="text" placeholder="Username" required>
+                        <span id="username-hint" class="hint">Please enter your username</span>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="password">Password</label>
+                        <div class="password-field">
+                            <input id="password" type="password" placeholder="Password" required>
+                            <span onclick="showPassword('password', this)"><i id="toggler1"
+                                    class="fa-solid fa-eye"></i></span>
+                        </div>
+                        <span id="password-hint" class="hint">Please enter a password</span>
+                    </div>
+                    <ul id="checklist">
+                        <li id="len">❌ 8 characters minimum</li>
+                        <li id="up">❌ At least one uppercase letter</li>
+                        <li id="low">❌ At least one lowercase letter</li>
+                        <li id="num">❌ At least one number</li>
+                        <li id="sym">❌ At least one special character</li>
+                    </ul>
+                    <div class="input-field">
+                        <label for="repeat-password">Repeat password</label>
+                        <div class="password-field">
+                            <input id="repeat-password" type="password" placeholder="Repeat password" required>
+                            <span onclick="showPassword('repeat-password', this)"><i id="toggler2"
+                                    class="fa-solid fa-eye"></i></span>
+                        </div>
+                        <span id="repeat-password-hint" class="hint">Please enter a repeat password</span>
+                    </div>
+
+                    <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.
+                    </p>
+
+                    <div class="buttons">
+                        <button type="button" class="signup-btn">Sign Up</button>
+                        <button type="button" class="cancel-btn">I already have an account</button>
+                    </div>
+                </div>
+
+                <!-- input for address and phone number-->
+                <div id="second-input-area" style="display:none">
+                    <div class="input-field">
+                        <label for="phone-number">Phone number</label>
+                        <input id="phone-number" type="tel" placeholder="Phone number" required>
+                        <span id="phone-number-hint" class="hint">Please enter your phone number</span>
+                    </div>
+                    <div class="input-field">
+                        <label for="addr-line-1">Address Line 1</label>
+                        <input id="addr-line-1" type="text" placeholder="Address line 1" required>
+                        <span id="addr-line-1-hint" class="hint">Please enter your address line 1</span>
+                    </div>
+                    <div class="input-field">
+                        <label for="addr-line-2">Address Line 2</label>
+                        <input id="addr-line-2" type="text" placeholder="Address line 2">
+                        <span id="addr-line-2-hint" class="hint">Please enter your address line 2</span>
+                    </div>
+                    <div class="input-field">
+                        <label for="city">City</label>
+                        <input id="city" type="text" placeholder="City" required>
+                        <span id="city-hint" class="hint">Please enter your city</span>
+                    </div>
+                    <div class="input-field">
+                        <label for="county">County</label>
+                        <input id="county" type="text" placeholder="County" required>
+                        <span id="county-hint" class="hint">Please enter your county</span>
+                    </div>
+                    <div class="input-field">
+                        <label for="postcode">Postcode</label>
+                        <input id="postcode" type="text" placeholder="Postcode" required>
+                        <span id="postcode-hint" class="hint">Please enter your postcode</span>
+                    </div>
+                    <div class="input-field">
+                        <label for="country">Country</label>
+                        <select id="countryDropdown">
+                            <option value="" selected>Select a country</option>
+                        </select>
+                        <span id="country-hint" class="hint">Please enter your country</span>
+                    </div>
+                    <div class="buttons">
+                        <button type="button" class="signup-btn-2">Sign Up</button>
+                        <button type="button" class="back-btn">Back</button>
+                    </div>
+                </div>
+        </div>
+        </form>
+        <div class="alert alert-info" style="display: none;"></div>
+    </div>
+    <div id="divLoading" role="status" aria-live="polite">
+        <img src="media/loading.gif" alt="Loading search results">
+    </div>
+    <div id="divSuccess" role="status" aria-live="polite">
+        <h2>Your account has been created!</h2>
+    </div>
+    <div id="divError" role="alert">
+        <h2>Oops - something went wrong!</h2>
+        <p>Try to search again.</p>
+    </div>
+    <footer>
+        <p><a href="#top">Go to top</a></p>
+        <small>&copy; 2026, Kelly for HandyCraftz group project</small>
+    </footer>
+    <script src="js/signup.js"></script>
+    <script src="./js/dropdown.js"></script>
+</body>
+</html>

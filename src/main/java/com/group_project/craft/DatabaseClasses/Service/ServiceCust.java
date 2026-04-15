@@ -37,7 +37,6 @@ public class ServiceCust implements InterfaceCust {
         repoCustomer.save(c);
     }
 
-
     @Override
     public void saveByID(int id) {
         Optional<Customer> opt = repoCustomer.findById(id);
@@ -61,4 +60,12 @@ public class ServiceCust implements InterfaceCust {
     public void delete(Customer customer) {
         repoCustomer.delete(customer);
     }
+
+    @Override 
+    public boolean existsByEmail(String email) {
+        return repoCustomer.existsByEmail(email);
+    }
+
+    @Override
+    public boolean existsByPhone(String phone) { return repoCustomer.existsByPhone(phone); }
 }

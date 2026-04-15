@@ -71,9 +71,9 @@ window.addEventListener('load', function (e) {
         window.location.href = 'login.html';
     });
 
-    btnSignup.addEventListener('click', function (e) {
+    btnSignup.addEventListener('click', async function (e) {
         e.preventDefault();
-        if (validateFirstInputs()) {
+        if (await validateFirstInputs()) {
             firstInputArea.style.display = 'none';
             secondInputArea.style.display = 'block';
         }
@@ -151,7 +151,7 @@ window.addEventListener('load', function (e) {
         firstInputArea.style.display = 'block';
     });
 
-    function validateFirstInputs() {
+    async function validateFirstInputs() {
         const regexFirstName = /^[a-zA-Z\s\-]+$/,
             regexSurname = /^[a-zA-Z\s\-']+$/,
             regexUsername = /^[a-zA-Z0-9\-]+$/,
@@ -203,6 +203,7 @@ window.addEventListener('load', function (e) {
             fieldsOk = false;
             inputEmail.classList.add('invalid');
             hintEmail.classList.remove('visible');
+            hintEmail.textContent = 'Please enter a valid email';
             hintEmail.style.display = 'inline';
         } else if (!regexEmail.test(email)) {
             fieldsOk = false;
@@ -211,7 +212,23 @@ window.addEventListener('load', function (e) {
             hintEmail.textContent = 'Please enter a valid email.';
             hintEmail.style.display = 'inline';
         } else {
-            hintEmail.style.display = '';
+            try {
+                // EMAIL BACKEND VALIDATION TO CHECK EMAIL HASN'T BEEN TAKEN
+                const emailResponse = await fetch(`http://localhost:8080/api/customer/existsByEmail/${email}`);
+                if (!emailResponse.ok) throw new Error(`Failed to validate the email: ${emailResponse.status} `)
+                const emailTaken = await emailResponse.json();
+                if (emailTaken) {
+                    fieldsOk = false;
+                    inputEmail.classList.add('invalid');
+                    hintEmail.classList.remove('visible');
+                    hintEmail.textContent = 'An account with this email already exists!';
+                    hintEmail.style.display = 'inline';
+                } else {
+                    hintEmail.style.display = '';
+                }
+            } catch (err) {
+                console.error('Email validation error:', err);
+            }
         }
 
         // USERNAME VALIDATION  
@@ -219,14 +236,32 @@ window.addEventListener('load', function (e) {
             fieldsOk = false;
             inputUsername.classList.add('invalid');
             hintUsername.classList.remove('visible');
+            hintUsername.textContent = 'Please enter your username';
             hintUsername.style.display = 'inline';
         } else if (!regexUsername.test(username)) {
             fieldsOk = false;
             hintUsername.textContent = 'Username cannot contain special characters!';
             hintUsername.style.display = 'inline';
         } else {
-            hintSurname.style.display = ''
+            try {
+                // USERNAME BACKEND VALIDATION TO CHECK USERNAME HASN'T BEEN TAKEN
+                const usernameResponse = await fetch(`http://localhost:8080/api/user/existsByUsername/${username}`);
+                if (!usernameResponse.ok) throw new Error(`Failed to validate the username: ${usernameResponse.status} `)
+                const usernameTaken = await usernameResponse.json();
+                if (usernameTaken) {
+                    fieldsOk = false;
+                    inputUsername.classList.add('invalid');
+                    hintUsername.classList.remove('visible');
+                    hintUsername.textContent = 'This username has already been taken by another user. Try another?';
+                    hintUsername.style.display = 'inline';
+                } else {
+                    hintUsername.style.display = ''
+                }
+            } catch (err) {
+                console.error('Username validation error:', err);
+            }
         }
+
         // PASSWORD VALIDATION
         if (!password) {
             fieldsOk = false;
@@ -255,12 +290,13 @@ window.addEventListener('load', function (e) {
         } else {
             hintRepeatPassword.style.display = '';
         }
+
         if (fieldsOk) {
             return true;
         }
     }
 
-    function validateSecondInputs() {
+    async function validateSecondInputs() {
         const regexAddrLine1 = /^[a-zA-Z0-9\s.,'#-]{5,100}$/,
             regexAddrLine2 = /^[a-zA-Z0-9\s.,'#-]{0,100}$/,
             regexCitynCounty = /^[a-zA-Z\s-]{2,50}$/,
@@ -280,6 +316,7 @@ window.addEventListener('load', function (e) {
             fieldsOk = false;
             inputPhoneNumber.classList.add('invalid');
             hintPhoneNumber.classList.remove('visible');
+            hintPhoneNumber.textContent = 'Please enter your phone number';
             hintPhoneNumber.style.display = 'inline';
         } else if (!iti.isValidNumber()) {
             fieldsOk = false;
@@ -288,8 +325,25 @@ window.addEventListener('load', function (e) {
             hintPhoneNumber.textContent = 'Please enter a valid phone number';
             hintPhoneNumber.style.display = 'inline';
         } else {
-            hintPhoneNumber.style.display = '';
+            try {
+                // PHONE NUMBER BACKEND VALIDATION TO CHECK PHONE NUMBER HASN'T BEEN TAKEN
+                const phoneNumberResponse = await fetch(`http://localhost:8080/api/customer/existsByPhone/${encodeURIComponent(iti.getNumber())}`);
+                if (!phoneNumberResponse.ok) throw new Error(`Failed to validate the phone number: ${phoneNumberResponse.status} `)
+                const phoneNumberTaken = await phoneNumberResponse.json();
+                if (phoneNumberTaken) {
+                    fieldsOk = false;
+                    inputPhoneNumber.classList.add('invalid');
+                    hintPhoneNumber.classList.remove('visible');
+                    hintPhoneNumber.textContent = 'An account with this phone number already exists!';
+                    hintPhoneNumber.style.display = 'inline';
+                } else {
+                    hintPhoneNumber.style.display = '';
+                }
+            } catch (err) {
+                console.error('Phone number validation error:', err);
+            }
         }
+
 
         // ADDRESS LINE 1 VALIDATION
         if (!addrLine1) {
@@ -371,6 +425,7 @@ window.addEventListener('load', function (e) {
         } else {
             hintCountry.style.display = '';
         }
+
         if (fieldsOk) {
             return true;
         }
@@ -379,7 +434,7 @@ window.addEventListener('load', function (e) {
     async function createAccount(e) {
         e.preventDefault();
 
-        if (validateSecondInputs()) {
+        if (await validateSecondInputs()) {
             divSignup.style.display = 'none';
             divLoading.style.display = 'block';
 
@@ -421,8 +476,15 @@ window.addEventListener('load', function (e) {
                     })
                 });
                 if (!userResponse.ok) throw new Error('Failed to create user');
-                divLoading.style.display = 'none';
-                divSuccess.style.display = 'block';
+
+                const savedUser = await userResponse.json();
+
+                // allows the user object to be stored and accessed during the browser session
+                sessionStorage.setItem('user', JSON.stringify(savedUser));
+
+                // after the user successfully logs in the index should say hi <user's first name> 
+                window.location.href = 'index.html';
+                
             } catch (err) {
                 console.error(err);
                 divLoading.style.display = 'none';
