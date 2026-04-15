@@ -43,8 +43,6 @@ public class Customer {
         this.addrCountry = addrCountry;
     }
 
-    @Column(nullable = false, name = "isGuest")
-    private boolean isGuest = false;
 
     @Column(nullable = false, name = "guest")
     private boolean guest = false;
@@ -71,7 +69,6 @@ public class Customer {
         this.addrPostCode = postcode;
         this.addrCountry = country;
         this.guest = guest;
-        this.isGuest = guest;
     }
 
 
@@ -165,9 +162,5 @@ public class Customer {
     public void setGuest(boolean guest) {
         this.guest = guest;
     }
-
-    public boolean getIsGuest() { return isGuest; }
-
-    public void setIsGuest(boolean isGuest) { this.isGuest = isGuest; }
 }
 
