@@ -11,4 +11,8 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface RepoCustomer extends JpaRepository<Customer, Integer> {
+    /*To check if an email is already being used when a user is creating an account */
+    boolean existsByEmail(String email);
+    /*To check if a phone number is already being used when a user is creating an account */
+    boolean existsByPhone(String phone);
 }

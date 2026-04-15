@@ -47,12 +47,6 @@ public class Customer {
     @Column(nullable = false, name = "guest")
     private boolean guest = false;
 
-
-
-
-
-
-
     // ======================================
     // =            Constructors            =
     // ======================================

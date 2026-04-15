@@ -1,0 +1,439 @@
+body {
+    font-family: Arial, sans-serif;
+    background: radial-gradient(circle at 0% 0%,
+      #f4d3ec,
+      #f8a1e5);
+    margin: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 20px;
+    min-height: 70px;
+    flex-wrap: wrap;
+}
+.navbar {
+    width: 100%;
+    background: radial-gradient(circle at 0% 0%, 
+        #f5d4ed, 
+        #f26fd6
+    );
+    color: black;
+    padding: 12px 0;
+    display: flex;
+    align-items: center;
+}
+
+.navbar * {
+    line-height: 1;
+}
+
+.nav-right {
+    display:flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 16px;
+    padding-right: 10px;
+}
+
+.nav-right a {
+    /* Float links side by side */
+    text-align: center;
+    /* Equal width (5 icons with 20% width each = 100%) */
+    padding: 4px 6px;
+    /* Some top and bottom padding */
+    transition: all 0.3s ease;
+    /* Add transition for hover effects */
+    color: white;
+    /* White text color */
+    font-size: 20px;
+    /* Increased font size */
+    cursor: pointer;
+    white-space: nowrap;
+    display: flex;
+    text-decoration: none;
+}
+
+.nav-right a:hover {
+    background-color: #781e8a;
+
+}
+
+.nav-search {
+    display: flex;
+    flex: 1 1 300px;
+    max-width: 600px;
+    min-width: 0;
+    margin: 0 20px;
+    align-items: center;
+    border-radius: 8px;
+    height: 48px;
+    overflow: hidden;
+}
+
+.nav-search select,
+.nav-search input,
+.nav-search button {
+    height: 100%;
+    outline: none;
+    padding: 6px;
+    font-size: 16px;
+    border: none;
+}
+
+.nav-search select {
+    max-width: 140px;
+    min-width: 0;
+    background: #f2f2f2;
+    padding: 0 10px;
+    min-width: 170px;
+    flex-shrink: 0;
+}
+
+.nav-search input {
+    flex:1;
+    padding: 0 10px;
+}
+
+.search-btn {
+    background: rgb(241, 241, 154);
+    border: none;
+    height: 100%;
+    padding: 0 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0;
+    min-width: 80px;
+}
+
+.search-btn i {
+    font-size: 18px;
+    color: black;
+}
+
+.nav-right a.sell-btn {
+    padding: 15px;
+    min-width: 30px;
+    max-height: 2px;
+    align-items: center;
+    background-color: white;
+    color: #f26fd6;
+    border-radius: 10px;
+
+}
+
+.sell-btn .plus {
+    font-size: 40px;
+}
+.logo-img {
+    width: 100%;
+    max-width: 180px;
+    height: 80px;
+    object-fit: contain;
+    display:block;
+}
+
+.logo-img-link {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 180px;
+}
+
+.st-font-size {
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding-bottom: 25px;
+ }
+
+ .st-colours{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding-bottom: 25px;
+ }
+
+ .st-language{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding-bottom: 25px;
+ }
+
+.wl-wishlist{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.b-basket{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .nav-search {
+    width: 100%;
+    margin-top: 10px;
+    order: 3;
+    }
+
+ .nav-right{
+   gap: 10px;
+  }
+
+  .logo-img-link {
+    max-width: 100px;
+    }
+}
+
+h1 {
+  margin-bottom: 1px;
+}
+#introduction, h1 {
+  text-align: center;
+  margin-top: 0;
+}
+
+p {
+  font-size: 15px;
+  text-align: center;
+}
+
+footer {
+  font-size: 10px;
+  text-align: center;
+}
+
+.signup-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.iti {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+/* Style all input fields */
+input, select {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 1px;
+}
+
+select {
+  margin-bottom: 4px;
+}
+
+input.invalid, select.invalid {
+  border-color: #8e253a;
+  color: #8e253a;
+}
+
+input.invalid::placeholder, select.invalid::placeholder {
+  color: #8e253a;
+}
+
+label::after {
+  content: " *";
+  color: red;
+
+}
+
+.hint {
+  display: none;
+  color: #8e253a;
+  font-size: 0.85rem;
+  margin-top: -12px;
+  margin-bottom: 8px;
+}
+
+.hint::before {
+  content: '⭙'
+}
+
+#phone-number-hint {
+  margin-top: 0.5px; 
+  margin-bottom: 8px;
+  display: none;
+}
+
+#country-hint {
+   margin-top: 0.5px;
+   display: none;
+}
+
+#password-hint {
+  margin-top: 4px;
+}
+
+#password-hint.no-icon::before {
+  content: '';
+}
+
+#repeat-password-hint {
+  margin-top: 4px;
+}
+.hint.visible {
+  display: block;
+}
+
+.name-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.name-row input {
+  flex: 1;
+}
+
+.name-row .input-field {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+}
+
+.input-field {
+  color: black;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-top: 0.5px;
+  margin-bottom: 0.5px;
+}
+
+.input-field input {
+  margin-bottom: 12px;
+}
+
+.password-field {
+  position: relative;
+}
+.password-field span {
+  position: absolute;
+  right: 10px;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.password-field input {
+  margin-bottom: 0;
+  padding-right: 40px;
+  width: 100%;
+}
+
+#checklist {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#checklist li {
+  margin: 2px 0;
+  font-size: 10px;
+}
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 20px;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #f26fd6;
+  color: white;
+  border: none;
+  transition-duration: 0.4s;
+  padding: 8px;
+  font-size: 16px;
+  width: 100%;
+  margin: 10px 0;
+  margin-top: 0;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+
+.signup-btn:hover, .signup-btn-2:hover {
+  background-color: #eb37c4;
+}
+
+/* Extra styles for the cancel button */
+.cancel-btn, .back-btn {
+  color: #f26fd6;
+  background-color: white;
+  border: 2px solid #f26fd6;
+  margin-bottom: 0;
+}
+
+
+.cancel-btn:hover, .back-btn:hover {
+  background-color: #f26fd6;
+  color: white;
+}
+
+
+
+/* Add padding to container elements */
+.container {
+  width: 100%;
+  max-width: 600px;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+/* Clear floats */
+.buttons::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+#divLoading, #divError, #divSuccess {
+    text-align: center;
+    padding-top: 10rem;
+    display: none;
+}
+
+#divError h2 {
+    color: #8e253a;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+
+  .cancel-btn,
+  .signup-btn,
+  .signup-btn-2 {
+    width: 100%;
+  }
+}

@@ -10,6 +10,8 @@ import java.util.ArrayList;
 public interface InterfaceUser extends InterfaceParent<User>{
     void addUser(String username, String password, Customer customer);
     User findByUsername(String username);
+    User login(String email,String password);
+    boolean  existsByUsername(String username);
 
     ArrayList<User> fuzzySearch(String searchTerm);
 }

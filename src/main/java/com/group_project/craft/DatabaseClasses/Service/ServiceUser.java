@@ -74,4 +74,16 @@ public class ServiceUser implements InterfaceUser {
     public ArrayList<User> fuzzySearch(String searchTerm){
         return repo.findAllByUsernameContaining(searchTerm);
     }
+
+    @Override
+    public boolean existsByUsername(String username) {return repo. existsByUsername(username); }
+
+    @Override
+    public User login(String email, String password) {
+        User user = repo.findByCustomerEmail(email);
+        if (user != null && user.getPassword().equals(password)) {
+            return user;
+        }
+        return null;
+    }
 }

@@ -14,5 +14,14 @@ public class ControllerCustomer extends ControllerParent<ServiceCust,Customer> {
         return table;
     }
 
+    @GetMapping("/existsByEmail/{email}")
+    public Boolean existsByEmail(@PathVariable String email) {
+        return table.existsByEmail(email);
+    }
+
+    @GetMapping("/existsByPhone/{phone}")
+    public Boolean existsByPhone(@PathVariable String phone) {
+        return table.existsByPhone(phone);
+    }
 
 }
