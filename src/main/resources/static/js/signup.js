@@ -379,14 +379,6 @@ window.addEventListener('load', function (e) {
     async function createAccount(e) {
         e.preventDefault();
 
-        //  const isFirstArea = firstInputArea.style.display !== 'none';
-
-        //  if (isFirstArea) {
-        //      if (validateFirstInputs()) {
-        //          firstInputArea.style.display = 'none';
-        //          secondInputArea.style.display = 'block';
-        //      }
-        //  } else {
         if (validateSecondInputs()) {
             divSignup.style.display = 'none';
             divLoading.style.display = 'block';
