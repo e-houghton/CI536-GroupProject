@@ -62,8 +62,8 @@ public class ServiceWishlist implements InterfaceWishlist {
     }
 
     @Override
-    public void addByObj(Wishlist obj){
-        repo.save(obj);
+    public Wishlist addByObj(Wishlist obj){
+        return repo.save(obj);
     }
     @Override
     public List<Wishlist> getAllByOwner(User owner) {

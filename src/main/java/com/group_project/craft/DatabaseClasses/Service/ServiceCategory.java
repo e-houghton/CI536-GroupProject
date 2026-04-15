@@ -26,8 +26,8 @@ public class ServiceCategory implements InterfaceCategory {
     }
 
     @Override
-    public void addByObj(Category obj) {
-        repo.save(obj);
+    public Category addByObj(Category obj) {
+        return repo.save(obj);
     }
 
     @Override

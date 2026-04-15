@@ -31,8 +31,8 @@ public class ServiceOrder implements InterfaceOrder {
         repo.save(new Order(buyer, date));
     }
     @Override
-    public void addByObj(Order obj){
-        repo.save(obj);
+    public Order addByObj(Order obj){
+        return repo.save(obj);
     }
     @Override
     public List<Order> getAllByBuyer(Customer buyer) {

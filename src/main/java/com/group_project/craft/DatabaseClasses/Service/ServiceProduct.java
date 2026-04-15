@@ -32,8 +32,8 @@ public class ServiceProduct implements InterfaceProduct {
         repo.save(new Product(name,description,uploadDate,seller,imageLocation,price,subcategory,sold));
     }
     @Override
-    public void addByObj(Product obj){
-        repo.save(obj);
+    public Product addByObj(Product obj){
+        return repo.save(obj);
     }
     @Override
     public List<Product> getAllBySeller(User seller) {

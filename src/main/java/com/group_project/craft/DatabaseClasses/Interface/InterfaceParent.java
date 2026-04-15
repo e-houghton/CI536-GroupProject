@@ -45,5 +45,5 @@ public interface InterfaceParent<R> {
      * Add new record to table, using Java Object.
      * @param object
      */
-    void addByObj(R object);
+    R addByObj(R object);
 }

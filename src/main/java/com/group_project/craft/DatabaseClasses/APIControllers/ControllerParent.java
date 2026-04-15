@@ -22,8 +22,8 @@ public abstract class ControllerParent<Service extends InterfaceParent<T>,T> {
     }
 
     @PostMapping("/add")
-    public void create(@RequestBody T customer){
-        getTable().addByObj(customer);
+    public T create(@RequestBody T customer){
+        return getTable().addByObj(customer);
     }
     @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable int id){
