@@ -71,8 +71,16 @@ window.addEventListener('load', function (e) {
         window.location.href = 'login.html';
     });
 
-    btnSignup.addEventListener('click', createAccount);
+    btnSignup.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (validateFirstInputs()) {
+            firstInputArea.style.display = 'none';
+            secondInputArea.style.display = 'block';
+        }
+    });
+
     btnSignup2.addEventListener('click', createAccount);
+
 
 
     // Removing hints when the user types into the input field again 
@@ -371,67 +379,62 @@ window.addEventListener('load', function (e) {
     async function createAccount(e) {
         e.preventDefault();
 
-        const isFirstArea = firstInputArea.style.display !== 'none';
+        //  const isFirstArea = firstInputArea.style.display !== 'none';
 
-        if (isFirstArea) {
-            if (validateFirstInputs()) {
-                firstInputArea.style.display = 'none';
-                secondInputArea.style.display = 'block';
-            }
-        } else {
-            if (validateSecondInputs()) {
-                divSignup.style.display = 'none';
-                divLoading.style.display = 'block';
+        //  if (isFirstArea) {
+        //      if (validateFirstInputs()) {
+        //          firstInputArea.style.display = 'none';
+        //          secondInputArea.style.display = 'block';
+        //      }
+        //  } else {
+        if (validateSecondInputs()) {
+            divSignup.style.display = 'none';
+            divLoading.style.display = 'block';
 
-                //this is where we'll connect to the api controllers and add account to db
-                try {
-                    // Creating a customer
-                    const customerResponse = await fetch('/api/customer/add', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            fname: inputFirstName.value.trim(),
-                            lname: inputSurname.value.trim(),
-                            email: inputEmail.value.trim(),
-                            phone: iti.getNumber(),
-                            addrLine1: inputAddrLine1.value.trim(),
-                            addrLine2: inputAddrLine2.value.trim(),
-                            addrCity: inputCity.value.trim(),
-                            addrCounty: inputCounty.value.trim(),
-                            addrPostcode: inputPostcode.value.trim(),
-                            guest: false
-                        })
-                    });
+            //this is where I connect to the api controllers and add account to db
+            try {
+                // Creating a customer
+                const customerResponse = await fetch('http://localhost:8080/api/customer/add', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        fname: inputFirstName.value.trim(),
+                        lname: inputSurname.value.trim(),
+                        email: inputEmail.value.trim(),
+                        phone: iti.getNumber(),
+                        addrLine1: inputAddrLine1.value.trim(),
+                        addrLine2: inputAddrLine2.value.trim(),
+                        addrCity: inputCity.value.trim(),
+                        addrCounty: inputCounty.value.trim(),
+                        addrPostCode: inputPostcode.value.trim(),
+                        addrCountry: inputCountry.value.trim(),
+                        guest: false
+                    })
+                });
 
-                    if (!customerResponse.ok) throw new Error('Failed to create a new customer');
+                if (!customerResponse.ok) throw new Error('Failed to create a new customer');
 
-                    const allCusts = await fetch('/api/customer/findAll');
-                    const custs = await allCusts.json();
-                    const savedCustomer = custs.find(c => c.email === inputEmail.value.trim());
+                const savedCustomer = await customerResponse.json();
 
-                    if (!savedCust) throw new Error('couldnt find saved customer');
+                if (!savedCustomer) throw new Error('couldnt find saved customer');
 
-                    //const customer = await customerResponse.json();
-
-                    // Create the user tied to the customer 
-                    const userResponse = await fetch('/api/user/add', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            username: inputUsername.value.trim(),
-                            password: inputPassword.value.trim(),
-                            customer: savedCustomer
-                        })
-                    });
-                    if (!userResponse.ok) throw new Error('Failed to create user');
-
-                    divLoading.style.display = 'none';
-                    divSuccess.style.display = 'block';
-                } catch (err) {
-                    console.error(err);
-                    divLoading.style.display = 'none';
-                    divError.style.display = 'block';
-                }
+                // Create the user tied to the customer 
+                const userResponse = await fetch('http://localhost:8080/api/user/add', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        username: inputUsername.value.trim(),
+                        password: inputPassword.value.trim(),
+                        customer: savedCustomer
+                    })
+                });
+                if (!userResponse.ok) throw new Error('Failed to create user');
+                divLoading.style.display = 'none';
+                divSuccess.style.display = 'block';
+            } catch (err) {
+                console.error(err);
+                divLoading.style.display = 'none';
+                divError.style.display = 'block';
             }
         }
     }

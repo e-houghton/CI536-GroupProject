@@ -61,8 +61,8 @@ public class ServiceUser implements InterfaceUser {
         repo.save(new User(username,password,customer));
     }
     @Override
-    public void addByObj(User obj){
-        repo.save(obj);
+    public User addByObj(User obj){
+        return repo.save(obj);
     }
 
     @Override

@@ -28,8 +28,8 @@ public class ServiceCust implements InterfaceCust {
         repoCustomer.save(new Customer(fname, lname, email, phone, addrln1, addrln2, city, county,country, postcode, true));
     }
     @Override
-    public void addByObj(Customer cust){
-        repoCustomer.save(cust);
+    public Customer addByObj(Customer cust){
+        return repoCustomer.save(cust);
     }
 
     @Override

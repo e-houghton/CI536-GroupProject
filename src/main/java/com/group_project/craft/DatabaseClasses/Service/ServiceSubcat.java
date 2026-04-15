@@ -60,8 +60,8 @@ public class ServiceSubcat implements InterfaceSubcat {
         repo.save(new Subcategory(name,description,category));
     }
     @Override
-    public void addByObj(Subcategory obj){
-        repo.save(obj);
+    public Subcategory addByObj(Subcategory obj){
+        return repo.save(obj);
     }
     @Override
     public List<Subcategory> getAllByName(String name) {

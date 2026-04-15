@@ -29,8 +29,8 @@ public class ServiceDiscount implements InterfaceDiscount {
         repo.save(new Discount(name, description, amount));
     }
     @Override
-    public void addByObj(Discount obj){
-        repo.save(obj);
+    public Discount addByObj(Discount obj){
+        return repo.save(obj);
     }
     @Override
     public List<Discount> getAllByName(String name) {

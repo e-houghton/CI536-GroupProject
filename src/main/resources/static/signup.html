@@ -1,11 +1,12 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <link href="css/signup.css" rel="stylesheet" type="text/css">
     <script src="https://kit.fontawesome.com/2585ebd72e.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
     <title>Sign up</title>
 </head>
@@ -53,7 +54,7 @@
                         </div>
                         <span id="password-hint" class="hint">Please enter a password</span>
                     </div>
-                     <ul id="checklist">
+                    <ul id="checklist">
                         <li id="len">❌ 8 characters minimum</li>
                         <li id="up">❌ At least one uppercase letter</li>
                         <li id="low">❌ At least one lowercase letter</li>
@@ -101,12 +102,12 @@
                         <input id="city" type="text" placeholder="City" required>
                         <span id="city-hint" class="hint">Please enter your city</span>
                     </div>
-                      <div class="input-field">
+                    <div class="input-field">
                         <label for="county">County</label>
                         <input id="county" type="text" placeholder="County" required>
                         <span id="county-hint" class="hint">Please enter your county</span>
                     </div>
-                      <div class="input-field">
+                    <div class="input-field">
                         <label for="postcode">Postcode</label>
                         <input id="postcode" type="text" placeholder="Postcode" required>
                         <span id="postcode-hint" class="hint">Please enter your postcode</span>
@@ -119,13 +120,23 @@
                         <span id="country-hint" class="hint">Please enter your country</span>
                     </div>
                     <div class="buttons">
-                         <button type="button" class="signup-btn-2">Sign Up</button>
-                         <button type="button" class="back-btn">Back</button>
+                        <button type="button" class="signup-btn-2">Sign Up</button>
+                        <button type="button" class="back-btn">Back</button>
                     </div>
                 </div>
         </div>
         </form>
         <div class="alert alert-info" style="display: none;"></div>
+    </div>
+    <div id="divLoading" role="status" aria-live="polite">
+        <img src="media/loading.gif" alt="Loading search results">
+    </div>
+    <div id="divSuccess" role="status" aria-live="polite">
+        <h2>Your account has been created!</h2>
+    </div>
+    <div id="divError" role="alert">
+        <h2>Oops - something went wrong!</h2>
+        <p>Try to search again.</p>
     </div>
     <footer>
         <p><a href="#top">Go to top</a></p>

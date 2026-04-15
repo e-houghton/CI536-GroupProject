@@ -64,8 +64,8 @@ public class ServiceReviewSeller implements InterfaceReviews<ReviewSeller,User> 
         repo.save(new ReviewSeller(reviewer,reviewed,rating,reviewText));
     }
     @Override
-    public void addByObj(ReviewSeller obj){
-        repo.save(obj);
+    public ReviewSeller addByObj(ReviewSeller obj){
+        return repo.save(obj);
     }
 
     @Override

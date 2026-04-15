@@ -64,8 +64,8 @@ public class ServiceReviewProduct implements InterfaceReviews<ReviewProduct,Prod
         repo.save(new ReviewProduct(reviewer,reviewed,rating,reviewText));
     }
     @Override
-    public void addByObj(ReviewProduct obj){
-        repo.save(obj);
+    public ReviewProduct addByObj(ReviewProduct obj){
+        return repo.save(obj);
     }
 
     @Override
