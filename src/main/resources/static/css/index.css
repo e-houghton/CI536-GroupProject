@@ -53,7 +53,7 @@ body {
     /* Add transition for hover effects */
     color: white;
     /* White text color */
-    font-size: 20px;
+    font-size: 1.25rem;
     /* Increased font size */
     cursor: pointer;
     white-space: nowrap;
@@ -84,7 +84,7 @@ body {
     height: 100%;
     outline: none;
     padding: 6px;
-    font-size: 16px;
+    font-size: 1rem;
     border: none;
 }
 
@@ -116,7 +116,7 @@ body {
 }
 
 .search-btn i {
-    font-size: 18px;
+    font-size: 1.15rem;
     color: black;
 }
 
@@ -132,7 +132,7 @@ body {
 }
 
 .sell-btn .plus {
-    font-size: 40px;
+    font-size: 2.5rem;
 }
 .logo-img {
     width: 100%;
@@ -200,4 +200,43 @@ body {
   .logo-img-link {
     max-width: 100px;
     }
+}
+
+/* DARK THEME*/
+
+html.dark {
+    background: #121212;
+    color: #e6e6e6;
+}
+
+html.dark .navbar{
+    background: radial-gradient(circle at 0% 0%, #2b2b2b, #000000);
+    color: white;
+}
+
+html.dark .nav-right a{
+    color: #e6e6e6;
+}
+
+html.dark .nav-search select,
+html.dark .nav-search input {
+    background: #2a2a2a;
+    color: white;
+}
+/* font size*/
+
+html {
+    font-size: 100%;
+}
+
+html.small {
+    font-size: 80%;
+}
+
+html.medium {
+    font-size: 100%;
+}
+
+html.large {
+    font-size: 125%;
 }
