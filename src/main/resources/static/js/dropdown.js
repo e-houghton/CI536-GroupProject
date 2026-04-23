@@ -1,5 +1,6 @@
 window.addEventListener('load', async function (evt) {
     const dropdown = document.querySelector("#category");
+    const listingDropdown = document.querySelector("#category-dropdown");
     const url = "/api/category/findAll";
     let jsonresponse = {};
     try {
@@ -14,11 +15,18 @@ window.addEventListener('load', async function (evt) {
             element.subcategories.forEach(sub => {
                 console.log(sub)
                 subcat = document.createElement("option");
+                subcat.value = sub.subcatID;
                 subcat.textContent = sub.name;
                 subcat.setAttribute("title", element.description);
                 optgroup.appendChild(subcat);
             })
-            dropdown.appendChild(optgroup)
+            if (dropdown) {
+                dropdown.appendChild(optgroup);
+            }
+
+            if (listingDropdown) {
+                listingDropdown.appendChild(optgroup.cloneNode(true));
+            }
         });
         
     } catch (error) {

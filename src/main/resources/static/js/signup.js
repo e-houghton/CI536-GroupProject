@@ -36,7 +36,7 @@ window.addEventListener('load', function (e) {
         inputCity = document.querySelector('#city'),
         inputCounty = document.querySelector('#county'),
         inputPostcode = document.querySelector('#postcode'),
-        inputCountry = document.querySelector('#countryDropdown'),
+        inputCountry = document.querySelector('#country-dropdown'),
 
         hintPhoneNumber = document.querySelector('#phone-number-hint'),
         hintAddrLine1 = document.querySelector('#addr-line-1-hint'),
@@ -56,7 +56,7 @@ window.addEventListener('load', function (e) {
     fetch('https://restcountries.com/v3.1/all?fields=name')
         .then(response => response.json())
         .then(data => {
-            const dropdown = document.getElementById('countryDropdown');
+            const dropdown = document.getElementById('country-dropdown');
             data.sort((a, b) => a.name.common.localeCompare(b.name.common))
             data.forEach(country => {
                 const countryOption = document.createElement('option');

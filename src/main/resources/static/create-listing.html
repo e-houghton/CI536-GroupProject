@@ -49,122 +49,62 @@
                 </div>
             </nav>
         </header>
-        <h2>ITEM CREATION PAGE</h2>
     </div>
     <div class="create-listing-page">
-        <div class="container">
-            <h1>Sell on HandyCraftz</h1>
-            <p id="introduction">Create an account so you can start selling and buying!</p>
-            <hr>
-            <form>
-                <div id="first-input-area">
-                    <label>Name</label>
-
-                    <div class="name-row">
-                        <div class="input-field">
-                            <input id="first-name" type="text" placeholder="First name" required>
-                            <span id="first-name-hint" class="hint">Please enter your first name</span>
-                        </div>
-
-                        <div class="input-field">
-                            <input id="surname" type="text" placeholder="Surname" required>
-                            <span id="surname-hint" class="hint">Please enter your surname</span>
-                        </div>
-                    </div>
-
-                    <div class="input-field">
-                        <label for="email">Email address</label>
-                        <input id="email" type="text" placeholder="Email address" required>
-                        <span id="email-hint" class="hint">Please enter a valid email address</span>
-                    </div>
-
-                    <div class="input-field">
-                        <label for="username">Username</label>
-                        <input id="username" type="text" placeholder="Username" required>
-                        <span id="username-hint" class="hint">Please enter your username</span>
-                    </div>
-
-                    <div class="input-field">
-                        <label for="password">Password</label>
-                        <div class="password-field">
-                            <input id="password" type="password" placeholder="Password" required>
-                            <span onclick="showPassword('password', this)"><i id="toggler1"
-                                    class="fa-solid fa-eye"></i></span>
-                        </div>
-                        <span id="password-hint" class="hint">Please enter a password</span>
-                    </div>
-                    <ul id="checklist">
-                        <li id="len">❌ 8 characters minimum</li>
-                        <li id="up">❌ At least one uppercase letter</li>
-                        <li id="low">❌ At least one lowercase letter</li>
-                        <li id="num">❌ At least one number</li>
-                        <li id="sym">❌ At least one special character</li>
-                    </ul>
-                    <div class="input-field">
-                        <label for="repeat-password">Repeat password</label>
-                        <div class="password-field">
-                            <input id="repeat-password" type="password" placeholder="Repeat password" required>
-                            <span onclick="showPassword('repeat-password', this)"><i id="toggler2"
-                                    class="fa-solid fa-eye"></i></span>
-                        </div>
-                        <span id="repeat-password-hint" class="hint">Please enter a repeat password</span>
-                    </div>
-
-                    <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.
-                    </p>
-
-                    <div class="buttons">
-                        <button type="button" class="signup-btn">Sign Up</button>
-                        <button type="button" class="cancel-btn">I already have an account</button>
-                    </div>
+        <h1>Sell on HandyCraftz</h1>
+        <p id="introduction">Create an item to sell!</p>
+        <div class="listing-card">
+            <div class="image-upload-area">
+                <input id="image-upload-input" type="file" accept="image/*" multiple hidden>
+                <div class="image-upload">
                 </div>
-
-                <!-- input for address and phone number-->
-                <div id="second-input-area" style="display:none">
-                    <div class="input-field">
-                        <label for="phone-number">Phone number</label>
-                        <input id="phone-number" type="tel" placeholder="Phone number" required>
-                        <span id="phone-number-hint" class="hint">Please enter your phone number</span>
-                    </div>
-                    <div class="input-field">
-                        <label for="addr-line-1">Address Line 1</label>
-                        <input id="addr-line-1" type="text" placeholder="Address line 1" required>
-                        <span id="addr-line-1-hint" class="hint">Please enter your address line 1</span>
-                    </div>
-                    <div class="input-field">
-                        <label for="addr-line-2">Address Line 2</label>
-                        <input id="addr-line-2" type="text" placeholder="Address line 2">
-                        <span id="addr-line-2-hint" class="hint">Please enter your address line 2</span>
-                    </div>
-                    <div class="input-field">
-                        <label for="city">City</label>
-                        <input id="city" type="text" placeholder="City" required>
-                        <span id="city-hint" class="hint">Please enter your city</span>
-                    </div>
-                    <div class="input-field">
-                        <label for="county">County</label>
-                        <input id="county" type="text" placeholder="County" required>
-                        <span id="county-hint" class="hint">Please enter your county</span>
-                    </div>
-                    <div class="input-field">
-                        <label for="postcode">Postcode</label>
-                        <input id="postcode" type="text" placeholder="Postcode" required>
-                        <span id="postcode-hint" class="hint">Please enter your postcode</span>
-                    </div>
-                    <div class="input-field">
-                        <label for="country">Country</label>
-                        <select id="countryDropdown">
-                            <option value="" selected>Select a country</option>
-                        </select>
-                        <span id="country-hint" class="hint">Please enter your country</span>
-                    </div>
-                    <div class="buttons">
-                        <button type="button" class="signup-btn-2">Sign Up</button>
-                        <button type="button" class="back-btn">Back</button>
-                    </div>
+                <div id="image-preview">
+                     <button type="button" class="image-upload-btn" id="image-up-btn">
+                        <span class="plus">+ </span>
+                        <span class="upload-image-text">Upload Images</span>
+                    </button>
                 </div>
+            </div>
+             <span id="item-image-hint" class="hint">Please upload an image of your item</span>
         </div>
-        </form>
+        <div class="listing-card">
+            <div class="listing-row">
+                <label>Name</label>
+                <input id="item-name" type="text" placeholder="Name your item" required>
+                <span id="item-name-hint" class="hint">Please enter your item's name</span>
+            </div>
+            <hr>
+            <div class="listing-row">
+                <label>Description</label>
+                <textarea id="item-description" placeholder="Describe your item" required></textarea>
+                <span id="item-description-hint" class="hint">Please enter your item's description</span>
+            </div>
+            <hr>
+            <div class="listing-row">
+                <label>Category</label>
+                <select id="category-dropdown">
+                    <option value="" disabled selected>Select a category</option>
+                </select>
+                <span id="item-category-hint" class="hint">Please enter your item's category</span>
+            </div>
+            <hr>
+            <div class="listing-row">
+                <label>Price</label>
+                <input id="item-price" type="number" placeholder="£0.00" step="0.01" min="0" max="999999.99" required>
+                <span id="item-price-hint" class="hint">Please enter your item's price</span>
+            </div>
+            <hr>
+             <div class="listing-row">
+                <label>Quantity</label>
+                <input id="item-quantity" type="number" min="1" max="100" step="1" value="1" required>
+                <span id="item-quantity-hint" class="hint">Please enter your item quantity</span>
+            </div>   
+        </div>
+
+        <div class="upload-btn-area">
+            <button type="button" class="upload-btn">Upload listing</button>
+        </div>
+
         <div class="alert alert-info" style="display: none;"></div>
     </div>
     <div id="divLoading" role="status" aria-live="polite">
@@ -181,7 +121,8 @@
         <p><a href="#top">Go to top</a></p>
         <small>&copy; 2026, Kelly for HandyCraftz group project</small>
     </footer>
-    <script src="js/signup.js"></script>
+    <script src="js/create-listing.js"></script>
     <script src="./js/dropdown.js"></script>
 </body>
+
 </html>
