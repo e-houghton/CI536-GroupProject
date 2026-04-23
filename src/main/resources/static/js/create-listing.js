@@ -102,7 +102,7 @@ window.addEventListener('load', function (e) {
             hintItemImage.style.display = '';
         }
 
-        //e.target.value = '';
+        e.target.value = '';
     }
 
     // keeps price to 2dp 
@@ -256,10 +256,13 @@ window.addEventListener('load', function (e) {
             //this is where I connect to the api controllers and add the product to the db
             try {
                 const f = new FormData(),
-                    files = document.getElementById('image-upload-input').files;
+                    files = divImagePreview.querySelectorAll('img');
                 console.log(files);
                 for (var i = 0; i < files.length; i++) {
-                    f.append("file", files[i]);
+                    console.log("iterating")
+                    console.log(files[i].src);
+                    f.append("file", await fetch(files[i].src).then(r => r.blob()));
+                    console.log(f.getAll("file"))
                 }
                 f.append("body", new Blob([JSON.stringify({
                     //prodID
