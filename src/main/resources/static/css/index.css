@@ -111,7 +111,7 @@ body {
 }
 
 .search-btn {
-    background: rgb(241, 241, 154);
+    background: #f1f19a;
     border: none;
     height: 100%;
     padding: 0 16px;
@@ -126,6 +126,10 @@ body {
 .search-btn i {
     font-size: 1.15rem;
     color: black;
+}
+
+.search-btn:hover {
+    background-color: #f9f95f;
 }
 
 .nav-right a.create-listing-btn {

@@ -21,6 +21,8 @@ public class Subcategory {
     @JoinColumn(name="category")
     private Category category;
 
+    private int catID;
+
     protected Subcategory() {
     }
 
@@ -60,5 +62,13 @@ public class Subcategory {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public int getCatID() {
+        return catID;
+    }
+
+    public void setCatID(int catID) {
+        this.catID = catID;
     }
 }

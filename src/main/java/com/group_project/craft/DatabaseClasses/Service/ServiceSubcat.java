@@ -3,7 +3,6 @@ package com.group_project.craft.DatabaseClasses.Service;
 import com.group_project.craft.DatabaseClasses.Interface.InterfaceSubcat;
 import com.group_project.craft.DatabaseClasses.Repository.RepoSubcat;
 import com.group_project.craft.DatabaseClasses.Tables.Category;
-import com.group_project.craft.DatabaseClasses.Tables.Order;
 import com.group_project.craft.DatabaseClasses.Tables.Subcategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +18,8 @@ import java.util.Optional;
 public class ServiceSubcat implements InterfaceSubcat {
     @Autowired
     RepoSubcat repo;
-
+    @Autowired
+    ServiceCategory cat;
     @Override
     public List<Subcategory> findAll() {
         return repo.findAll();
@@ -56,11 +56,14 @@ public class ServiceSubcat implements InterfaceSubcat {
     }
 
     @Override
-    public void addSubcat(String description, String name, Category category) {
-        repo.save(new Subcategory(name,description,category));
+    public Subcategory addSubcat(String description, String name, Category category) {
+        return repo.save(new Subcategory(name,description,category));
     }
     @Override
     public Subcategory addByObj(Subcategory obj){
+        System.out.println("adding subcat");
+        System.out.println(obj.getCatID());
+        obj.setCategory(cat.findByID(obj.getCatID()));
         return repo.save(obj);
     }
     @Override

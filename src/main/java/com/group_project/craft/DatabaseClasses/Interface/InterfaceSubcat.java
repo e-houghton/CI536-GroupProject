@@ -6,7 +6,7 @@ import com.group_project.craft.DatabaseClasses.Tables.Subcategory;
 import java.util.List;
 
 public interface InterfaceSubcat extends InterfaceParent<Subcategory> {
-    void addSubcat(String description, String name, Category category);
+    Subcategory addSubcat(String description, String name, Category category);
     List<Subcategory> getAllByName(String name);
 
 }
