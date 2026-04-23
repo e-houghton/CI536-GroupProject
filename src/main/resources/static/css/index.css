@@ -141,9 +141,8 @@ body {
 
 .create-listing-btn .plus {
     font-size: 40px;
-.sell-btn .plus {
-    font-size: 2.5rem;
 }
+
 .logo-img {
     width: 100%;
     max-width: 180px;
@@ -249,5 +248,4 @@ html.medium {
 
 html.large {
     font-size: 125%;
-}
 }
