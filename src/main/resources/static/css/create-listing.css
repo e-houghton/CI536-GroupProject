@@ -6,6 +6,8 @@ body {
     margin: 0;
 }
 
+
+
 .hidden {
     display: none;
 }
@@ -15,12 +17,12 @@ body {
     margin: 0 auto;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     width: 100%;
     padding: 0 20px;
     min-height: 70px;
     flex-wrap: wrap;
 }
+
 .navbar {
     width: 100%;
     background: radial-gradient(circle at 0% 0%, 
@@ -28,7 +30,7 @@ body {
         #f26fd6
     );
     color: black;
-    padding: 12px 0;
+    padding: 6px 0;
     display: flex;
     align-items: center;
 }
@@ -37,12 +39,20 @@ body {
     line-height: 1;
 }
 
+.nav-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
 .nav-right {
     display:flex;
     flex-shrink: 0;
+    flex: 1;
     align-items: center;
     gap: 16px;
     padding-right: 10px;
+    justify-content: flex-end;
 }
 
 .nav-right a {
@@ -70,7 +80,7 @@ body {
 
 .nav-search {
     display: flex;
-    flex: 1 1 300px;
+    flex: 0 1 500px;
     max-width: 600px;
     min-width: 0;
     margin: 0 20px;
@@ -207,9 +217,14 @@ body {
 h1 {
   margin-bottom: 1px;
 }
+
 #introduction, h1 {
   text-align: center;
   margin-top: 0;
+}
+
+#introduction {
+  margin-bottom: 5px;
 }
 
 p {
@@ -222,40 +237,207 @@ footer {
   text-align: center;
 }
 
-.signup-page {
+.create-listing-page {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  margin-top: 20px;
+  min-height: auto;
+  padding-top: 10px;
   margin-bottom: 20px;
 }
 
-.iti {
-  width: 100%;
-  margin-bottom: 10px;
+.create-listing-page h1{
+  font-weight: 300;
+  font-size: 20px;
+  letter-spacing: 1px;
+  justify-content: left;
+  text-align: left;
 }
 
-/* Style all input fields */
-input, select {
-  width: 100%;
-  padding: 6px;
+.create-listing-page p {
+  font-weight: 400;
+  color: #666;
+  font-size: 12px;
+  text-align: left;
+}
+
+
+
+.listing-card {
+  background: white;
+  border-radius: 12px;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin-top: 1px;
+  overflow: hidden;
+  margin-top: 5px;
 }
 
-select {
-  margin-bottom: 4px;
+.listing-row {
+  display: flex;
+  align-items: centre;
+  flex-wrap: wrap;
+  padding: 18px;
+  gap: 20px;
+  min-width: 900px;
+  min-height: 50px;
 }
 
-input.invalid, select.invalid {
+.listing-row label {
+  font-size: 15px;
+  min-width: 130px;
+  padding-top: 6px;
+}
+
+.listing-row label::after {
+  content: '';
+}
+.listing-row input, .listing-row select, .listing-row textarea {
+  flex:1;
+  border: none;
+  outline: none;
+  border-bottom: 2px solid #bdbdbd;
+  font-size: 12px;
+  background: transparent;
+}
+
+.listing-row input:focus, .listing-row select:focus, .listing-row textarea:focus {
+  border-bottom: 2px solid #f26fd6;
+}
+
+
+.listing-row textarea {
+  min-height: 100px;
+}
+
+.listing-card hr {
+  margin: 0 24px;
+  border: none;
+  border-top: 1px solid #bdbdbd;
+}
+
+.listing-card  .item-image-hint {
+  text-align: center;
+}
+
+.image-upload-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 2px dashed #ccc;
+  margin: 20px;
+  border-radius: 8px;
+  min-width: 900px;
+  max-width: 900px;
+  min-height: 180px;
+  height: auto;
+  overflow: auto;
+}
+
+.image-upload-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: white;
+  color: #f26fd6;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px 20px;
+  width: auto;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/*Button after image upload*/
+.image-upload-btn.compact {
+  width: 200px;
+  height: 200px;
+  padding: 0;
+  border: 2px dashed #ccc;
+  justify-content: center;
+  font-size: 40px;
+}
+
+.image-upload-btn.compact .upload-image-text {
+  display: none;
+}
+
+.image-upload-btn .plus {
+    font-size: 30px;
+}
+
+.image-upload-btn:hover {
+  background: #f7f6f6;
+}
+
+.image-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.image-preview {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #bdbdbd;
+}
+
+#image-preview {
+  display: flex;
+  /*grid-template-columns: repeat(auto-fill, 100px);*/
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow-x: auto;
+  overflow-y: auto;
+  justify-content: center;
+  padding: 10px;
+  gap: 10px;
+  width: 100%;
+}
+
+#image-preview img {
+  display: block;
+  flex-shrink: 0;
+}
+
+.image-wrapper {
+  position: relative;
+  width: 200px; 
+  height: 200px; 
+}
+
+.remove-image-btn {
+  position: absolute;
+  top: 5px; 
+  right: 5px;
+  width: 24px; 
+  height: 24px; 
+  border: none;
+  border-radius: 100%;
+  background: white; 
+  color: black; 
+  font-size: 16px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  cursor: pointer;
+}
+
+.remove-image-btn:hover {
+  background-color: #bdbdbd;
+}
+
+
+input.invalid, select.invalid, textarea.invalid {
   border-color: #8e253a;
   color: #8e253a;
 }
 
-input.invalid::placeholder, select.invalid::placeholder {
+input.invalid::placeholder, select.invalid::placeholder, textarea.invalid::placeholder {
   color: #8e253a;
 }
 
@@ -271,49 +453,25 @@ label::after {
   font-size: 0.85rem;
   margin-top: -12px;
   margin-bottom: 8px;
+  margin-left: 150px;
+  width: 100%;
 }
 
 .hint::before {
   content: '⭙'
 }
 
-#phone-number-hint {
-  margin-top: 0.5px; 
-  margin-bottom: 8px;
-  display: none;
-}
 
-#country-hint {
-   margin-top: 0.5px;
-   display: none;
-}
-
-#password-hint {
-  margin-top: 4px;
-}
-
-#password-hint.no-icon::before {
-  content: '';
-}
-
-#repeat-password-hint {
-  margin-top: 4px;
-}
 .hint.visible {
   display: block;
 }
 
-.name-row {
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
+.item-image-hint {
+  margin: 0;
+  text-align: center;
 }
 
-.name-row input {
-  flex: 1;
-}
-
-.name-row .input-field {
+ .input-field {
   flex: 1;
   min-width: 0;
   width: 100%;
@@ -332,42 +490,9 @@ label::after {
   margin-bottom: 12px;
 }
 
-.password-field {
-  position: relative;
-}
-.password-field span {
-  position: absolute;
-  right: 10px;
-  top: 0;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.password-field input {
-  margin-bottom: 0;
-  padding-right: 40px;
-  width: 100%;
-}
-
-#checklist {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-#checklist li {
-  margin: 2px 0;
-  font-size: 10px;
-}
-
-hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 20px;
-}
 
 /* Set a style for all buttons */
-button {
+.upload-btn {
   background-color: #f26fd6;
   color: white;
   border: none;
@@ -380,43 +505,19 @@ button {
   margin-bottom: 10px;
   border-radius: 20px;
   box-sizing: border-box;
+  cursor: pointer;
 }
 
-.signup-btn:hover, .signup-btn-2:hover {
-  background-color: #eb37c4;
+.upload-btn:hover {
+    background-color: #eb37c4;
 }
 
-/* Extra styles for the cancel button */
-.cancel-btn, .back-btn {
-  color: #f26fd6;
-  background-color: white;
-  border: 2px solid #f26fd6;
-  margin-bottom: 0;
+.upload-btn-area {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-
-.cancel-btn:hover, .back-btn:hover {
-  background-color: #f26fd6;
-  color: white;
-}
-
-
-
-/* Add padding to container elements */
-.container {
-  width: 100%;
-  max-width: 600px;
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
-}
-
-/* Clear floats */
-.buttons::after {
-  content: "";
-  clear: both;
-  display: table;
-}
 
 #divLoading, #divError, #divSuccess {
     text-align: center;
