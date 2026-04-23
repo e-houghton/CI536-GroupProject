@@ -44,8 +44,6 @@ window.addEventListener('load', function (e) {
         signInBtn.href = '#';
     }
 
-
-
     function openImageFiles() {
         document.getElementById('image-upload-input').click();
     }
