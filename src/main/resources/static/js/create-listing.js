@@ -102,7 +102,7 @@ window.addEventListener('load', function (e) {
             hintItemImage.style.display = '';
         }
 
-        e.target.value = '';
+        //e.target.value = '';
     }
 
     // keeps price to 2dp 
@@ -250,29 +250,37 @@ window.addEventListener('load', function (e) {
 
         if (fieldsOk) {
             const user = JSON.parse(sessionStorage.getItem('user'));
+
             const subcategoryResponse = await fetch(`http://localhost:8080/api/subcat/find/${inputItemCategory.value}`);
             const subcategory = await subcategoryResponse.json();
             //this is where I connect to the api controllers and add the product to the db
             try {
+                const f = new FormData(),
+                    files = document.getElementById('image-upload-input').files;
+                console.log(files);
+                for (var i = 0; i < files.length; i++) {
+                    f.append("file", files[i]);
+                }
+                f.append("body", new Blob([JSON.stringify({
+                    //prodID
+                    name: inputItemName.value.trim(),
+                    description: inputItemDescription.value.trim(),
+                    uploadDate: new Date(),
+                    seller: user,
+                    imageLocation: '/media/logo.png', // placeholder image before real input
+                    price: parseFloat(inputItemPrice.value.trim()),
+                    quant: parseInt(inputItemQuantity.value.trim()),
+                    category: inputItemCategory.value.trim(),
+                    subcategory: subcategory,
+                    sold: false
+                })], {
+                    type: "application/json"
+                }));
                 // Creating a product
-                const productResponse = await fetch('http://localhost:8080/api/product/add', {
+                const productResponse = await fetch('http://localhost:8080/api/product/test', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        //prodID
-                        name: inputItemName.value.trim(),
-                        description: inputItemDescription.value.trim(),
-                        uploadDate: new Date(),
-                        seller: user,
-                        imageLocation: '/media/logo.png', // placeholder image before real input
-                        price: parseFloat(inputItemPrice.value.trim()),
-                        quant: parseInt(inputItemQuantity.value.trim()),
-                        category: inputItemCategory.value.trim(),
-                        subcategory: subcategory,
-                        sold: false
-                    })
+                    body: f
                 });
-
                 if (!productResponse.ok) throw new Error('Failed to create a new product');
 
                 window.location.href = 'index.html';
