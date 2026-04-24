@@ -8,12 +8,10 @@ window.addEventListener('load', async function (evt) {
         const items = await response.json();
         console.log(items);
         items.forEach(element => {
-            console.log(element);
             optgroup = document.createElement("optgroup");
             optgroup.setAttribute("title", element.description);
             optgroup.setAttribute("label", element.name);
             element.subcategories.forEach(sub => {
-                console.log(sub)
                 subcat = document.createElement("option");
                 subcat.value = sub.subcatID;
                 subcat.textContent = sub.name;
