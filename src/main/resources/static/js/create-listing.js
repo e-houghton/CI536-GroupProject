@@ -1,24 +1,14 @@
 window.addEventListener('load', function (e) {
 
-    const divSignup = document.querySelector('.signup-page'),
-        divLoading = document.querySelector('#divLoading'),
+    const divLoading = document.querySelector('#divLoading'),
         divSuccess = document.querySelector('#divSuccess'),
         divError = document.querySelector('#divError'),
         divImagePreview = document.getElementById('image-preview'),
 
         btnImageUpload = document.querySelector('.image-upload-btn'),
         btnItemUpload = document.querySelector('.upload-btn'),
-        btnBack = document.querySelector('.back-btn'),
-        btnCancel = document.querySelector('.cancel-btn'),
 
-        form = document.querySelector('form'),
-
-        firstInputArea = document.querySelector('#first-input-area'),
-        secondInputArea = document.querySelector('#second-input-area'),
-
-        // Item property inputs 
-        // INPUT IMAGES??
-
+        // Item property inputs
         inputItemName = document.querySelector('#item-name'),
         inputItemDescription = document.querySelector('#item-description'),
         inputItemCategory = document.querySelector('#category-dropdown'),
@@ -33,10 +23,11 @@ window.addEventListener('load', function (e) {
         hintItemPrice = document.querySelector('#item-price-hint'),
         hintItemQuantity = document.querySelector('#item-quantity-hint');
 
-    // Leads user to the login page 
+
     btnImageUpload.addEventListener('click', openImageFiles);
     btnItemUpload.addEventListener('click', createItem);
 
+    // For navbar 
     const user = JSON.parse(sessionStorage.getItem('user'));
     if (user) {
         const signInBtn = document.getElementById('sign-in-btn');
@@ -44,6 +35,7 @@ window.addEventListener('load', function (e) {
         signInBtn.href = '#';
     }
 
+    //  Triggers the image input button 
     function openImageFiles() {
         document.getElementById('image-upload-input').click();
     }
@@ -55,7 +47,7 @@ window.addEventListener('load', function (e) {
         const maxImages = 20;
 
         files.forEach(file => {
-            // checks image total 
+            // checks image total against the max
             const imgTotal = divImagePreview.querySelectorAll('img').length;
             if (imgTotal >= maxImages) { return; }
 
@@ -133,8 +125,7 @@ window.addEventListener('load', function (e) {
 
     async function createItem(e) {
         e.preventDefault();
-        const regexPrice = /^\d+(\.\d{1,2})?$/,
-            imgTotal = divImagePreview.querySelectorAll('img').length,
+            const imgTotal = divImagePreview.querySelectorAll('img').length,
             itemName = inputItemName.value.trim(),
             itemDescription = inputItemDescription.value.trim(),
             itemCategory = inputItemCategory.value.trim(),
@@ -282,7 +273,7 @@ window.addEventListener('load', function (e) {
                     body: f
                 });
                 if (!productResponse.ok) throw new Error('Failed to create a new product');
-
+ 
                 window.location.href = 'index.html';
 
             } catch (err) {
