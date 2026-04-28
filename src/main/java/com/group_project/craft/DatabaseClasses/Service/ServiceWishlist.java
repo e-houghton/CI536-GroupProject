@@ -1,13 +1,14 @@
 package com.group_project.craft.DatabaseClasses.Service;
 
 import com.group_project.craft.DatabaseClasses.Interface.InterfaceWishlist;
+import com.group_project.craft.DatabaseClasses.Repository.RepoUser;
 import com.group_project.craft.DatabaseClasses.Repository.RepoWishlist;
-import com.group_project.craft.DatabaseClasses.Tables.Order;
-import com.group_project.craft.DatabaseClasses.Tables.User;
-import com.group_project.craft.DatabaseClasses.Tables.Wishlist;
+import com.group_project.craft.DatabaseClasses.Tables.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +21,8 @@ public class ServiceWishlist implements InterfaceWishlist {
     @Autowired
     RepoWishlist repo;
 
+    @Autowired
+    ServiceUser userTable;
     @Override
     public List<Wishlist> findAll() {
         return repo.findAll();
@@ -63,7 +66,15 @@ public class ServiceWishlist implements InterfaceWishlist {
 
     @Override
     public Wishlist addByObj(Wishlist obj){
+        obj.setOwner(userTable.findByID(obj.getOwnerID()));
         return repo.save(obj);
+    }
+
+    @Override
+    public void addProdToWishlist(int wID, Product p){
+        Wishlist w = findByID(wID);
+        w.addItem(new WishlistLine(w,p,Date.valueOf(LocalDate.now())));
+        repo.save(w);
     }
     @Override
     public List<Wishlist> getAllByOwner(User owner) {

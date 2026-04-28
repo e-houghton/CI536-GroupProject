@@ -1,3 +1,5 @@
+
+    import * as wishlistFunc from "./addToWishlist.js";
 window.addEventListener('load', async function (e) {
     const btnCreateListing = document.querySelector('.create-listing-btn'),
         user = JSON.parse(sessionStorage.getItem('user')),
@@ -72,6 +74,7 @@ window.addEventListener('load', async function (e) {
         btnWishlistProduct.addEventListener('click', (e) => {
             // Stops product page opening when user wishlists item
             e.stopPropagation();
+            wishlistFunc.add(product);
             const icon = btnWishlistProduct.querySelector('i');
             icon.classList.toggle('fa-regular');
             icon.classList.toggle('fa-solid');
