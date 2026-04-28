@@ -17,6 +17,7 @@ import java.util.Collection;
 public interface RepoProduct extends JpaRepository<Product, Integer> {
     ArrayList<Product> findAllBySeller(User seller);
     ArrayList<Product> findAllBySubcategory(Subcategory subcategory);
-    ArrayList<Product> findAllByNameContaining(String searchTerm);
-    ArrayList<Product> findAllByDescriptionContaining(String searchTerm);
+    //ArrayList<Product> findAllByNameContaining(String searchTerm);
+    //ArrayList<Product> findAllByDescriptionContaining(String searchTerm);
+    ArrayList<Product> findAllByNameContainingOrDescriptionContaining(String name, String description);
 }

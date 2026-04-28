@@ -70,13 +70,15 @@
         <div class="listing-card">
             <div class="listing-row">
                 <label>Name</label>
-                <input id="item-name" type="text" placeholder="Name your item" required>
+                <input id="item-name" type="text" placeholder="Name your item" maxlength="50" required>
+                <span id="name-char-counter" class="char-counter">0/50</span>
                 <span id="item-name-hint" class="hint">Please enter your item's name</span>
             </div>
             <hr>
             <div class="listing-row">
                 <label>Description</label>
-                <textarea id="item-description" placeholder="Describe your item" required></textarea>
+                <textarea id="item-description" placeholder="Describe your item" maxlength="200" required></textarea>
+                <span id="description-char-counter" class="char-counter">0/200</span>
                 <span id="item-description-hint" class="hint">Please enter your item's description</span>
             </div>
             <hr>

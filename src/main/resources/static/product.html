@@ -9,7 +9,7 @@
     href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet">
   <script src="https://kit.fontawesome.com/2585ebd72e.js" crossorigin="anonymous"></script>
-  <link href="css/index.css" rel="stylesheet">
+  <link href="css/product.css" rel="stylesheet">
 </head>
 
 <body>
@@ -32,9 +32,7 @@
             <select name="category" id="category" aria-label="Shop by category">
               <option value="chooseCategory" title="test" selected disabled hidden>Shop by category</option>
             </select>
-            <label class="label-for hidden" for="input-search-term">Search...</label>
-            <span id="search-term-hint" class="hint hidden">Please enter a search term</span>
-            <input id="input-search-term" type="search" placeholder="Search.." aria-label="Search products">
+            <input type="text" placeholder="Search.." aria-label="Search products">
             <button class="search-btn" aria-label="search">
               <i class="fa-solid fa-search"></i>
             </button>
@@ -42,6 +40,7 @@
 
           <div class="nav-right">
             <a href="basket.html" aria-label="Shopping cart"><i class="fa-solid fa-cart-shopping"></i></a>
+            <span id="basket-count"></span>
             <a href="wishlist.html" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></a>
             <a class="create-listing-btn"><span class="plus">+</span>Sell</a>
             <a href="login.html" id="sign-in-btn">Sign in</a>
@@ -50,11 +49,11 @@
         </div>
       </nav>
     </header>
-    <h2>Products</h2>
   </div>
   <div class="product-container"></div>
   <script src="./js/dropdown.js"></script>
-  <script src ="js/index.js"></script>
+  <script src ="js/product.js"></script>
   <script src="js/settings.js"></script>
+  <script src="js/basket.js"></script>
 </body>
 </html>
