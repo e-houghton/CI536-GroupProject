@@ -27,6 +27,16 @@ public class Wishlist {
     @Column(nullable = false,length=50)
     private String name;
 
+    private int ownerID;
+
+    public int getOwnerID() {
+        return ownerID;
+    }
+
+    public void setOwnerID(int ownerID) {
+        this.ownerID = ownerID;
+    }
+
     @OneToMany(mappedBy="wishlist",
             targetEntity= WishlistLine.class,
             fetch=FetchType.EAGER, cascade = CascadeType.ALL)

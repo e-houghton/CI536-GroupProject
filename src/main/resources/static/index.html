@@ -10,6 +10,7 @@
     rel="stylesheet">
   <script src="https://kit.fontawesome.com/2585ebd72e.js" crossorigin="anonymous"></script>
   <link href="css/index.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/wishlistModal.css">
 </head>
 
 <body>
@@ -17,7 +18,17 @@
   <!--Markup all web page content inside the 'body' tags -->
   <div id="wrapper">
     <!--The 'wrapper' contains all the page content-->
-
+    <div id="wishlistModal" class="modal">
+      <button id="closeBtn">
+        X
+      </button>
+      <div id="content">
+        <p>Select a wishlist to add product to!</p>
+        <select name="wishlist" id="wishlistDropdown">
+        </select>
+        <button id="submitWishlist">Select</button>
+      </div>
+    </div>
     <header><!--The main heading for the page -->
       <h1 class="hidden">HandyCraftz</h1>
       <nav class="navbar">
@@ -54,7 +65,8 @@
   </div>
   <div class="product-container"></div>
   <script src="./js/dropdown.js"></script>
-  <script src ="js/index.js"></script>
+  <script src="js/index.js" type="module"></script>
   <script src="js/settings.js"></script>
 </body>
+
 </html>

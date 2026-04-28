@@ -1,4 +1,6 @@
+import * as wishlistFunc from "./addToWishlist.js";
 window.addEventListener('load', async function (e) {
+    
     // URLSearchParams api for url query strings
     const parameters = new URLSearchParams(window.location.search),
         btnCreateListing = document.querySelector('.create-listing-btn'),
@@ -65,6 +67,7 @@ window.addEventListener('load', async function (e) {
         btnWishlistProduct.addEventListener('click', (e) => {
             // Stops the image zoom in  when user wishlists item
             e.stopPropagation();
+            wishlistFunc.add(product);
             const icon = btnWishlistProduct.querySelector('i');
             icon.classList.toggle('fa-regular');
             icon.classList.toggle('fa-solid');
