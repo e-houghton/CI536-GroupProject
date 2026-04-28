@@ -1,6 +1,7 @@
 package com.group_project.craft.DatabaseClasses.APIControllers;
 import com.group_project.craft.DatabaseClasses.Service.ServiceProduct;
 import com.group_project.craft.DatabaseClasses.Tables.Product;
+import com.group_project.craft.DatabaseClasses.Tables.Subcategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,5 +26,10 @@ public class ControllerProduct extends ControllerParent<ServiceProduct, Product>
     @PostMapping(path = "/test",consumes = {"multipart/form-data"})
     void test(@RequestPart("file") MultipartFile[] file, @RequestPart("body") Product p){
         table.createImage(file,p);
+    }
+
+    @GetMapping("/findBySubcategory/{id}")
+    public ArrayList<Product> findBySubcategory(@PathVariable int id){
+        return table.findBySubcategory(id);
     }
 }

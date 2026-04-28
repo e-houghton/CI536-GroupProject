@@ -2,6 +2,7 @@ package com.group_project.craft.DatabaseClasses.Service;
 
 import com.group_project.craft.DatabaseClasses.Interface.InterfaceProduct;
 import com.group_project.craft.DatabaseClasses.Repository.RepoProduct;
+import com.group_project.craft.DatabaseClasses.Repository.RepoSubcat;
 import com.group_project.craft.DatabaseClasses.Tables.Product;
 import com.group_project.craft.DatabaseClasses.Tables.Subcategory;
 import com.group_project.craft.DatabaseClasses.Tables.User;
@@ -27,6 +28,14 @@ import java.util.Optional;
 public class ServiceProduct implements InterfaceProduct {
     @Autowired
     RepoProduct repo;
+
+    @Autowired
+    RepoSubcat subcatRepo;
+
+    public ArrayList<Product> findBySubcategory(int id){
+        Subcategory subcat = subcatRepo.findById(id).orElse(null);
+        return repo.findAllBySubcategory(subcat);
+    }
 
     @Override
     public List<Product> findAll() {
@@ -85,9 +94,7 @@ public class ServiceProduct implements InterfaceProduct {
 
     @Override
     public ArrayList<Product> fuzzySearch(String searchTerm) {
-        ArrayList<Product> output = repo.findAllByNameContaining(searchTerm);
-        output.addAll(repo.findAllByDescriptionContaining(searchTerm));
-        return output;
+        return repo.findAllByNameContainingOrDescriptionContaining(searchTerm, searchTerm);
     }
 
     public void createImage(MultipartFile[] files, Product p) {

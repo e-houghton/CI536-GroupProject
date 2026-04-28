@@ -105,6 +105,45 @@ window.addEventListener('load', function (e) {
         }
     });
 
+    // Alerts users to the 50 character max name
+    inputItemName.addEventListener('input', () => {
+        const length = inputItemName.value.length;
+        document.getElementById('name-char-counter').textContent = `${length}/50`;
+        if (length === 50) {
+            document.getElementById('name-char-counter').style.color = '#8e253a'
+        } else {
+            document.getElementById('name-char-counter').style.color = '#000';
+        }
+
+        if (itemName.length > 50) {
+            fieldsOk = false;
+            inputItemName.classList.add('invalid');
+            hintItemName.classList.remove('visible');
+            hintItemName.textContent = 'Name cannot be more than 50 characters!';
+            hintItemName.style.display = 'inline';
+        } 
+    });
+
+    // Alerts users to the 200 character max description
+      inputItemDescription.addEventListener('input', () => {
+        const length = inputItemDescription.value.length;
+        document.getElementById('description-char-counter').textContent = `${length}/200`;
+        if (length === 200) {
+            document.getElementById('description-char-counter').style.color = '#8e253a'
+        } else {
+            document.getElementById('description-char-counter').style.color = '#000';
+        }
+
+        if (itemDescription.length > 200) {
+            fieldsOk = false;
+            inputItemDescription.classList.add('invalid');
+            hintItemDescription.classList.remove('visible');
+            hintItemDescription.textContent = 'Description cannot be more than 200 characters!';
+            hintItemDescription.style.display = 'inline';
+        } 
+    });
+
+
     //Keeps quantity to one whole number
     inputItemQuantity.addEventListener('keydown', (e) => {
         if (e.key === '.' || e.key === ',') e.preventDefault();
@@ -156,11 +195,11 @@ window.addEventListener('load', function (e) {
             hintItemName.classList.remove('visible');
             hintItemName.textContent = 'Name must be 3 characters minimum!';
             hintItemName.style.display = 'inline';
-        } else if (itemName.length > 100) {
+        } else if (itemName.length > 50) {
             fieldsOk = false;
             inputItemName.classList.add('invalid');
             hintItemName.classList.remove('visible');
-            hintItemName.textContent = 'Name cannot be more than 100 characters!';
+            hintItemName.textContent = 'Name cannot be more than 50 characters!';
             hintItemName.style.display = 'inline';
         } else {
             hintItemName.style.display = '';
@@ -180,11 +219,11 @@ window.addEventListener('load', function (e) {
             hintItemDescription.classList.remove('visible');
             hintItemDescription.textContent = 'Description must be 5 characters minimum!';
             hintItemDescription.style.display = 'inline';
-        } else if (itemDescription.length > 2000) {
+        } else if (itemDescription.length > 200) {
             fieldsOk = false;
             inputItemDescription.classList.add('invalid');
             hintItemDescription.classList.remove('visible');
-            hintItemDescription.textContent = 'Description cannot be more than 2000 characters!';
+            hintItemDescription.textContent = 'Description cannot be more than 200 characters!';
             hintItemDescription.style.display = 'inline';
         } else {
             hintItemDescription.style.display = '';

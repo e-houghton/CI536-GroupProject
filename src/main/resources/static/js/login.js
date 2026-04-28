@@ -73,8 +73,8 @@ window.addEventListener('load', function (e) {
                 });
                 // Error code 401 indicates that the login input details are invalid 
                 if (loginResponse.status === 401) {
-                    hintEmail.textContent = 'Password or email is incorrect';
-                    //hintEmail.style.display = '';
+                    hintEmail.textContent = 'Invalid email or password';
+                    hintEmail.style.display = 'inline';
                     return;
                 } 
 
