@@ -148,6 +148,8 @@ window.addEventListener('load', async function (e) {
         }
     });
 
+    // Filtering products by category 
+
     dropdown.addEventListener('change', async function () {
         const subcatID = this.value;
         if (!subcatID || subcatID === 'chooseCategory') {

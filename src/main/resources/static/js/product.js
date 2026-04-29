@@ -28,6 +28,7 @@ window.addEventListener('load', async function (e) {
         }
     }
 
+
     try {
         const response = await fetch(`/api/product/find/${productId}`);
         const product = await response.json();
@@ -100,7 +101,7 @@ window.addEventListener('load', async function (e) {
         const btnAddToBasket = document.createElement('button');
         btnAddToBasket.textContent = 'Add to basket';
         btnAddToBasket.classList.add('add-to-basket-btn');
-
+        btnAddToBasket.addEventListener('click', addToBasket);
 
         productDetails.appendChild(productName);
         productDetails.appendChild(productSeller);
@@ -175,6 +176,29 @@ window.addEventListener('load', async function (e) {
             mainImage.src = productImages[currIndexPosition];
         });
 
+        function addToBasket() {
+            const basket = getBasket();
+            const existing = basket.find(item => item.id === product.prodID);
+
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                basket.push({
+                    id: product.prodID,
+                    name: product.name,
+                    price: product.price,
+                    image: productImages[0] || '',
+                    quantity: 1,
+                    stock: product.quantity,
+                    description: product.description,
+                    category: product.category,
+                    subcategory: product.category.subcat
+                });
+            }
+            sessionStorage.setItem('basket', JSON.stringify(basket));
+            updateBasketCount();
+        }
+
 
         // NAME DESCRIPTION PRICE QUANTITY SELLER ETC NEXT TO ITEM IMAGE ON THE RIGHT
         // BELOW THESE HAVE THE ADD TO BAG BUTTON,
@@ -194,7 +218,6 @@ window.addEventListener('load', async function (e) {
     } catch (err) {
         console.error(err)
     }
-
 });
 
 async function getProductImages(imageLocation) {
@@ -215,3 +238,4 @@ async function getProductImages(imageLocation) {
     }
     return productImages;
 }
+
