@@ -89,7 +89,6 @@ window.addEventListener('load', function (e) {
             email = inputEmail.value.trim(),
             phoneNumber = inputPhoneNumber.value.trim();
         
-
         let fieldsOk = true;
 
         // FIRST NAME VALIDATION
