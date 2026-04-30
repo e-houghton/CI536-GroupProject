@@ -101,7 +101,7 @@ async function searchCategories(subcatID) {
     }
 }
 
-window.addEventListener("load", e => {
+window.addEventListener("load", () => {
     const parameters = new URLSearchParams(window.location.search);
     const searchTerm = parameters.get('query');
     const subCat = parameters.get("subcat");

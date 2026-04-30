@@ -7,7 +7,7 @@ window.addEventListener("load", async () => {
 
     newWishlistSub.addEventListener("submit", async e => {
         e.preventDefault();
-        const r = await fetch('http://localhost:8080/api/wishlist/add', {
+        await fetch('http://localhost:8080/api/wishlist/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -25,7 +25,7 @@ window.addEventListener("load", async () => {
     }
 
 
-    dropdown.addEventListener("change", async e => {
+    dropdown.addEventListener("change", async () => {
         console.log("updating!")
         container.innerHTML = "";
         let hasItems = false;

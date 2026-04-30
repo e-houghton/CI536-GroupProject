@@ -17,7 +17,7 @@ export async function add(prod) {
         modalContent.appendChild(para);
         let redirectBtn = document.createElement("button");
         redirectBtn.textContent = "Click here to log in";
-        redirectBtn.addEventListener("click", e => {
+        redirectBtn.addEventListener("click", () => {
             window.location.href = 'login.html';
         })
         modalContent.appendChild(redirectBtn);
@@ -43,7 +43,6 @@ export async function add(prod) {
     }*/
 
     const url = "/api/wishlist/findAllByID/" + user.userID;
-    let jsonresponse = {};
     console.log("running");
     try {
         const response = await fetch(url);
