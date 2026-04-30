@@ -30,11 +30,11 @@
 
                 <div class="nav-search">
                     <select name="category" id="category" aria-label="Shop by category">
-                        <option value="chooseCategory">Shop by category</option>
-                        <option value="home">Home</option>
-                        <option value="accessories">Accessories</option>
+                        <option value="chooseCategory" title="test" selected disabled hidden>Shop by category</option>
                     </select>
-                    <input type="text" placeholder="Search.." aria-label="Search products">
+                    <label class="label-for hidden" for="input-search-term">Search...</label>
+                    <span id="search-term-hint" class="hint hidden">Please enter a search term</span>
+                    <input id="input-search-term" type="search" placeholder="Search.." aria-label="Search products">
                     <button class="search-btn" aria-label="search">
                         <i class="fa-solid fa-search"></i>
                     </button>
@@ -43,7 +43,8 @@
                 <div class="nav-right">
                     <a href="basket.html" aria-label="Shopping cart"><i class="fa-solid fa-cart-shopping"></i></a>
                     <a href="wishlist.html" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></a>
-                    <a href="signin.html">Sign in</a>
+                    <a class="create-listing-btn"><span class="plus">+</span>Sell</a>
+                    <a href="login.html" id="sign-in-btn">Sign in</a>
                     <a href="settings.html" aria-label="Settings"><i class="fa-solid fa-gear"></i></a>
                 </div>
             </div>
@@ -52,10 +53,14 @@
 
     <h2 class="wl-wishlist">My Wishlist</h2>
 
+    <!-- <div class="product-container"></div> -->
+
     <section class="wl-container" id="wishlist-cont">
-        <!-- DISPLAY ITEMS-->
+
+        <!-- DISPLAY ITEMS -->
     </section>
 </div>
+<script src="js/index.js" type="module"></script>
 <script src="js/wishlist.js"></script>
 <script src="js/settings.js"></script>
 </body>

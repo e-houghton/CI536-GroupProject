@@ -1,5 +1,6 @@
 package com.group_project.craft.DatabaseClasses.Tables;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.sql.Date;
@@ -20,6 +21,7 @@ public class WishlistLine {
 
     @ManyToOne
     @JoinColumn(name="wishlist")
+    @JsonIgnore
     private Wishlist wishlist;
 
     @ManyToOne
