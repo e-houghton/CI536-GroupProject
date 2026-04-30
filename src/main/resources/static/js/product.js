@@ -192,7 +192,6 @@ window.addEventListener('load', async function (e) {
                     stock: product.quantity,
                     description: product.description,
                     category: product.category,
-                    subcategory: product.category.subcat
                 });
             }
             sessionStorage.setItem('basket', JSON.stringify(basket));

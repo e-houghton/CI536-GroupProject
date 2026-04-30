@@ -9,11 +9,12 @@ function saveBasket(basket) {
 function updateBasketCount() {
     const basket = getBasket();
     const totalItems = basket.reduce((sum, item) => sum + item.quantity, 0);
+
     const count = document.getElementById('basket-count');
     if (!count) { return };
     if (totalItems > 0) {
         count.textContent = totalItems > 99 ? '99+' : totalItems;
-        count.style.display = 'inline-block';
+        count.style.display = 'inline-flex';
     } else {
         count.style.display = 'none';
     }
@@ -23,53 +24,44 @@ window.addEventListener('load', async function (e) {
     if (!window.location.pathname.includes('basket.html')) {
         return;
     }
-    const basketContainer = document.querySelector('.basket-container');
-    const basket = getBasket();
 
+    updateBasketCount()
+
+    const basket = getBasket();
+    const basketItems = document.querySelector('.basket-items');
+    const basketSubtotal = document.getElementById('basket-subtotal');
+    const basketTotal = document.getElementById('basket-total');
+    const basketContainer = document.querySelector('.basket-container');
+    const btnCheckout = document.querySelector('.checkout-btn');
+    const user = JSON.parse(sessionStorage.getItem('user'));
+
+    btnCheckout.addEventListener('click', checkout);
+  
     if (basket.length === 0) {
         basketContainer.textContent = 'Your basket is empty.'
         return;
     }
 
-    const basketLayout = document.createElement('div');
-    basketLayout.classList.add('basket-layout');
+    loadBasket();
 
-    const basketItems = this.document.createElement('div');
-    basketItems.classList.add('basket-items');
-    basketItems.appendChild(createColumnHeaders());
-    basket.forEach(item => basketItems.appendChild(createBasketProduct(item)));
-
-    basketLayout.appendChild(basketItems);
-    basketLayout.appendChild(createOrderSummary(basket));
-    basketContainer.appendChild(basketLayout);
-
-    basketContainer.appendChild(createOrderSummary(basket));
-
-    function createColumnHeaders() {
-        const headers = document.createElement('div');
-        headers.classList.add('basket-column-headers');
-        headers.innerHTML = `
-        <span></span>
-        <span></span>
-        <span class="column-header-price">Price</span>
-        <span class="column-header-quantity">Quantity</span>
-    `;
-    return headers;
+    function loadBasket() {
+        basketItems.innerHTML = '';
+        basket.forEach(item => basketItems.appendChild(createBasketProduct(item)));
+        updateOrderSummary();
     }
 
     function createBasketProduct(item) {
         const row = document.createElement('div');
         row.classList.add('basket-row');
 
-       
         // product image
         const productImage = document.createElement('img');
         productImage.src = item.image || '/media/logo.png';
-        productImage.classList.add('basket-product-image');
+        productImage.classList.add('basket-item-image');
 
         // product details
         const productDetails = document.createElement('div');
-        productDetails.classList.add('basket-product-details')
+        productDetails.classList.add('basket-item-details')
 
         const productName = document.createElement('h3');
         productName.textContent = item.name;
@@ -95,12 +87,17 @@ window.addEventListener('load', async function (e) {
 
         const quantityInput = document.createElement('input');
         quantityInput.type = 'number';
-        quantityInput.min = 1;
+        quantityInput.min = 0;
         quantityInput.max = item.stock;
         quantityInput.value = item.quantity;
 
         quantityInput.addEventListener('change', () => {
             let newQuantity = parseInt(quantityInput.value);
+
+            if (newQuantity === 0) {
+                basket.splice(basket.indexOf(item), 1);
+                row.remove();
+            }
             if (newQuantity > item.stock) {
                 newQuantity = item.stock
             }
@@ -109,9 +106,11 @@ window.addEventListener('load', async function (e) {
             }
             quantityInput.value = newQuantity;
             item.quantity = newQuantity;
+
             saveBasket(basket);
             updateOrderSummary();
         });
+
         quantityContainer.appendChild(quantityInput);
 
         row.appendChild(productImage);
@@ -121,35 +120,27 @@ window.addEventListener('load', async function (e) {
         return row;
     }
 
-    function createOrderSummary(basket) {
-        const orderSummary = document.createElement('div');
-        orderSummary.classList.add('basket-summary');
-
-        let subtotal = 0;
+    function updateOrderSummary() {
+          let subtotal = 0;
 
         for (const item of basket) {
             subtotal += item.price * item.quantity;
         }
 
-        const total = subtotal;
-
-        orderSummary.innerHTML = `
-        <h3>Order summary</h3>
-        <div class="summary-line"><span>Subtotal</span><span>£${subtotal.toFixed(2)}</span></div>
-        <div class="summary-line"><span>Delivery</span><span>Free</span></div>
-        <div class="summary-line summary-total"><span>Total</span><span>£${subtotal.toFixed(2)}</span></div>
-        <button class="checkout-btn">Proceed to checkout</button>
-    `;
-    return orderSummary;
+        basketSubtotal.textContent = `£${subtotal.toFixed(2)}`;
+        basketTotal.textContent = `£${subtotal.toFixed(2)}`;
     }
 
-    function updateOrderSummary() {
-        // Removes old basket summary
-        document.querySelector('.basket-summary')?.remove();
-
-        const orderSummary = createOrderSummary(basket);
-        document.querySelector('.basket-container').appendChild(orderSummary);
-
+    function checkout() {
+        // if nothing in basket don't let them go to checkout and show a hint
+        // Pass products to checkout and show products in the checkout 
+        // if not logged in
+          if (user) {
+            window.location.href = 'checkout.html';
+        }
+        else {
+            window.location.href = 'guest-or-login.html';
+        }
     }
 });
 
