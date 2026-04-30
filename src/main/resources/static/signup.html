@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
     <title>Sign up</title>
+    <link href="css/common.css" rel="stylesheet">
+    <link href="css/dark.css" rel="stylesheet">
 </head>
 
 <body>
@@ -113,8 +115,8 @@
                         <span id="postcode-hint" class="hint">Please enter your postcode</span>
                     </div>
                     <div class="input-field">
-                        <label for="country">Country</label>
-                        <select id="country-dropdown">
+                        <label for="country-dropdown">Country</label>
+                        <select id="country-dropdown" >
                             <option value="" selected>Select a country</option>
                         </select>
                         <span id="country-hint" class="hint">Please enter your country</span>
@@ -124,8 +126,9 @@
                         <button type="button" class="back-btn">Back</button>
                     </div>
                 </div>
+            </form>
         </div>
-        </form>
+
         <div class="alert alert-info" style="display: none;"></div>
     </div>
     <div id="divLoading" role="status" aria-live="polite">
@@ -139,10 +142,10 @@
         <p>Try to search again.</p>
     </div>
     <footer>
-        <p><a href="#top">Go to top</a></p>
         <small>&copy; 2026, Kelly for HandyCraftz group project</small>
     </footer>
     <script src="js/signup.js"></script>
-    <script src="js/settings.js"></script>
+    <script src="js/onLoad.js"></script>
 </body>
+
 </html>

@@ -2,14 +2,16 @@ body {
   margin: 0;
   background: radial-gradient(circle at 0% 0%,
       #f4d3ec,
-      #f8a1e5);
+      #f26fd6);
   font-family: Arial, sans-serif;
 }
 
 h1 {
   margin-bottom: 1px;
 }
-#introduction, h1 {
+
+#introduction,
+h1 {
   text-align: center;
   margin-top: 0;
 }
@@ -39,7 +41,8 @@ footer {
 }
 
 /* Style all input fields */
-input, select {
+input,
+select {
   width: 100%;
   padding: 6px;
   border: 1px solid #ccc;
@@ -52,12 +55,14 @@ select {
   margin-bottom: 4px;
 }
 
-input.invalid, select.invalid {
+input.invalid,
+select.invalid {
   border-color: #8e253a;
   color: #8e253a;
 }
 
-input.invalid::placeholder, select.invalid::placeholder {
+input.invalid::placeholder,
+select.invalid::placeholder {
   color: #8e253a;
 }
 
@@ -80,14 +85,14 @@ label::after {
 }
 
 #phone-number-hint {
-  margin-top: 0.5px; 
+  margin-top: 0.5px;
   margin-bottom: 8px;
   display: none;
 }
 
 #country-hint {
-   margin-top: 0.5px;
-   display: none;
+  margin-top: 0.5px;
+  display: none;
 }
 
 .hint.visible {
@@ -144,7 +149,8 @@ button {
   box-sizing: border-box;
 }
 
-.buy-btn:hover, .apply-discount-btn:hover {
+.buy-btn:hover,
+.apply-discount-btn:hover {
   background-color: #eb37c4;
 }
 
@@ -165,11 +171,11 @@ button {
 }
 
 .apply-discount-btn {
-    width: auto;
-    min-width: 80px;
-    margin-bottom: 12px;
-    padding: 6px;
-    border-radius: 4px;
+  width: auto;
+  min-width: 80px;
+  margin-bottom: 12px;
+  padding: 6px;
+  border-radius: 4px;
 }
 
 /* Add padding to container elements */
@@ -189,20 +195,14 @@ button {
   display: table;
 }
 
-#divLoading, #divError, #divSuccess {
-    text-align: center;
-    padding-top: 10rem;
-    display: none;
+#divLoading,
+#divError,
+#divSuccess {
+  text-align: center;
+  padding-top: 10rem;
+  display: none;
 }
 
 #divError h2 {
-    color: #8e253a;
-}
-
-/* Change styles for cancel button and signup button on extra small screens */
-@media screen and (max-width: 300px) {
-
-  .buy-btn {
-    width: 100%;
-  }
+  color: #8e253a;
 }

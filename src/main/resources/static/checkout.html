@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
     <title>Checkout</title>
+    <link href="css/common.css" rel="stylesheet">
+    <link href="css/dark.css" rel="stylesheet">
 </head>
 
 <body>
@@ -20,7 +22,7 @@
             <!-- GROUP PRODUCTS ABOVE CONTACT INFO AND ADDRESS AREA -->
             <form>
                 <div id="first-input-area">
-                    <h3> Contact information</h2>
+                    <h3> Contact information</h3>
                         <label>Name</label>
                         <div class="name-row">
                             <div class="input-field">
@@ -45,57 +47,58 @@
                             <span id="phone-number-hint" class="hint">Please enter your phone number</span>
                         </div>
 
-                <!-- input for address and phone number-->
-                <div id="second-input-area">
-                    <h3>Address </h3>
-                    <div class="input-field">
-                        <label for="addr-line-1">Address Line 1</label>
-                        <input id="addr-line-1" type="text" placeholder="Address line 1" required>
-                        <span id="addr-line-1-hint" class="hint">Please enter your address line 1</span>
-                    </div>
-                    <div class="input-field">
-                        <label for="addr-line-2">Address Line 2</label>
-                        <input id="addr-line-2" type="text" placeholder="Address line 2">
-                        <span id="addr-line-2-hint" class="hint">Please enter your address line 2</span>
-                    </div>
-                    <div class="input-field">
-                        <label for="city">City</label>
-                        <input id="city" type="text" placeholder="City" required>
-                        <span id="city-hint" class="hint">Please enter your city</span>
-                    </div>
-                    <div class="input-field">
-                        <label for="county">County</label>
-                        <input id="county" type="text" placeholder="County" required>
-                        <span id="county-hint" class="hint">Please enter your county</span>
-                    </div>
-                    <div class="input-field">
-                        <label for="postcode">Postcode</label>
-                        <input id="postcode" type="text" placeholder="Postcode" required>
-                        <span id="postcode-hint" class="hint">Please enter your postcode</span>
-                    </div>
-                    <div class="input-field">
-                        <label for="country">Country</label>
-                        <select id="country-dropdown">
-                            <option value="" selected>Select a country</option>
-                        </select>
-                        <span id="country-hint" class="hint">Please enter your country</span>
-                    </div>
-                    <!-- PUT PRICE SUMMARY W PRODUCTS AND MAYBE A DISCOUNT INPUT HERE-->
-                     <div class="product-summary">
-                     </div>
-                     <div class="discount-area">
-                        <div class="input-field">
-                            <label for="discount">Discount</label>
-                            <input id="discount" type="text" placeholder="Discount code or gift card" required>
-                            <span id="discount-hint" class="hint">Please enter a discount or gift card code</span>
+                        <!-- input for address and phone number-->
+                        <div id="second-input-area">
+                            <h3>Address </h3>
+                            <div class="input-field">
+                                <label for="addr-line-1">Address Line 1</label>
+                                <input id="addr-line-1" type="text" placeholder="Address line 1" required>
+                                <span id="addr-line-1-hint" class="hint">Please enter your address line 1</span>
+                            </div>
+                            <div class="input-field">
+                                <label for="addr-line-2">Address Line 2</label>
+                                <input id="addr-line-2" type="text" placeholder="Address line 2">
+                                <span id="addr-line-2-hint" class="hint">Please enter your address line 2</span>
+                            </div>
+                            <div class="input-field">
+                                <label for="city">City</label>
+                                <input id="city" type="text" placeholder="City" required>
+                                <span id="city-hint" class="hint">Please enter your city</span>
+                            </div>
+                            <div class="input-field">
+                                <label for="county">County</label>
+                                <input id="county" type="text" placeholder="County" required>
+                                <span id="county-hint" class="hint">Please enter your county</span>
+                            </div>
+                            <div class="input-field">
+                                <label for="postcode">Postcode</label>
+                                <input id="postcode" type="text" placeholder="Postcode" required>
+                                <span id="postcode-hint" class="hint">Please enter your postcode</span>
+                            </div>
+                            <div class="input-field">
+                                <label for="country">Country</label>
+                                <select id="country-dropdown">
+                                    <option value="" selected>Select a country</option>
+                                </select>
+                                <span id="country-hint" class="hint">Please enter your country</span>
+                            </div>
+                            <!-- PUT PRICE SUMMARY W PRODUCTS AND MAYBE A DISCOUNT INPUT HERE-->
+                            <div class="product-summary">
+                            </div>
+                            <div class="discount-area">
+                                <div class="input-field">
+                                    <label for="discount">Discount</label>
+                                    <input id="discount" type="text" placeholder="Discount code or gift card" required>
+                                    <span id="discount-hint" class="hint">Please enter a discount or gift card
+                                        code</span>
+                                </div>
+                                <button type="button" class="apply-discount-btn">Apply</button>
+                            </div>
                         </div>
-                        <button type="button" class="apply-discount-btn">Apply</button>
-                    </div>
-                     </div>
-    
-                    <div class="buttons">
-                        <button type="button" class="buy-btn">Buy now</button>
-                    </div>
+
+                        <div class="buttons">
+                            <button type="button" class="buy-btn">Buy now</button>
+                        </div>
                 </div>
         </div>
         </form>
@@ -116,7 +119,7 @@
         <small>&copy; 2026, Kelly for HandyCraftz group project</small>
     </footer>
     <script src="js/checkout.js"></script>
-    <script src="js/settings.js"></script>
+    <script src="js/onLoad.js"></script>
 </body>
 
 </html>

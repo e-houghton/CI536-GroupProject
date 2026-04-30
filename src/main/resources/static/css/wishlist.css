@@ -1,0 +1,48 @@
+#wishlist-cont {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+#wlSelect{
+    display:flex;
+    margin-left:auto;
+    margin-right:auto;
+    border:3px solid #f26fd6;
+    width:30%;
+    height:50px;
+    border-radius:10px;
+    text-align: center;
+    justify-content: center;
+    font-size:125%;
+    background-color: #f26fd6;
+    color:#ffffff;
+}
+
+#nwl{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom:20px;
+}
+#nwlIn{
+    font-size:100%;
+    border: 1px solid #f26fd6;
+    border-radius: 5px;
+    padding:3px;
+    margin-right:5px;
+}
+#nwlSub{
+    display:flex;
+    border:3px solid #f26fd6;
+    padding:5px;
+    height:30px;
+    border-radius:10px;
+    text-align: center;
+    justify-content: center;
+    font-size:100%;
+    background-color: #f26fd6;
+    color:#ffffff;
+}

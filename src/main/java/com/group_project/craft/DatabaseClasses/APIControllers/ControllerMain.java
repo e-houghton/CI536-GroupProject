@@ -10,9 +10,7 @@ import com.group_project.craft.DatabaseClasses.Tables.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * API Controller. experimental code taken from https://www.geeksforgeeks.org/java/spring-boot-spring-data-jpa/
- */
+
 @RestController
 @RequestMapping("/api")
 public class ControllerMain {
@@ -37,24 +35,6 @@ public class ControllerMain {
     ServiceUser tUser;
     @Autowired
     ServiceWishlist tWishlist;
-
-
-    @GetMapping("/findbyid/{id}")
-    public Customer getEmployeeUsingId(@PathVariable int id) {
-        return tCustomer.findByID(id);
-    }
-
-    @GetMapping("/addCategory")
-    public List<Subcategory> addCat() {
-        tSubcat.addSubcat("this is a test Subcat !", "TestSub",tCategory.findByID(1));
-        return tSubcat.findAll();
-    }
-
-    @GetMapping("/dropCategory/{id}")
-    public List<Category> deleteCategoryByID(@PathVariable int id) {
-        tCategory.deleteByID(id);
-        return tCategory.findAll();
-    }
 
     @GetMapping("/db/findAll")
     public ArrayList<List> showAllData() {

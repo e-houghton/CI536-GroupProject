@@ -1,36 +1,14 @@
 
     import * as wishlistFunc from "./addToWishlist.js";
-window.addEventListener('load', async function (e) {
-    const btnCreateListing = document.querySelector('.create-listing-btn'),
-        user = JSON.parse(sessionStorage.getItem('user')),
-        productContainer = document.querySelector('.product-container'),
-        inputSearchTerm = document.querySelector('#input-search-term'),
-        hintSearchTerm = document.querySelector('#search-term-hint'),
-        btnSearch = document.querySelector('.search-btn'),
-        dropdown = document.querySelector("#category");
+window.addEventListener('load', async function () {
+    const productContainer = document.querySelector('.product-container');
 
-    if (user) {
-        const signInBtn = document.getElementById('sign-in-btn');
-        signInBtn.textContent = `Hi ${user.customer.fname}`;
-        signInBtn.href = '#';
-    }
-
-    btnCreateListing.addEventListener('click', checkSigninStatus);
-
-    function checkSigninStatus(e) {
-        e.preventDefault();
-
-        if (!user) {
-            sessionStorage.setItem('redirectAfterLogin', 'create-listing.html');
-            window.location.href = 'login.html';
-        }
-        else {
-            window.location.href = 'create-listing.html'
-        }
-    }
 
     function updateResultsDisplay(count, searchTerm = '') {
         const oldResultsDisplay = document.querySelector('#numResultsDisplay');
+        if(searchTerm===""){
+            return;
+        }
         if (oldResultsDisplay) {
             oldResultsDisplay.remove();
         }
@@ -104,70 +82,9 @@ window.addEventListener('load', async function (e) {
         console.error(err);
     }
 
-    // 2. IMPLEMENT SEARCH THROUGH PRODUCTS
 
-    let isSearching = false;
 
-    async function searchProducts() {
-        document.querySelector('#category').value = 'chooseCategory';
-        if (isSearching) {
-            return;
-        }
-        isSearching = true;
-        const searchTerm = inputSearchTerm.value.trim();
-        if (!searchTerm) {
-            // reloads all products
-            location.reload();
-            isSearching = false;
-            return;
-        }
 
-        try {
-            // URL can't have whitespaces so I used encodeURIComponent to remove them in the search input before it's used in the URL.
-            const encodedSearchInput = encodeURIComponent(searchTerm);
-            const url = '/api/product/fuzzySearch/' + encodedSearchInput;
-            const searchResponse = await fetch(url);
-            const products = await searchResponse.json();
-            // Clear products
-            productContainer.innerHTML = '';
-            updateResultsDisplay(products.length, searchTerm);
-            // Creates the card with the item's image, name, heart button in the top right corner, price under card so title then price
-            products.forEach(product => productContainer.appendChild(createProductCard(product)));
-        } catch (err) {
-            console.error(err);
-        }
-
-        isSearching = false;
-    }
-
-    btnSearch.addEventListener('click', searchProducts);
-    inputSearchTerm.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            searchProducts();
-        }
-    });
-
-    // Filtering products by category 
-
-    dropdown.addEventListener('change', async function () {
-        const subcatID = this.value;
-        if (!subcatID || subcatID === 'chooseCategory') {
-            return;
-        }
-
-        try {
-            const catUrl = (`/api/product/findBySubcategory/${subcatID}`);
-            const categoryResponse = await fetch(catUrl);
-            const products = await categoryResponse.json();
-            productContainer.innerHTML = '';
-            const categoryName = this.options[this.selectedIndex].text;
-            updateResultsDisplay(products.length, categoryName);
-            products.forEach(product => productContainer.appendChild(createProductCard(product)))
-        } catch(err) {
-            console.error(err);
-        }
-    });
 
 });
 

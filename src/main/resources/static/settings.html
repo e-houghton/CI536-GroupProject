@@ -6,69 +6,80 @@
     <title>Settings</title><!--web page title -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link
-            href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-            rel="stylesheet">
+        href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <script src="https://kit.fontawesome.com/2585ebd72e.js" crossorigin="anonymous"></script>
     <link href="css/index.css" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+    <link href="css/dark.css" rel="stylesheet">
+    <link href="css/settings.css" rel="stylesheet">
 </head>
 
 <body>
-<a id="top"></a>
-<!--Markup all web page content inside the 'body' tags -->
-<div id="wrapper">
-    <!--The 'wrapper' contains all the page content-->
-    <header><!--The main heading for the page -->
-        <h1 class="hidden">HandyCraftz</h1>
-        <nav class="navbar">
-            <div class="nav-container">
-                <div class="nav-left">
-                    <a href="index.html" class="logo-img-link">
-                        <img src="media/logo.png" alt="HandyCraftz logo" class="logo-img">
-                    </a>
-                </div>
+    <a id="top"></a>
+    <!--Markup all web page content inside the 'body' tags -->
+    <div id="wrapper">
+        <!--The 'wrapper' contains all the page content-->
+        <header><!--The main heading for the page -->
+            <h1 class="hidden">HandyCraftz</h1>
+            <nav class="navbar">
+                <div class="nav-container">
+                    <div class="nav-left">
+                        <a href="index.html" class="logo-img-link">
+                            <img src="media/logo.png" alt="HandyCraftz logo" class="logo-img">
+                        </a>
+                    </div>
 
-                <div class="nav-search">
-                    <select name="category" id="category" aria-label="Shop by category">
-                        <option value="chooseCategory" title="test" selected disabled hidden>Shop by category</option>
-                    </select>
-                    <label class="label-for hidden" for="input-search-term">Search...</label>
-                    <span id="search-term-hint" class="hint hidden">Please enter a search term</span>
-                    <input id="input-search-term" type="search" placeholder="Search.." aria-label="Search products">
-                    <button class="search-btn" aria-label="search">
-                        <i class="fa-solid fa-search"></i>
-                    </button>
-                </div>
+                    <div class="nav-search">
+                        <select name="category" id="category" aria-label="Shop by category">
+                            <option value="chooseCategory" title="test" selected disabled hidden>Shop by category
+                            </option>
+                        </select>
+                        <label class="label-for hidden" for="input-search-term">Search...</label>
+                        <span id="search-term-hint" class="hint hidden">Please enter a search term</span>
+                        <input id="input-search-term" type="search" placeholder="Search.." aria-label="Search products">
+                        <button class="search-btn" aria-label="search">
+                            <i class="fa-solid fa-search"></i>
+                        </button>
+                    </div>
 
-                <div class="nav-right">
-                    <a href="basket.html" aria-label="Shopping cart"><i class="fa-solid fa-cart-shopping"></i></a>
-                    <a href="wishlist.html" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></a>
-                    <a class="create-listing-btn"><span class="plus">+</span>Sell</a>
-                    <a href="login.html" id="sign-in-btn">Sign in</a>
-                    <a href="settings.html" aria-label="Settings"><i class="fa-solid fa-gear"></i></a>
+                    <div class="nav-right">
+                        <a href="basket.html" aria-label="Shopping cart"><i class="fa-solid fa-cart-shopping"></i></a>
+                        <a href="wishlist.html" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></a>
+                        <a class="create-listing-btn"><span class="plus">+</span>Sell</a>
+                        <a href="login.html" id="sign-in-btn">Sign in</a>
+                        <a href="settings.html" aria-label="Settings"><i class="fa-solid fa-gear"></i></a>
+                    </div>
                 </div>
+            </nav>
+        </header>
+
+        <!-- settings panels -->
+        <main>
+            <div class="item">
+                <label for="fsize">Font-size:</label>
+                <select name="font" id="fsize" aria-label="Medium">
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large"> Large </option>
+                </select>
             </div>
-        </nav>
-    </header>
 
-    <!-- settings panels -->
-    <div class="st-font-size">
-        <label for="fsize">Font-size:</label>
-        <select name="font" id="fsize" aria-label="Medium">
-            <option value="small">Small</option>
-            <option value="medium">Medium</option>
-            <option value="large"> Large </option>
-        </select>
-    </div>
+            <div class="item">
+                <label for="cscheme">Colour Scheme:</label>
+                <select name="colourscheme" id="cscheme" aria-label="Colourful">
+                    <option value="colourful">Colourful</option>
+                    <option value="dark">Dark</option>
+                </select>
+            </div>
 
-    <div class="st-colours">
-        <label for="cscheme">Colour Scheme:</label>
-        <select name="colourscheme" id="cscheme" aria-label="Colourful">
-            <option value="colourful">Colourful</option>
-            <option value="dark">Dark</option>
-        </select>
-    </div>
-
-   <!-- <div class="st-language">
+            <div class="item">
+                <button id="logOutButton">
+                    Sign out!
+                </button>
+            </div>
+        </main>
+        <!-- <div class="st-language">
         <label for="lang">Language:</label>
         <select name="language" id="lang" aria-label="English">
             <option value="english">English</option>
@@ -77,8 +88,9 @@
         </select>
     </div> -->
 
-</div>
-<script src="js/settings.js"></script>
-<script src="js/index.js" type="module"></script>
+    </div>
+    <script src="js/settings.js"></script>
+    <script src="js/onLoad.js"></script>
 </body>
+
 </html>

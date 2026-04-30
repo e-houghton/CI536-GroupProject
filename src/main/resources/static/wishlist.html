@@ -6,62 +6,75 @@
     <title>My Wishlist</title><!--web page title -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link
-            href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-            rel="stylesheet">
+        href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <script src="https://kit.fontawesome.com/2585ebd72e.js" crossorigin="anonymous"></script>
-    <link href="css/index.css" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+
+    <link href="css/products.css" rel="stylesheet">
+    <link href="css/dark.css" rel="stylesheet">
+
+    <link href="css/wishlist.css" rel="stylesheet">
 </head>
 
 <body>
-<a id="top"></a>
-<!--Markup all web page content inside the 'body' tags -->
-<div id="wrapper">
-    <!--The 'wrapper' contains all the page content-->
+    <a id="top"></a>
+    <!--Markup all web page content inside the 'body' tags -->
+    <div id="wrapper">
+        <!--The 'wrapper' contains all the page content-->
 
-    <header><!--The main heading for the page -->
-        <h1 class="hidden">HandyCraftz</h1>
-        <nav class="navbar">
-            <div class="nav-container">
-                <div class="nav-left">
-                    <a href="index.html" class="logo-img-link">
-                        <img src="media/logo.png" alt="HandyCraftz logo" class="logo-img">
-                    </a>
+        <header><!--The main heading for the page -->
+            <h1 class="hidden">HandyCraftz</h1>
+            <nav class="navbar">
+                <div class="nav-container">
+                    <div class="nav-left">
+                        <a href="index.html" class="logo-img-link">
+                            <img src="media/logo.png" alt="HandyCraftz logo" class="logo-img">
+                        </a>
+                    </div>
+
+                    <div class="nav-search">
+                        <select name="category" id="category" aria-label="Shop by category">
+                            <option value="chooseCategory" title="test" selected disabled hidden>Shop by category
+                            </option>
+                        </select>
+                        <label class="label-for hidden" for="input-search-term">Search...</label>
+                        <span id="search-term-hint" class="hint hidden">Please enter a search term</span>
+                        <input id="input-search-term" type="search" placeholder="Search.." aria-label="Search products">
+                        <button class="search-btn" aria-label="search">
+                            <i class="fa-solid fa-search"></i>
+                        </button>
+                    </div>
+
+                    <div class="nav-right">
+                        <a href="basket.html" aria-label="Shopping cart"><i class="fa-solid fa-cart-shopping"></i></a>
+                        <a href="wishlist.html" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></a>
+                        <a class="create-listing-btn"><span class="plus">+</span>Sell</a>
+                        <a href="login.html" id="sign-in-btn">Sign in</a>
+                        <a href="settings.html" aria-label="Settings"><i class="fa-solid fa-gear"></i></a>
+                    </div>
                 </div>
+            </nav>
+        </header>
 
-                <div class="nav-search">
-                    <select name="category" id="category" aria-label="Shop by category">
-                        <option value="chooseCategory" title="test" selected disabled hidden>Shop by category</option>
-                    </select>
-                    <label class="label-for hidden" for="input-search-term">Search...</label>
-                    <span id="search-term-hint" class="hint hidden">Please enter a search term</span>
-                    <input id="input-search-term" type="search" placeholder="Search.." aria-label="Search products">
-                    <button class="search-btn" aria-label="search">
-                        <i class="fa-solid fa-search"></i>
-                    </button>
-                </div>
+        <h2 class="wl-wishlist">My Wishlists</h2>
+        <form action="" id="nwl">
+            <input type="text" placeholder="New Wishlist Name" id="nwlIn">
+            <input type="submit" id="nwlSub" value="Make a Wishlist!">
+        </form>
+        <select name="wlSelect" id="wlSelect" style="display:hidden;">
+            <option value="chooseWishlist" title="test" selected disabled hidden>Select A Wishlist
+            </option>
+        </select>
+        <!-- <div class="product-container"></div> -->
 
-                <div class="nav-right">
-                    <a href="basket.html" aria-label="Shopping cart"><i class="fa-solid fa-cart-shopping"></i></a>
-                    <a href="wishlist.html" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></a>
-                    <a class="create-listing-btn"><span class="plus">+</span>Sell</a>
-                    <a href="login.html" id="sign-in-btn">Sign in</a>
-                    <a href="settings.html" aria-label="Settings"><i class="fa-solid fa-gear"></i></a>
-                </div>
-            </div>
-        </nav>
-    </header>
+        <section class="wl-container" id="wishlist-cont">
 
-    <h2 class="wl-wishlist">My Wishlist</h2>
-
-    <!-- <div class="product-container"></div> -->
-
-    <section class="wl-container" id="wishlist-cont">
-
-        <!-- DISPLAY ITEMS -->
-    </section>
-</div>
-<script src="js/index.js" type="module"></script>
-<script src="js/wishlist.js"></script>
-<script src="js/settings.js"></script>
+            <!-- DISPLAY ITEMS -->
+        </section>
+    </div>
+    <script src="js/wishlist.js"></script>
+    <script src="js/onLoad.js"></script>
 </body>
+
 </html>
