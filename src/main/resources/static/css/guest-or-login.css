@@ -1,63 +1,52 @@
 body {
   margin: 0;
   background: radial-gradient(circle at 0% 0%,
-      #f4d3ec,
-      #f26fd6);
+      #f3d3ec,
+      #f8a1e5);
   font-family: Arial, sans-serif;
+  min-height: 100vh;
 }
 
-h1 {
-  margin-bottom: 1px;
-}
-#introduction, h1 {
+h1,
+h2,
+p,
+footer {
   text-align: center;
-  margin-top: 0;
 }
 
 p {
   font-size: 15px;
-  text-align: center;
 }
 
 footer {
   font-size: 10px;
-  text-align: center;
 }
 
-.checkout-page {
+.guest-or-login-page {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.iti {
-  width: 100%;
-  margin-bottom: 10px;
+  margin-top: 80px;
+  gap: 20px;
 }
 
 /* Style all input fields */
-input, select {
+input {
   width: 100%;
-  padding: 6px;
+  padding: 9px;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  margin-top: 1px;
+  margin-top: 6px;
+  margin-bottom: 8px;
 }
 
-select {
-  margin-bottom: 4px;
-}
-
-input.invalid, select.invalid {
+input.invalid {
   border-color: #8e253a;
   color: #8e253a;
 }
 
-input.invalid::placeholder, select.invalid::placeholder {
+input.invalid::placeholder {
   color: #8e253a;
 }
 
@@ -79,15 +68,8 @@ label::after {
   content: '⭙'
 }
 
-#phone-number-hint {
-  margin-top: 0.5px; 
-  margin-bottom: 8px;
-  display: none;
-}
-
-#country-hint {
-   margin-top: 0.5px;
-   display: none;
+#password-hint.no-icon::before {
+  content: '';
 }
 
 .hint.visible {
@@ -107,7 +89,7 @@ label::after {
 .name-row .input-field {
   flex: 1;
   min-width: 0;
-  width: 100%;
+  width: 50%;
 }
 
 .input-field {
@@ -115,12 +97,26 @@ label::after {
   display: flex;
   flex-direction: column;
   flex: 1;
-  margin-top: 0.5px;
-  margin-bottom: 0.5px;
 }
 
 .input-field input {
   margin-bottom: 12px;
+}
+
+.password-field {
+  position: relative;
+}
+
+.password-field span {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+#checklist {
+  margin-top: 0;
 }
 
 hr {
@@ -132,54 +128,54 @@ hr {
 button {
   background-color: #f26fd6;
   color: white;
-  border: none;
+  border: 1px solid #bdbcbc;
   transition-duration: 0.4s;
-  padding: 8px;
+  padding: 10px;
   font-size: 16px;
   width: 100%;
   margin: 10px 0;
-  margin-top: 0;
   margin-bottom: 10px;
   border-radius: 20px;
   box-sizing: border-box;
 }
 
-.buy-btn:hover, .apply-discount-btn:hover {
+.signup-btn,
+.login-btn,
+.guest-checkout-btn {
+  border: none;
+}
+
+.login-btn:hover {
   background-color: #eb37c4;
 }
 
-.discount-area {
-  display: flex;
-  gap: 10px;
-  align-items: flex-end;
+.signup-btn {
+  color: #f26fd6;
+  background-color: white;
+  border: 2px solid #f26fd6;
 }
 
-.discount-area input {
-  flex: 1;
+.signup-btn:hover {
+  background-color: #f26fd6;
+  color: white;
 }
 
-.discount-area .input-field {
-  flex: 1;
-  min-width: 0;
-  width: 100%;
-}
-
-.apply-discount-btn {
-    width: auto;
-    min-width: 80px;
-    margin-bottom: 12px;
-    padding: 6px;
-    border-radius: 4px;
+.guest-checkout-btn:hover {
+  background-color: #eb37c4;
 }
 
 /* Add padding to container elements */
-.container {
+.login-container,
+.guest-container {
   width: 100%;
   max-width: 600px;
   background: white;
-  padding: 0 20px;
+  padding: 30px;
   border-radius: 10px;
-  margin: 20px auto;
+}
+
+.guest-container {
+  float: right;
 }
 
 /* Clear floats */
@@ -189,27 +185,11 @@ button {
   display: table;
 }
 
-#divLoading, #divError, #divSuccess {
-    text-align: center;
-    padding-top: 10rem;
-    display: none;
-}
-
-#divError h2 {
-    color: #8e253a;
-}
-
-.basket-item-details p {
-  text-align: left;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
 /* Change styles for cancel button and signup button on extra small screens */
 @media screen and (max-width: 300px) {
 
-  .buy-btn {
+  .cancel-btn,
+  .signup-btn {
     width: 100%;
   }
 }
