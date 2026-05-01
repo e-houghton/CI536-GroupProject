@@ -88,8 +88,13 @@ window.addEventListener('load', function (e) {
 
                 const redirection =  sessionStorage.getItem('redirectAfterLogin');
                 sessionStorage.removeItem('redirectAfterLogin');
-                // after the user successfully logs in the index should say hi <user's first name> 
-                window.location.href = redirection || 'index.html';
+                const previousUrl = document.referrer ;
+                if (previousUrl.match(/basket.html.*/)) {
+                    window.location.href = 'checkout.html'
+                } else {
+                     // after the user successfully logs in the index should say hi <user's first name> 
+                     window.location.href = redirection || 'index.html';
+                }
             }
     }
 })

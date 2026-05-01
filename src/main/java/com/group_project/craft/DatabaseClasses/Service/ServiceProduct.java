@@ -43,8 +43,8 @@ public class ServiceProduct implements InterfaceProduct {
     }
 
     @Override
-    public void addProduct(String name, String description, Date uploadDate, User seller, String imageLocation, double price, Subcategory subcategory, boolean sold) {
-        repo.save(new Product(name, description, uploadDate, seller, imageLocation, price, subcategory, sold));
+    public void addProduct(String name, String description, Date uploadDate, User seller, String imageLocation, double price, Subcategory subcategory, boolean sold, int quant) {
+        repo.save(new Product(name, description, uploadDate, seller, imageLocation, price, subcategory, sold, quant));
     }
 
     @Override

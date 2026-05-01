@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <link href="css/checkout.css" rel="stylesheet" type="text/css">
+    <link href="css/basket.css" rel="stylesheet" type="text/css">
     <script src="https://kit.fontawesome.com/2585ebd72e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
@@ -45,71 +46,111 @@
                             <span id="phone-number-hint" class="hint">Please enter your phone number</span>
                         </div>
 
-                <!-- input for address and phone number-->
-                <div id="second-input-area">
-                    <h3>Address </h3>
-                    <div class="input-field">
-                        <label for="addr-line-1">Address Line 1</label>
-                        <input id="addr-line-1" type="text" placeholder="Address line 1" required>
-                        <span id="addr-line-1-hint" class="hint">Please enter your address line 1</span>
-                    </div>
-                    <div class="input-field">
-                        <label for="addr-line-2">Address Line 2</label>
-                        <input id="addr-line-2" type="text" placeholder="Address line 2">
-                        <span id="addr-line-2-hint" class="hint">Please enter your address line 2</span>
-                    </div>
-                    <div class="input-field">
-                        <label for="city">City</label>
-                        <input id="city" type="text" placeholder="City" required>
-                        <span id="city-hint" class="hint">Please enter your city</span>
-                    </div>
-                    <div class="input-field">
-                        <label for="county">County</label>
-                        <input id="county" type="text" placeholder="County" required>
-                        <span id="county-hint" class="hint">Please enter your county</span>
-                    </div>
-                    <div class="input-field">
-                        <label for="postcode">Postcode</label>
-                        <input id="postcode" type="text" placeholder="Postcode" required>
-                        <span id="postcode-hint" class="hint">Please enter your postcode</span>
-                    </div>
-                    <div class="input-field">
-                        <label for="country">Country</label>
-                        <select id="country-dropdown">
-                            <option value="" selected>Select a country</option>
-                        </select>
-                        <span id="country-hint" class="hint">Please enter your country</span>
-                    </div>
-                    <!-- PUT PRICE SUMMARY W PRODUCTS AND MAYBE A DISCOUNT INPUT HERE-->
-                     <div class="product-summary">
-                     </div>
-                     <div class="discount-area">
-                        <div class="input-field">
-                            <label for="discount">Discount</label>
-                            <input id="discount" type="text" placeholder="Discount code or gift card" required>
-                            <span id="discount-hint" class="hint">Please enter a discount or gift card code</span>
+                        <!-- input for address and phone number-->
+                        <div id="second-input-area">
+                            <h3>Address </h3>
+                            <div class="input-field">
+                                <label for="addr-line-1">Address Line 1</label>
+                                <input id="addr-line-1" type="text" placeholder="Address line 1" required>
+                                <span id="addr-line-1-hint" class="hint">Please enter your address line 1</span>
+                            </div>
+                            <div class="input-field">
+                                <label for="addr-line-2">Address Line 2</label>
+                                <input id="addr-line-2" type="text" placeholder="Address line 2">
+                                <span id="addr-line-2-hint" class="hint">Please enter your address line 2</span>
+                            </div>
+                            <div class="input-field">
+                                <label for="city">City</label>
+                                <input id="city" type="text" placeholder="City" required>
+                                <span id="city-hint" class="hint">Please enter your city</span>
+                            </div>
+                            <div class="input-field">
+                                <label for="county">County</label>
+                                <input id="county" type="text" placeholder="County" required>
+                                <span id="county-hint" class="hint">Please enter your county</span>
+                            </div>
+                            <div class="input-field">
+                                <label for="postcode">Postcode</label>
+                                <input id="postcode" type="text" placeholder="Postcode" required>
+                                <span id="postcode-hint" class="hint">Please enter your postcode</span>
+                            </div>
+                            <div class="input-field">
+                                <label for="country">Country</label>
+                                <select id="country-dropdown">
+                                    <option value="" selected>Select a country</option>
+                                </select>
+                                <span id="country-hint" class="hint">Please enter your country</span>
+                            </div>
+                            <div class="basket-container">
+                                <div class="basket-layout">
+                                    <div class="basket-left">
+                                        <div class="basket-column-headers">
+                                            <span></span>
+                                            <span>Item</span>
+                                            <span class="column-header-price">Price</span>
+                                            <span class="column-header-quantity">Quantity</span>
+                                        </div>
+                                        <div class="basket-items"></div>
+                                    </div>
+                                    <div class="basket-summary">
+                                        <h3>Order summary</h3>
+                                        <div class="summary-line">
+                                            <span>Subtotal:</span>
+                                            <span id="basket-subtotal">£0.00</span>
+                                        </div>
+                                        <div class="summary-line">
+                                            <span>Delivery:</span>
+                                            <span>Free</span>
+                                        </div>
+                                        <div class="summary-line basket-total">
+                                            <span>Total:</span>
+                                            <span id="basket-total">£0.00</span>
+                                        </div>
+                                    </div>
+                                    <template id="basket-row-template">
+                                        <div class="basket-row">
+                                            <img class="basket-item-image" src="" alt="">
+                                            <div class="basket-item-details">
+                                                <p class="basket-item-name"></p>
+                                            </div>
+                                            <div class="basket-price"></div>
+                                            <div class="quantity-container">
+                                                <button class="reduce-quantity-btn">-</button>
+                                                <input type="number" min="1">
+                                                <button class="add-quantity-btn">+</button>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
                         </div>
-                        <button type="button" class="apply-discount-btn">Apply</button>
-                    </div>
-                     </div>
-    
-                    <div class="buttons">
-                        <button type="button" class="buy-btn">Buy now</button>
-                    </div>
+                        <div class="discount-area">
+                            <div class="input-field">
+                                <label for="discount">Discount</label>
+                                <input id="discount" type="text" placeholder="Discount code or gift card" required>
+                                <span id="discount-hint" class="hint">Please enter a discount or gift card code</span>
+                            </div>
+                            <button type="button" class="apply-discount-btn">Apply</button>
+                        </div>
+                </div>
+
+                <div class="buttons">
+                    <button type="button" class="buy-btn">Buy now</button>
                 </div>
         </div>
-        </form>
-        <div class="alert alert-info" style="display: none;"></div>
+    </div>
+    </form>
+    <div class="alert alert-info" style="display: none;"></div>
     </div>
     <div id="divLoading" role="status" aria-live="polite">
         <img src="media/loading.gif" alt="Loading search results">
     </div>
     <div id="divSuccess" role="status" aria-live="polite">
-        <h2>Your account has been created!</h2>
+        <h2></h2>
     </div>
     <div id="divError" role="alert">
         <h2>Oops - something went wrong!</h2>
-        <p>Try to search again.</p>
+        <p>Try again</p>
     </div>
     <footer>
         <p><a href="#top">Go to top</a></p>

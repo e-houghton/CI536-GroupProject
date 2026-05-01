@@ -33,6 +33,7 @@ window.addEventListener('load', async function (e) {
     const basketTotal = document.getElementById('basket-total');
     const basketContainer = document.querySelector('.basket-container');
     const btnCheckout = document.querySelector('.checkout-btn');
+    
     const user = JSON.parse(sessionStorage.getItem('user'));
 
     btnCheckout.addEventListener('click', checkout);
@@ -137,8 +138,8 @@ window.addEventListener('load', async function (e) {
         // if not logged in
           if (user) {
             window.location.href = 'checkout.html';
-        }
-        else {
+        } else {
+            sessionStorage.setItem('redirectAfterLogin', 'checkout.html');
             window.location.href = 'guest-or-login.html';
         }
     }
