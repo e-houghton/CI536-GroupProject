@@ -37,7 +37,6 @@ window.addEventListener('load', function (e) {
         hintPostcode = document.querySelector('#postcode-hint'),
         hintCountry = document.querySelector('#country-hint');
 
-
     const iti = window.intlTelInput(inputPhoneNumber, {
         utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
         initialCountry: "gb",
@@ -56,15 +55,8 @@ window.addEventListener('load', function (e) {
                 countryOption.textContent = country.name.common;
                 dropdown.appendChild(countryOption);
             });
-            // Calls autofill details method if a user's logged in 
-            // Doing this in the restcountries fetch ensures country field is autofilled
-            const user = JSON.parse(sessionStorage.getItem('user'));
-
-            if (user) {
-                autofillDetails(user);
-            }
-
         });
+
 
     btnBuy.addEventListener('click', buyBasket);
 
@@ -87,16 +79,6 @@ window.addEventListener('load', function (e) {
         hintPhoneNumber.style.display = 'none';
     });
 
-    // loading basket 
-    const basket = getBasket();
-    const basketItems = document.querySelector('.basket-items');
-    const basketSubtotal = document.getElementById('basket-subtotal');
-    const basketTotal = document.getElementById('basket-total');
-    const basketContainer = document.querySelector('.basket-container');
-    const btnCheckout = document.querySelector('.checkout-btn');
-
-    loadBasket();
-
     async function validateFirstInputs() {
         const regexFirstName = /^[a-zA-Z\s\-]+$/,
             regexSurname = /^[a-zA-Z\s\-']+$/,
@@ -106,7 +88,7 @@ window.addEventListener('load', function (e) {
             surname = inputSurname.value.trim(),
             email = inputEmail.value.trim(),
             phoneNumber = inputPhoneNumber.value.trim();
-
+        
         let fieldsOk = true;
 
         // FIRST NAME VALIDATION
@@ -155,12 +137,26 @@ window.addEventListener('load', function (e) {
             hintEmail.textContent = 'Please enter a valid email.';
             hintEmail.style.display = 'inline';
         } else {
-            hintEmail.style.display = '';
+            try {
+                // EMAIL BACKEND VALIDATION TO CHECK EMAIL HASN'T BEEN TAKEN
+                const emailResponse = await fetch(`http://localhost:8080/api/customer/existsByEmail/${email}`);
+                if (!emailResponse.ok) throw new Error(`Failed to validate the email: ${emailResponse.status} `)
+                const emailTaken = await emailResponse.json();
+                if (emailTaken) {
+                    fieldsOk = false;
+                    inputEmail.classList.add('invalid');
+                    hintEmail.classList.remove('visible');
+                    hintEmail.textContent = 'An account with this email already exists!';
+                    hintEmail.style.display = 'inline';
+                } else {
+                    hintEmail.style.display = '';
+                }
+            } catch (err) {
+                console.error('Email validation error:', err);
+            }
         }
 
-
-
-        // PHONE NUMBER VALIDATION
+         // PHONE NUMBER VALIDATION
         if (!phoneNumber) {
             fieldsOk = false;
             inputPhoneNumber.classList.add('invalid');
@@ -174,9 +170,24 @@ window.addEventListener('load', function (e) {
             hintPhoneNumber.textContent = 'Please enter a valid phone number';
             hintPhoneNumber.style.display = 'inline';
         } else {
-            hintPhoneNumber.style.display = '';
+            try {
+                // PHONE NUMBER BACKEND VALIDATION TO CHECK PHONE NUMBER HASN'T BEEN TAKEN
+                const phoneNumberResponse = await fetch(`http://localhost:8080/api/customer/existsByPhone/${encodeURIComponent(iti.getNumber())}`);
+                if (!phoneNumberResponse.ok) throw new Error(`Failed to validate the phone number: ${phoneNumberResponse.status} `)
+                const phoneNumberTaken = await phoneNumberResponse.json();
+                if (phoneNumberTaken) {
+                    fieldsOk = false;
+                    inputPhoneNumber.classList.add('invalid');
+                    hintPhoneNumber.classList.remove('visible');
+                    hintPhoneNumber.textContent = 'An account with this phone number already exists!';
+                    hintPhoneNumber.style.display = 'inline';
+                } else {
+                    hintPhoneNumber.style.display = '';
+                }
+            } catch (err) {
+                console.error('Phone number validation error:', err);
+            }
         }
-
 
         if (fieldsOk) {
             return true;
@@ -283,185 +294,69 @@ window.addEventListener('load', function (e) {
         }
     }
 
-    function autofillDetails(user) {
-        if (!user || !user.customer) {
-            return;
-        }
-
-        const customer = user.customer;
-        inputFirstName.value = customer.fname || '';
-        inputSurname.value = customer.lname || '';
-        inputEmail.value = customer.email || '';
-
-        iti.setNumber(customer.phone);
-
-        inputAddrLine1.value = customer.addrLine1 || '';
-        inputAddrLine2.value = customer.addrLine2 || '';
-        inputCity.value = customer.addrCity || '';
-        inputCounty.value = customer.addrCounty || '';
-        inputPostcode.value = customer.addrPostCode || '';
-        inputCountry.value = customer.addrCountry || '';
-
-    }
-
-    function loadBasket() {
-        basketItems.innerHTML = '';
-
-        if (basket.length === 0) {
-            basketContainer.textContent = 'Your basket is empty.'
-            return;
-        }
-
-        basket.forEach(item => basketItems.appendChild(createCheckoutItem(item)));
-
-
-        updateCheckoutSummary();
-    }
-
-    function createCheckoutItem(item) {
-        const row = document.createElement('div');
-        row.classList.add('basket-row');
-
-        // product image
-        const productImage = document.createElement('img');
-        productImage.src = item.image || '/media/logo.png';
-        productImage.classList.add('basket-item-image');
-
-        // product details
-        const productDetails = document.createElement('div');
-        productDetails.classList.add('basket-item-details')
-
-        const productName = document.createElement('h3');
-        productName.textContent = item.name;
-
-        productDetails.appendChild(productName);
-
-        // price 
-        const productPrice = document.createElement('div');
-        productPrice.classList.add('basket-price');
-        productPrice.textContent = ` £${item.price.toFixed(2)}`;
-
-        const quantity = document.createElement('span');
-        quantity.textContent = `x${item.quantity}`;
-
-        row.appendChild(productImage);
-        row.appendChild(productDetails);
-        row.appendChild(productPrice);
-        row.appendChild(quantity);
-        return row;
-    }
-
-    function updateCheckoutSummary() {
-        let subtotal = 0;
-
-        for (const item of basket) {
-            subtotal += item.price * item.quantity;
-        }
-
-        basketSubtotal.textContent = `£${subtotal.toFixed(2)}`;
-        basketTotal.textContent = `£${subtotal.toFixed(2)}`;
-    }
-
     async function buyBasket(e) {
         e.preventDefault();
+        validateFirstInputs();
+        validateSecondInputs();
 
-        firstOk = await validateFirstInputs();
-        secondOk = await validateSecondInputs();
-        if (!firstOk || !secondOk) {
-            return;
-        }
-        divCheckout.style.display = 'none';
-        divLoading.style.display = 'block';
+        if (await validateSecondInputs()) {
+            divCheckout.style.display = 'none';
+            divLoading.style.display = 'block';
 
-        //this is where I connect to the api controllers and add the order to the db
-        try {
-            const user = JSON.parse(sessionStorage.getItem('user'));
-            let customer;
+            //this is where I connect to the api controllers and add account to db
+       //     try {
+                // Creating a customer
+      //          const customerResponse = await fetch('http://localhost:8080/api/customer/add', {
+       //             method: 'POST',
+       //             headers: { 'Content-Type': 'application/json' },
+       //             body: JSON.stringify({
+        //                fname: inputFirstName.value.trim(),
+       //                 lname: inputSurname.value.trim(),
+        //                email: inputEmail.value.trim(),
+        //                phone: iti.getNumber(),
+        //                addrLine1: inputAddrLine1.value.trim(),
+        //                addrLine2: inputAddrLine2.value.trim(),
+        //                addrCity: inputCity.value.trim(),
+        //                addrCounty: inputCounty.value.trim(),
+        //                addrPostCode: inputPostcode.value.trim(),
+        //                addrCountry: inputCountry.value.trim(),
+        //                guest: false
+        //            })
+        //        });
 
-            if (user) {
-                customer = user.customer;
-            } else {
-                // Creating a customer with guest flagged for guest checkout 
-                const customerResponse = await fetch('http://localhost:8080/api/customer/add', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        fname: inputFirstName.value.trim(),
-                        lname: inputSurname.value.trim(),
-                        email: inputEmail.value.trim(),
-                        phone: iti.getNumber(),
-                        addrLine1: inputAddrLine1.value.trim(),
-                        addrLine2: inputAddrLine2.value.trim(),
-                        addrCity: inputCity.value.trim(),
-                        addrCounty: inputCounty.value.trim(),
-                        addrPostCode: inputPostcode.value.trim(),
-                        addrCountry: inputCountry.value.trim(),
-                        guest: true
-                    })
-                });
-                if (!customerResponse.ok) {
-                    throw new Error('Failed to create a new customer');
-                }
-                const savedCustomer = await customerResponse.json();
-                if (!savedCustomer) {
-                    throw new Error('couldnt find saved customer');
-                }
-            }
+       //         if (!customerResponse.ok) throw new Error('Failed to create a new customer');
 
-            // creating the order
-            const orderResponse = await fetch('http://localhost:8080/api/order/add', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    buyer: customer,
-                    purchaseDate: new Date().toISOString().split('T')[0]
-                })
-            });
-            if (!orderResponse.ok) {
-                throw new Error('Failed to create an order!');
-            }
-            const savedOrder = await orderResponse.json();
+        //        const savedCustomer = await customerResponse.json();
 
-            // creating the order lines and updating the stock
+       //         if (!savedCustomer) throw new Error('couldnt find saved customer');
 
-            for (const item of basket) {
-                const orderLineResponse = await fetch(
-                    `http://localhost:8080/api/orderline/addByIds/${savedOrder.orderID}/${item.prodID}`,
-                    { method: 'POST' }
-                );
-                if (!orderLineResponse.ok) {
-                    throw new Error(`Failed to create an orderline for ${item.name}`);
-                }
+                // Create the user tied to the customer 
+        //        const userResponse = await fetch('http://localhost:8080/api/user/add', {
+        //            method: 'POST',
+        //            headers: { 'Content-Type': 'application/json' },
+         //           body: JSON.stringify({
+          //              username: inputUsername.value.trim(),
+          //              password: inputPassword.value.trim(),
+           //             customer: savedCustomer
+            //        })
+           //     });
+            //    if (!userResponse.ok) throw new Error('Failed to create user');
 
-                const newQuantity = item.stock - item.quantity;
-                const updateStockResponse = await fetch(`http://localhost:8080/api/product/updateStock/${item.prodID}`, {
-                    method: 'PATCH',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        quant: newQuantity,
-                        sold: newQuantity <= 0
-                    })
-                });
-                if (!updateStockResponse.ok) {
-                    throw new Error(`Failed to update stock for ${item.name}`);
-                }
-            }
-            sessionStorage.removeItem('basket');
-            divLoading.style.display = 'none';
-            divSuccess.querySelector('h2').textContent = `Thank you for your order! Your order number is #${savedOrder.orderID}`;
-            divSuccess.style.display = 'block';
+          //      const savedUser = await userResponse.json();
 
-            // redirects the user back to the index page after some time
-            setTimeout(() => {
-                window.location.href = 'index.html';
-            }, 2000);
-
-        } catch (err) {
-            divLoading.style.display = 'none';
-            divError.style.display = 'block';
+                // allows the user object to be stored and accessed during the browser session
+       //         sessionStorage.setItem('user', JSON.stringify(savedUser));
+//
+                // after the user successfully logs in the index should say hi <user's first name> 
+     //           window.location.href = 'index.html';
+                
+      //      } catch (err) {
+       //         console.error(err);
+      //          divLoading.style.display = 'none';
+      //          divError.style.display = 'block';
+      //      }
         }
     }
-});
-
+})
 
 

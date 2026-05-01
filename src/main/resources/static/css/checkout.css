@@ -206,18 +206,3 @@ button {
 #divError h2 {
   color: #8e253a;
 }
-
-.basket-item-details p {
-  text-align: left;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-/* Change styles for cancel button and signup button on extra small screens */
-@media screen and (max-width: 300px) {
-
-  .buy-btn {
-    width: 100%;
-  }
-}

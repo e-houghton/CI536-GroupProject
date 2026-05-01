@@ -173,26 +173,43 @@ window.addEventListener('load', async function () {
 
         function addToBasket() {
             const basket = getBasket();
-            const existing = basket.find(item => item.prodID === product.prodID);
+            const existing = basket.find(item => item.id === product.prodID);
 
             if (existing) {
                 existing.quantity += 1;
             } else {
                 basket.push({
-                    prodID: product.prodID,
+                    id: product.prodID,
                     name: product.name,
                     price: product.price,
                     image: productImages[0] || '',
                     quantity: 1,
-                    stock: product.quant,
+                    stock: product.quantity,
                     description: product.description,
                     category: product.category,
+                    subcategory: product.category.subcat
                 });
             }
             sessionStorage.setItem('basket', JSON.stringify(basket));
             updateBasketCount();
         }
 
+
+        // NAME DESCRIPTION PRICE QUANTITY SELLER ETC NEXT TO ITEM IMAGE ON THE RIGHT
+        // BELOW THESE HAVE THE ADD TO BAG BUTTON,
+        // ADD TO BAG BUTTON ADDS (1) TO THE TROLLEY ICON, 
+        // IN DB ADDS PRODUCT TO TROLLEY
+        // IF USER ADDS TO BAG TWICE SAY QUANTITY UP BY 2 
+        // HOVER OVER TROLLEY TO SHOW LIST OF OBJECTS IN TROLLEY?
+
+        // ADD LISTENER TO PRODUCT CARD TO FLICK THROUGH PRODUCT IMAGES
+        // < > IN THE CORNERS TO FLICK THRU IMAGES
+        // X IN THE CORNER TO GO OUT TO THE MAIN AREA AGAIN
+        // MAYBE - + BUTTONS TO ZOOM IN AND OUT 
+
+        //   productCard.addEventListener('click', () => {
+        //       window.location.href = `product.html?id=${product.prodID}`;
+        //   });
     } catch (err) {
         console.error(err)
     }

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface InterfaceProduct extends InterfaceParent<Product> {
-    void addProduct(String name, String description, Date uploadDate, User seller, String imageLocation, double price, Subcategory subcategory, boolean sold, int quant);
+    void addProduct(String name, String description, Date uploadDate, User seller, String imageLocation, double price, Subcategory subcategory, boolean sold);
 
     List<Product> getAllBySeller(User seller);
 

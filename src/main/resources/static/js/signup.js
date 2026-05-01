@@ -481,12 +481,10 @@ window.addEventListener('load', function (e) {
 
                 // allows the user object to be stored and accessed during the browser session
                 sessionStorage.setItem('user', JSON.stringify(savedUser));
-                // allows the user object to be stored and accessed during the browser session
-                const redirection = sessionStorage.getItem('redirectAfterLogin');
-                sessionStorage.removeItem('redirectAfterLogin');
-                // after the user successfully logs in the index should say hi <user's first name> 
-                window.location.href = redirection || 'index.html';
 
+                // after the user successfully logs in the index should say hi <user's first name> 
+                window.location.href = 'index.html';
+                
             } catch (err) {
                 console.error(err);
                 divLoading.style.display = 'none';

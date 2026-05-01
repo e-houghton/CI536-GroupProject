@@ -10,7 +10,7 @@ public class Product {
     protected Product() {
     }
 
-    public Product(String name, String description, Date uploadDate, User seller, String imageLocation, double price, Subcategory subcategory, boolean sold, int quant) {
+    public Product(String name, String description, Date uploadDate, User seller, String imageLocation, double price, Subcategory subcategory, boolean sold) {
         this.name = name;
         this.description = description;
         this.uploadDate = uploadDate;
@@ -19,7 +19,6 @@ public class Product {
         this.price = price;
         this.subcategory = subcategory;
         this.sold = sold;
-        this.quant = quant;
     }
 
     @Id
@@ -44,9 +43,6 @@ public class Product {
 
     @Column(nullable = false)
     private double price;
-
-    @Column(nullable = false)
-    private int quant;
 
     @ManyToOne
     @JoinColumn(name="subcategory")
@@ -126,10 +122,5 @@ public class Product {
     public void setSold(boolean sold) {
         this.sold = sold;
     }
-
-    public int getQuant() { return quant;}
-
-    public void setQuant(int quant) {this.quant = quant;}
-
 }
 

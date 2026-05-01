@@ -34,11 +34,12 @@
 
                     <div class="nav-search">
                         <select name="category" id="category" aria-label="Shop by category">
-                            <option value="chooseCategory">Shop by category</option>
-                            <option value="home">Home</option>
-                            <option value="accessories">Accessories</option>
+                            <option value="chooseCategory" title="test" selected disabled hidden>Shop by category
+                            </option>
                         </select>
-                        <input type="text" placeholder="Search.." aria-label="Search products">
+                        <label class="label-for hidden" for="input-search-term">Search...</label>
+                        <span id="search-term-hint" class="hint hidden">Please enter a search term</span>
+                        <input id="input-search-term" type="search" placeholder="Search.." aria-label="Search products">
                         <button class="search-btn" aria-label="search">
                             <i class="fa-solid fa-search"></i>
                         </button>
@@ -47,7 +48,8 @@
                     <div class="nav-right">
                         <a href="basket.html" aria-label="Shopping cart"><i class="fa-solid fa-cart-shopping"></i></a>
                         <a href="wishlist.html" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></a>
-                        <a href="signin.html">Sign in</a>
+                        <a class="create-listing-btn"><span class="plus">+</span>Sell</a>
+                        <a href="login.html" id="sign-in-btn">Sign in</a>
                         <a href="settings.html" aria-label="Settings"><i class="fa-solid fa-gear"></i></a>
                     </div>
                 </div>
@@ -56,54 +58,9 @@
 
         <h2 class="b-basket">Basket:</h2>
     </div>
-    <div class="basket-container">
-        <div class="basket-layout">
-            <div class="basket-left">
-                    <div class="basket-column-headers">
-                        <span></span>
-                        <span>Item</span>
-                        <span class="column-header-price">Price</span>
-                        <span class="column-header-quantity">Quantity</span>
-                    </div>
-                 <div class="basket-items"></div>
-            </div>
-            <div class="basket-summary">
-                <h3>Order summary</h3>
-                <div class="summary-line">
-                    <span>Subtotal:</span>
-                    <span id="basket-subtotal">£0.00</span>
-                </div>
-                <div class="summary-line">
-                    <span>Delivery:</span>
-                    <span>Free</span>
-                </div>
-                <div class="summary-line basket-total">
-                    <span>Total:</span>
-                    <span id="basket-total">£0.00</span>
-                </div>
-                <button class="checkout-btn">Proceed to checkout</button>
-            </div>
-
-            <template id="basket-row-template">
-                <div class="basket-row">
-                    <img class="basket-item-image" src="" alt="">
-                    <div class="basket-item-details">
-                        <h3 class="basket-item-name"></h3>
-                        <p class="basket-item-description"></p>
-                        <span class="basket-item-category"></span>
-                    </div>
-                    <div class="basket-price"></div>
-                    <div class="quantity-container">
-                        <button class="reduce-quantity-btn">-</button>
-                        <input type="number" min="1">
-                        <button class="add-quantity-btn">+</button>
-                    </div>
-                </div>
-            </template>
-        </div>
-    </div>
+    <div class="basket-container"></div>
+    <script src="js/onLoad.js"></script>
     <script src="js/basket.js"></script>
-    <script src="js/settings.js"></script>
 </body>
 
 </html>
