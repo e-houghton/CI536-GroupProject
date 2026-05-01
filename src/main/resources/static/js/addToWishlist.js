@@ -16,8 +16,8 @@ export async function add(prod) {
         para.textContent = "You cannot make a wishlist if you're not logged in!"
         modalContent.appendChild(para);
         let redirectBtn = document.createElement("button");
-        redirectBtn.textContent="Click here to log in";
-        redirectBtn.addEventListener("click", e => {
+        redirectBtn.textContent = "Click here to log in";
+        redirectBtn.addEventListener("click", () => {
             window.location.href = 'login.html';
         })
         modalContent.appendChild(redirectBtn);
@@ -30,27 +30,36 @@ export async function add(prod) {
      * if none wishlists- create wishlist, name = "NewWishlist"
      */
 
-/*const url = "/api/wishlist/findAllByID/" + user.userID;
+    /*const url = "/api/wishlist/findAllByID/" + user.userID;
+    
+    try {
+        const response = await fetch(url);
+    
+        const raw = await response.text();
+        console.log("RAW:", raw);
+    
+    } catch (error) {
+        console.log(error);
+    }*/
 
-try {
-    const response = await fetch(url);
-
-    const raw = await response.text();
-    console.log("RAW:", raw);
-
-} catch (error) {
-    console.log(error);
-}*/
-
-    const url = "/api/wishlist/findAllByID/"+user.userID;
-    let jsonresponse = {};
+    const url = "/api/wishlist/findAllByID/" + user.userID;
     console.log("running");
     try {
         const response = await fetch(url);
         const items = await response.json();
         console.log("Items here")
         console.log(items);
-        dropdown.innerHTML="";
+        dropdown.innerHTML = "";
+        if (items.length == 0) {
+            const r = await fetch('http://localhost:8080/api/wishlist/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ "ownerID": user.userID, "name": "MyWishlist" })
+            });
+            items.push(await r.json());
+        }
         items.forEach(element => {
             let option = document.createElement("option");
             option.setAttribute("title", element.name);

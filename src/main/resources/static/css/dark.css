@@ -1,0 +1,116 @@
+/* DARK THEME*/
+html.dark .create-listing-page h1,
+html.dark .create-listing-page p {
+    color: #e6e6e6;
+}
+
+html.dark .listing-card {
+    background: #1e1e1e;
+    border-color: #333;
+}
+
+html.dark .listing-row input,
+html.dark .listing-row select,
+html.dark .listing-row textarea {
+    background: #2a2a2a;
+    color: white;
+    border-bottom: 2px solid #444;
+}
+
+html.dark .listing-row input:focus,
+html.dark .listing-row select:focus,
+html.dark .listing-row textarea:focus {
+    border-bottom: 2px solid #f26fd6;
+}
+
+html.dark .image-upload-area {
+    border-color: #444;
+}
+
+html.dark .navbar {
+    background: radial-gradient(circle at 0% 0%, #2b2b2b, #000000);
+    color: white;
+}
+
+html.dark .nav-right a {
+    color: #e6e6e6;
+}
+
+html.dark .nav-search select,
+html.dark .nav-search input {
+    background: #2a2a2a;
+    color: white;
+}
+
+
+html.dark {
+    background: #121212;
+    color: #e6e6e6;
+}
+
+html.dark .navbar {
+    background: radial-gradient(circle at 0% 0%, #2b2b2b, #000000);
+    color: white;
+}
+
+html.dark .nav-right a {
+    color: #e6e6e6;
+}
+
+html.dark .nav-search select,
+html.dark .nav-search input {
+    background: #2a2a2a;
+    color: white;
+}
+
+html.dark body {
+    background: #121212;
+    color: #e6e6e6;
+}
+
+html.dark .container {
+    background: #1e1e1e;
+    color: #e6e6e6;
+}
+
+html.dark input {
+    background: #2a2a2a;
+    color: white;
+    border: 1px solid #444;
+}
+
+html.dark input::placeholder {
+    color: #aaa;
+}
+
+html.dark button {
+    border-color: #444;
+}
+
+html.dark .signup-btn {
+    background: #1e1e1e;
+    color: #f26fd6;
+    border: 2px solid #f26fd6;
+}
+
+html.dark .signup-btn:hover {
+    background: #f26fd6;
+    color: white;
+}
+
+html.dark h1,
+html.dark p {
+    color: #e6e6e6;
+}
+
+html.dark footer {
+    color: #aaa;
+}
+
+html.dark .e-head {
+    color: #aaa;
+}
+
+html.dark .p-head {
+    color: #aaa;
+}

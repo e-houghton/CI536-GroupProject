@@ -1,5 +1,5 @@
 import * as wishlistFunc from "./addToWishlist.js";
-window.addEventListener('load', async function (e) {
+window.addEventListener('load', async function () {
     
     // URLSearchParams api for url query strings
     const parameters = new URLSearchParams(window.location.search),
@@ -7,12 +7,6 @@ window.addEventListener('load', async function (e) {
         productId = parameters.get('id'),
         user = JSON.parse(sessionStorage.getItem('user')),
         productContainer = document.querySelector('.product-container');
-
-    if (user) {
-        const signInBtn = document.getElementById('sign-in-btn');
-        signInBtn.textContent = `Hi ${user.customer.fname}`;
-        signInBtn.href = '#';
-    }
 
     btnCreateListing.addEventListener('click', checkSigninStatus);
 
@@ -93,6 +87,7 @@ window.addEventListener('load', async function (e) {
         productSeller.classList.add('seller');
 
         const productPrice = document.createElement('h2');
+        productPrice.style.textAlign="left";
         productPrice.textContent = ` £${product.price.toFixed(2)}`;
 
         const productDescription = document.createElement('p');

@@ -1,8 +1,6 @@
-window.addEventListener('load', function (e) {
+window.addEventListener('load', function () {
 
-    const divLoading = document.querySelector('#divLoading'),
-        divSuccess = document.querySelector('#divSuccess'),
-        divError = document.querySelector('#divError'),
+    const divError = document.querySelector('#divError'),
         divImagePreview = document.getElementById('image-preview'),
 
         btnImageUpload = document.querySelector('.image-upload-btn'),
@@ -27,13 +25,7 @@ window.addEventListener('load', function (e) {
     btnImageUpload.addEventListener('click', openImageFiles);
     btnItemUpload.addEventListener('click', createItem);
 
-    // For navbar 
-    const user = JSON.parse(sessionStorage.getItem('user'));
-    if (user) {
-        const signInBtn = document.getElementById('sign-in-btn');
-        signInBtn.textContent = `Hi ${user.customer.fname}`;
-        signInBtn.href = '#';
-    }
+
 
     //  Triggers the image input button 
     function openImageFiles() {

@@ -308,12 +308,14 @@ html.dark .nav-right a.create-listing-btn{
     font-weight: bold;
 }
 
+.basket-column-headers .column-header-price {
 
 
 .column-header-price {
     text-align: right;
 }
 
+.basket-column-headers .column-header-quantity {
 .column-header-quantity {
     text-align: center;
 }
