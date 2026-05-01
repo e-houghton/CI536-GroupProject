@@ -30,6 +30,18 @@ export async function add(prod) {
      * if none wishlists- create wishlist, name = "NewWishlist"
      */
 
+/*const url = "/api/wishlist/findAllByID/" + user.userID;
+
+try {
+    const response = await fetch(url);
+
+    const raw = await response.text();
+    console.log("RAW:", raw);
+
+} catch (error) {
+    console.log(error);
+}*/
+
     const url = "/api/wishlist/findAllByID/"+user.userID;
     let jsonresponse = {};
     console.log("running");
@@ -54,12 +66,43 @@ export async function add(prod) {
     } catch (error) {
         console.log(error);
     }
-    submitBtn.addEventListener("click", e => {
-        console.log(dropdown.selectedOptions[0].value);
-    })
-    console.log("Test");
+
+    submitBtn.onclick = async () => {
+        const wishlistId = dropdown.value;
+
+        if (!wishlistId) {
+            alert("Please select a wishlist");
+            return;
+        }
+        const formData = new FormData();
+        formData.append("wID", wishlistId);
+        formData.append("p", new Blob([JSON.stringify(prod)], {
+            type: "application/json"
+        }));
+
+        try {
+            const response = await fetch("/api/wishlist/addProduct", {
+                method: "POST",
+                body: formData
+            });
+
+            if (response.ok) {
+                alert("Added to wishlist");
+                wishlistModal.style.display = "none";
+            } else {
+                alert("Failed to add");
+            }
+
+        } catch (error) {
+            console.error(error);
+            alert("Error occurred");
+        }
+    };
+
+    /*console.log("Test");
     console.log(prod);
-    console.log(wishlistModal);
+    console.log(wishlistModal);*/
+
     wishlistModal.style.display = "flex";
 
 }

@@ -181,3 +181,56 @@ button {
     width: 100%;
   }
 }
+
+/* DARK THEME*/
+html.dark body {
+  background: #121212;
+  color: #e6e6e6;
+}
+
+html.dark .container {
+  background: #1e1e1e;
+  color: #e6e6e6;
+}
+
+html.dark input {
+  background: #2a2a2a;
+  color: white;
+  border: 1px solid #444;
+}
+
+html.dark input::placeholder {
+  color: #aaa;
+}
+
+html.dark button {
+  border-color: #444;
+}
+
+html.dark .signup-btn {
+  background: #1e1e1e;
+  color: #f26fd6;
+  border: 2px solid #f26fd6;
+}
+
+html.dark .signup-btn:hover {
+  background: #f26fd6;
+  color: white;
+}
+
+html.dark h1,
+html.dark p {
+  color: #e6e6e6;
+}
+
+html.dark footer {
+  color: #aaa;
+}
+
+html.dark .e-head{
+    color: #aaa;
+}
+
+html.dark .p-head{
+    color: #aaa;
+}

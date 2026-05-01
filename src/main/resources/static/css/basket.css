@@ -145,6 +145,10 @@ h2 {
 
 }
 
+html.dark .nav-right a.create-listing-btn{
+    color: #000;
+}
+
 .create-listing-btn .plus {
     font-size: 40px;
 }
@@ -152,7 +156,7 @@ h2 {
 .logo-img {
     width: 100%;
     max-width: 180px;
-    height: 80px;
+    height: 110px;
     object-fit: contain;
     display: block;
 }
