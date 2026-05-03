@@ -73,8 +73,10 @@ window.addEventListener('load', async function () {
     //FETCHES PRODUCTS IN THROUGH API AND MAKES THEM CARDS 
     try {
         const response = await fetch('/api/product/findAll');
-        const products = await response.json();
-
+        const productsBase = await response.json();
+        // Clear products
+        productContainer.innerHTML = '';
+        const products = productsBase.filter(e=>!e.sold);
         // Creates the card with the item's image, name, heart button in the top right corner, price under card so title then price
         products.forEach(product => productContainer.appendChild(createProductCard(product)));
         updateResultsDisplay(products.length);

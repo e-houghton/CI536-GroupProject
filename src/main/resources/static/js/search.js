@@ -71,9 +71,10 @@ async function searchProducts(searchTerm) {
         const encodedSearchInput = encodeURIComponent(searchTerm);
         const url = '/api/product/fuzzySearch/' + encodedSearchInput;
         const searchResponse = await fetch(url);
-        const products = await searchResponse.json();
+        const productsBase = await searchResponse.json();
         // Clear products
         productContainer.innerHTML = '';
+        const products = productsBase.filter(e=>!e.sold);
         updateResultsDisplay(products.length, searchTerm);
         // Creates the card with the item's image, name, heart button in the top right corner, price under card so title then price
         products.forEach(product => productContainer.appendChild(createProductCard(product)));

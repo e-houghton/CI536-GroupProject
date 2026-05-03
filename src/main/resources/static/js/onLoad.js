@@ -10,7 +10,7 @@ window.addEventListener("load", async () => {
         signInBtn.href = '#';
     }
     btnCreateListing.addEventListener('click', checkSigninStatus);
-
+    updateBasketCount();
     function checkSigninStatus(e) {
         e.preventDefault();
 
@@ -94,4 +94,20 @@ window.addEventListener("DOMContentLoaded", () => {
 function applyTheme(theme) {
     document.documentElement.classList.remove("dark", "colourful");
     document.documentElement.classList.add(theme);
+}
+
+//updating basket count in nav bar
+
+function updateBasketCount() {
+    const basket = JSON.parse(sessionStorage.getItem('basket') || '[]');
+    const totalItems = basket.reduce((sum, item) => sum + item.quantity, 0);
+
+    const count = document.getElementById('basket-count');
+    if (!count) { return }
+    if (totalItems > 0) {
+        count.textContent = totalItems > 99 ? '99+' : totalItems;
+        count.style.display = 'inline-flex';
+    } else {
+        count.style.display = 'none';
+    }
 }

@@ -2,9 +2,8 @@ package com.group_project.craft.DatabaseClasses.Service;
 
 import com.group_project.craft.DatabaseClasses.Interface.InterfaceOrder;
 import com.group_project.craft.DatabaseClasses.Repository.RepoOrder;
-import com.group_project.craft.DatabaseClasses.Tables.Customer;
-import com.group_project.craft.DatabaseClasses.Tables.Order;
-import com.group_project.craft.DatabaseClasses.Tables.ReviewProduct;
+import com.group_project.craft.DatabaseClasses.Repository.RepoProduct;
+import com.group_project.craft.DatabaseClasses.Tables.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +19,10 @@ import java.util.Optional;
 public class ServiceOrder implements InterfaceOrder {
     @Autowired
     RepoOrder repo;
+    @Autowired
+    ServiceProduct prodService;
+    @Autowired
+    RepoProduct prodRepo;
 
     @Override
     public List<Order> findAll() {
@@ -30,10 +33,12 @@ public class ServiceOrder implements InterfaceOrder {
     public void addOrder(Customer buyer, Date date) {
         repo.save(new Order(buyer, date));
     }
+
     @Override
-    public Order addByObj(Order obj){
+    public Order addByObj(Order obj) {
         return repo.save(obj);
     }
+
     @Override
     public List<Order> getAllByBuyer(Customer buyer) {
         return repo.findAllByBuyer(buyer);
@@ -62,6 +67,23 @@ public class ServiceOrder implements InterfaceOrder {
     public Order findByID(int id) {
         Optional<Order> opt = repo.findById(id);
         return opt.orElse(null);
+    }
+
+    @Override
+    public void addProdToOrder(int oID, int pID, int quantOrdered) {
+        Order o = findByID(oID);
+        Product p = prodService.findByID(pID);
+        for(int i = 0; i<quantOrdered;i++) {
+
+            o.addItem(new OrderLine(o, p));
+            p.setQuant(p.getQuant() - 1);
+            if (p.getQuant() <= 0) {
+                p.setSold(true);
+            }
+
+        }
+        repo.save(o);
+        prodRepo.save(p);
     }
 
     @Override

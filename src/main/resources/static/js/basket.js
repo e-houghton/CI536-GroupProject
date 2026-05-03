@@ -11,7 +11,7 @@ function updateBasketCount() {
     const totalItems = basket.reduce((sum, item) => sum + item.quantity, 0);
 
     const count = document.getElementById('basket-count');
-    if (!count) { return };
+    if (!count) { return }
     if (totalItems > 0) {
         count.textContent = totalItems > 99 ? '99+' : totalItems;
         count.style.display = 'inline-flex';
@@ -20,7 +20,7 @@ function updateBasketCount() {
     }
 }
 
-window.addEventListener('load', async function (e) {
+window.addEventListener('load', async function () {
     if (!window.location.pathname.includes('basket.html')) {
         return;
     }
@@ -33,11 +33,11 @@ window.addEventListener('load', async function (e) {
     const basketTotal = document.getElementById('basket-total');
     const basketContainer = document.querySelector('.basket-container');
     const btnCheckout = document.querySelector('.checkout-btn');
-    
+
     const user = JSON.parse(sessionStorage.getItem('user'));
 
     btnCheckout.addEventListener('click', checkout);
-  
+
     if (basket.length === 0) {
         basketContainer.textContent = 'Your basket is empty.'
         return;
@@ -94,7 +94,8 @@ window.addEventListener('load', async function (e) {
 
         quantityInput.addEventListener('change', () => {
             let newQuantity = parseInt(quantityInput.value);
-
+            if(isNaN(newQuantity)){newQuantity=1;}
+            console.log(item);
             if (newQuantity === 0) {
                 basket.splice(basket.indexOf(item), 1);
                 row.remove();
@@ -109,6 +110,7 @@ window.addEventListener('load', async function (e) {
             item.quantity = newQuantity;
 
             saveBasket(basket);
+            updateBasketCount();
             updateOrderSummary();
         });
 
@@ -122,7 +124,7 @@ window.addEventListener('load', async function (e) {
     }
 
     function updateOrderSummary() {
-          let subtotal = 0;
+        let subtotal = 0;
 
         for (const item of basket) {
             subtotal += item.price * item.quantity;
@@ -136,7 +138,7 @@ window.addEventListener('load', async function (e) {
         // if nothing in basket don't let them go to checkout and show a hint
         // Pass products to checkout and show products in the checkout 
         // if not logged in
-          if (user) {
+        if (user) {
             window.location.href = 'checkout.html';
         } else {
             sessionStorage.setItem('redirectAfterLogin', 'checkout.html');

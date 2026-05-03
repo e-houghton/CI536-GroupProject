@@ -1,4 +1,4 @@
-window.addEventListener('load', function (e) {
+window.addEventListener('load', function () {
 
     const divCheckout = document.querySelector('.checkout-page'),
         divLoading = document.querySelector('#divLoading'),
@@ -6,12 +6,12 @@ window.addEventListener('load', function (e) {
         divError = document.querySelector('#divError'),
 
         btnBuy = document.querySelector('.buy-btn'),
-        btnApply = document.querySelector('.apply-discount-btn'),
+        //btnApply = document.querySelector('.apply-discount-btn'),
 
-        form = document.querySelector('form'),
-
-        firstInputArea = document.querySelector('#first-input-area'),
-        secondInputArea = document.querySelector('#second-input-area'),
+        //form = document.querySelector('form'),
+//
+        //firstInputArea = document.querySelector('#first-input-area'),
+        //secondInputArea = document.querySelector('#second-input-area'),
 
         inputFirstName = document.querySelector('#first-name'),
         inputSurname = document.querySelector('#surname'),
@@ -93,14 +93,14 @@ window.addEventListener('load', function (e) {
     const basketSubtotal = document.getElementById('basket-subtotal');
     const basketTotal = document.getElementById('basket-total');
     const basketContainer = document.querySelector('.basket-container');
-    const btnCheckout = document.querySelector('.checkout-btn');
+    //const btnCheckout = document.querySelector('.checkout-btn');
 
     loadBasket();
 
     async function validateFirstInputs() {
         const regexFirstName = /^[a-zA-Z\s\-]+$/,
             regexSurname = /^[a-zA-Z\s\-']+$/,
-            regexUsername = /^[a-zA-Z0-9\-]+$/,
+            //regexUsername = /^[a-zA-Z0-9\-]+$/,
             regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
             firstName = inputFirstName.value.trim(),
             surname = inputSurname.value.trim(),
@@ -425,26 +425,30 @@ window.addEventListener('load', function (e) {
             // creating the order lines and updating the stock
 
             for (const item of basket) {
+                console.log(JSON.stringify({
+                    "orderID": savedOrder.orderID,
+                    "productID": item.prodID,
+                    "quantOrdered": item.quantity
+                }));
+                console.log(Number.isInteger(savedOrder.orderID));
                 const orderLineResponse = await fetch(
-                    `http://localhost:8080/api/orderline/addByIds/${savedOrder.orderID}/${item.prodID}`,
-                    { method: 'POST' }
+                    `http://localhost:8080/api/order/addProduct`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            "orderID": savedOrder.orderID,
+                            "productID": item.prodID,
+                            "quantOrdered": item.quantity
+                        })
+                    }
                 );
                 if (!orderLineResponse.ok) {
                     throw new Error(`Failed to create an orderline for ${item.name}`);
                 }
 
-                const newQuantity = item.stock - item.quantity;
-                const updateStockResponse = await fetch(`http://localhost:8080/api/product/updateStock/${item.prodID}`, {
-                    method: 'PATCH',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        quant: newQuantity,
-                        sold: newQuantity <= 0
-                    })
-                });
-                if (!updateStockResponse.ok) {
-                    throw new Error(`Failed to update stock for ${item.name}`);
-                }
             }
             sessionStorage.removeItem('basket');
             divLoading.style.display = 'none';
@@ -457,6 +461,7 @@ window.addEventListener('load', function (e) {
             }, 2000);
 
         } catch (err) {
+            console.log(err);
             divLoading.style.display = 'none';
             divError.style.display = 'block';
         }

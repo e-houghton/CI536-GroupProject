@@ -26,7 +26,7 @@ window.addEventListener('load', async function () {
     try {
         const response = await fetch(`/api/product/find/${productId}`);
         const product = await response.json();
-
+        
         const productImages = await getProductImages(product.imageLocation);
         let currIndexPosition = 0;
 
@@ -89,7 +89,9 @@ window.addEventListener('load', async function () {
         const productPrice = document.createElement('h2');
         productPrice.style.textAlign="left";
         productPrice.textContent = ` £${product.price.toFixed(2)}`;
-
+        const productStock = document.createElement("h4");
+        productStock.style.textAlign="left";
+        productStock.textContent = `${product.quant} in stock`;
         const productDescription = document.createElement('p');
         productDescription.textContent = product.description;
 
@@ -101,6 +103,7 @@ window.addEventListener('load', async function () {
         productDetails.appendChild(productName);
         productDetails.appendChild(productSeller);
         productDetails.appendChild(productPrice);
+        productDetails.appendChild(productStock);
         productDetails.appendChild(productDescription);
         productDetails.appendChild(btnAddToBasket);
 
@@ -197,7 +200,19 @@ window.addEventListener('load', async function () {
         console.error(err)
     }
 });
+function updateBasketCount() {
+    const basket = JSON.parse(sessionStorage.getItem('basket') || '[]');
+    const totalItems = basket.reduce((sum, item) => sum + item.quantity, 0);
 
+    const count = document.getElementById('basket-count');
+    if (!count) { return }
+    if (totalItems > 0) {
+        count.textContent = totalItems > 99 ? '99+' : totalItems;
+        count.style.display = 'inline-flex';
+    } else {
+        count.style.display = 'none';
+    }
+}
 async function getProductImages(imageLocation) {
     const productImages = [];
     let i = 0;

@@ -9,4 +9,6 @@ import java.util.List;
 public interface InterfaceOrder extends InterfaceParent<Order> {
     void addOrder(Customer buyer, Date purchaseDate);
     List<Order> getAllByBuyer(Customer buyer);
+
+    void addProdToOrder(int oID, int pID, int quantOrdered);
 }

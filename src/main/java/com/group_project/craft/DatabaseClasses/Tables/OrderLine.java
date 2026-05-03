@@ -18,7 +18,7 @@ public class OrderLine {
     private int orderLineID;
 
     @ManyToOne
-    @JoinColumn(name = "order")
+    @JoinColumn(name = "parentOrder")
     private Order order;
 
     @ManyToOne
