@@ -1,6 +1,6 @@
 # CI536 GROUP PROJECT
 
-A marketplace for buying goods made by people.
+A marketplace for buying goods made by people, developed using HTML/CSS, JavaScript and Java.
 
 # Dependancies
 
